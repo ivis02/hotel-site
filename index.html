@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>호텔농심 - Hotel Nongshim</title>
+
+    <!-- ============================================
+         FONTS
+         로컬: Noto Serif KR, SUIT, Petrona (@font-face in style.css)
+         CDN: Cormorant Garamond (Google Fonts)
+         CDN: Source Han Serif KR / 본명조 (Adobe Fonts / Typekit)
+    ============================================ -->
+
+    <!-- Source Han Serif KR — Adobe Fonts (Typekit) 키트 ID를 아래에 입력하세요 -->
+    <script>
+        (function (d) {
+            var config = {
+                kitId: 'dmz0vye',
+                scriptTimeout: 3000,
+                async: true
+            },
+                h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+        })(document);
+    </script>
+
+    <!-- 첫 화면 노출 폰트만 preload (상단바·GNB) -->
+    <link rel="preload" as="font" href="font/SUIT-Regular.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href="font/SUIT-Medium.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href="font/NotoSerifKR-Medium.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href="font/NotoSerifKR-SemiBold.woff2" type="font/woff2" crossorigin>
+
+    <!-- 히어로 LCP 이미지 preload (첫 화면 렌더링 최적화) -->
+    <link rel="preload" as="image" href="images/main/main_1540462708.jpg">
+    <!-- 슬라이드 2·3 prefetch (유휴 시간에 미리 로드) -->
+    <link rel="prefetch" href="images/main/main_1540462725.jpg">
+    <link rel="prefetch" href="images/main/main_1540462732.jpg">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Cormorant Garamond (로컬 파일 없는 폰트만 CDN 사용) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ============================================
+         TOP BAR (최상단, 투명 배경)
+         - 언어 선택 + 로그인/회원가입/멤버쉽/예약확인
+    ============================================ -->
+    <div class="topbar">
+        <div class="topbar__lang">
+            <a href="#" class="is-active">KOR</a>
+            <a href="#">JPN</a>
+            <a href="#">ENG</a>
+        </div>
+        <div class="topbar__auth">
+            <a href="#">로그인</a>
+            <a href="#">회원가입</a>
+            <a href="#">멤버쉽</a>
+            <a href="#">예약확인</a>
+        </div>
+    </div>
+
+    <!-- ============================================
+         HEADER / GNB (글로벌 내비게이션)
+         - 반투명 다크 배경 + 블러
+         - 좌: 객실 / 스페셜오퍼 / 다이닝
+         - 중: 로고 이미지
+         - 우: 연회&웨딩 / 허심청 / 편의시설
+    ============================================ -->
+    <header class="header" id="header">
+        <nav class="header__gnb">
+
+            <ul class="gnb-menu gnb-left">
+
+                <!-- 1. 객실 -->
+                <li class="gnb-item">
+                    <a href="#">객실</a>
+                    <div class="gnb-submenu">
+                        <div class="gnb-submenu__inner">
+                            <div class="gnb-col">
+                                <a class="gnb-col__title" href="#">디럭스</a>
+                                <ul class="gnb-col__list">
+                                    <li><a href="#">트윈</a></li>
+                                    <li><a href="#">더블</a></li>
+                                    <li><a href="#">온돌</a></li>
+                                    <li><a href="#">더블 스탠다드</a></li>
+                                </ul>
+                            </div>
+                            <div class="gnb-col">
+                                <a class="gnb-col__title" href="#">하이디럭스</a>
+                                <ul class="gnb-col__list">
+                                    <li><a href="#">킹</a></li>
+                                    <li><a href="#">트윈</a></li>
+                                </ul>
+                            </div>
+                            <div class="gnb-col">
+                                <a class="gnb-col__title" href="#">럭셔리</a>
+                                <ul class="gnb-col__list">
+                                    <li><a href="#">킹</a></li>
+                                    <li><a href="#">트윈</a></li>
+                                    <li><a href="#">패밀리</a></li>
+                                </ul>
+                            </div>
+                            <div class="gnb-col">
+                                <a class="gnb-col__title" href="#">슈페리어스위트</a>
+                                <ul class="gnb-col__list">
+                                    <li><a href="#">스탠다드</a></li>
+                                    <li><a href="#">딜럭스</a></li>
+                                </ul>
+                            </div>
+                            <div class="gnb-col">
+                                <a class="gnb-col__title" href="#">스파</a>
+                                <ul class="gnb-col__list">
+                                    <li><a href="#">스파 킹</a></li>
+                                    <li><a href="#">스파 트윈</a></li>
+                                </ul>
+                            </div>
+                            <div class="gnb-col">
+                                <a class="gnb-col__title" href="#">컬렉션</a>
+                                <ul class="gnb-col__list">
+                                    <li><a href="#">프리미엄</a></li>
+                                    <li><a href="#">시그니처</a></li>
+                                    <li><a href="#">그랜드</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 2. 스페셜오퍼 -->
+                <li class="gnb-item">
+                    <a href="#">스페셜오퍼</a>
+                    <div class="gnb-submenu">
+                        <div class="gnb-submenu__inner">
+                            <div class="gnb-col">
+                                <ul class="gnb-col__list">
+                                    <li><a href="#">호텔소식</a></li>
+                                    <li><a href="#">객실패키지</a></li>
+                                    <li><a href="#">프로모션</a></li>
+                                    <li><a href="#">정기이벤트</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 3. 다이닝 -->
+                <li class="gnb-item">
+                    <a href="#">다이닝</a>
+                    <div class="gnb-submenu">
+                        <div class="gnb-submenu__inner">
+                            <div class="gnb-col">
+                                <ul class="gnb-col__list">
+                                    <li><a href="#">리스또란떼</a></li>
+                                    <li><a href="#">내당</a></li>
+                                    <li><a href="#">더 라운지</a></li>
+                                    <li><a href="#">더 바</a></li>
+                                    <li><a href="#">더 베이커리</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+
+            <div class="gnb-item logo-item">
+                <h1 class="logo">
+                    <a href="/">
+                        <!-- [이미지] 호텔농심 로고 - 추후 교체 가능 -->
+                        <img src="images/h_logo.png" alt="호텔농심" width="193" height="35">
+                    </a>
+                </h1>
+                <div class="gnb-submenu">
+                    <div class="gnb-submenu__inner">
+                        <div class="gnb-col">
+                            <ul class="gnb-col__list">
+                                <li><a href="#">호텔소개</a></li>
+                                <li><a href="#">호텔 둘러보기</a></li>
+                                <li><a href="#">연혁</a></li>
+                                <li><a href="#">관계사</a></li>
+                                <li><a href="#">갤러리</a></li>
+                                <li><a href="#">오시는 길</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="gnb-menu gnb-right">
+
+                <!-- 4. 연회&웨딩 -->
+                <li class="gnb-item">
+                    <a href="#">연회&amp;웨딩</a>
+                    <div class="gnb-submenu">
+                        <div class="gnb-submenu__inner">
+                            <div class="gnb-col">
+                                <a class="gnb-col__title" href="#">연회</a>
+                                <ul class="gnb-col__list">
+                                    <li><a href="#">대연회장</a></li>
+                                    <li><a href="#">중연회장</a></li>
+                                    <li><a href="#">소연회장</a></li>
+                                    <li><a href="#">미팅룸</a></li>
+                                </ul>
+                            </div>
+                            <div class="gnb-col">
+                                <a class="gnb-col__title" href="#">웨딩</a>
+                                <ul class="gnb-col__list">
+                                    <li><a href="#">대청</a></li>
+                                    <li><a href="#">다이아몬드</a></li>
+                                    <li><a href="#">크리스탈</a></li>
+                                    <li><a href="#">야외웨딩</a></li>
+                                </ul>
+                            </div>
+                            <div class="gnb-col">
+                                <ul class="gnb-col__list">
+                                    <li><a href="#">가족연회</a></li>
+                                    <li><a href="#">예약문의</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 5. 허심청 -->
+                <li class="gnb-item">
+                    <a href="#">허심청</a>
+                    <div class="gnb-submenu">
+                        <div class="gnb-submenu__inner">
+                            <div class="gnb-col">
+                                <ul class="gnb-col__list">
+                                    <li><a href="#">허심청 소개</a></li>
+                                    <li><a href="#">온천소개</a></li>
+                                    <li><a href="#">찜질 및 휴게시설</a></li>
+                                    <li><a href="#">이용안내</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 6. 편의시설 -->
+                <li class="gnb-item">
+                    <a href="#">편의시설</a>
+                    <div class="gnb-submenu">
+                        <div class="gnb-submenu__inner">
+                            <div class="gnb-col">
+                                <ul class="gnb-col__list">
+                                    <li><a href="#">피트니스센터</a></li>
+                                    <li><a href="#">비즈니스센터</a></li>
+                                    <li><a href="#">VIP 라운지</a></li>
+                                    <li><a href="#">주차장</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+
+            </ul>
+
+            <!-- 모바일 햄버거 버튼 (1024px 이하에서만 표시) -->
+            <button class="gnb-toggle" aria-label="메뉴 열기" aria-expanded="false">
+                <span class="gnb-toggle__bar"></span>
+                <span class="gnb-toggle__bar"></span>
+                <span class="gnb-toggle__bar"></span>
+            </button>
+
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ============================================
+             SECTION 1: 메인 배너 (Hero)
+             - 전체 너비 배경 이미지 + 그라데이션 오버레이
+             - 슬라이드 번호 표시 (02/03)
+             - 메인 카피 + 서브 카피
+             - 닷 인디케이터 (우측)
+             - 좌우 화살표
+        ============================================ -->
+        <section class="hero">
+            <!-- [이미지] 메인 배너 배경 - 크로스페이드용 2레이어 -->
+            <div class="hero__bg hero__bg--a" style="background-image: url('images/main/main_1540462708.jpg');"></div>
+            <div class="hero__bg hero__bg--next" style="background-image: url('images/main/main_1540462708.jpg');">
+            </div>
+            <!-- 상단 그라데이션 (헤더 가독성) -->
+            <div class="hero__gradient-top"></div>
+            <!-- 하단 그라데이션 (텍스트 가독성) -->
+            <div class="hero__gradient-bottom"></div>
+
+            <!-- 슬라이드 번호 (좌측 하단) -->
+            <div class="hero__counter">
+                <span class="hero__counter-current">02</span>
+                <span class="hero__counter-total">03</span>
+            </div>
+
+            <!-- 메인 텍스트 (좌측 하단) -->
+            <div class="hero__text">
+                <h2 class="hero__title">그 곳, 호텔농심</h2>
+                <p class="hero__subtitle">신선한 공기와 맑은 온천수를 벗삼아 휴식을 취하는 곳</p>
+            </div>
+
+            <!-- Gooey SVG 필터 -->
+            <svg class="svg-filters" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="gooey-filter">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0
+                                    0 1 0 0 0
+                                    0 0 1 0 0
+                                    0 0 0 20 -9" result="goo" />
+                        <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+                    </filter>
+                </defs>
+            </svg>
+
+            <!-- 닷 인디케이터 (우측) - Gooey 효과 -->
+            <div class="hero__dots">
+                <div class="hero__moving-dot"></div>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+
+            <!-- 좌우 화살표 -->
+            <button class="hero__arrow hero__arrow--left" aria-label="이전 슬라이드">
+                <svg width="16" height="32" viewBox="0 0 16 32">
+                    <polyline points="12,4 4,16 12,28" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+            </button>
+            <button class="hero__arrow hero__arrow--right" aria-label="다음 슬라이드">
+                <svg width="16" height="32" viewBox="0 0 16 32">
+                    <polyline points="4,4 12,16 4,28" fill="none" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+            </button>
+        </section>
+
+        <!-- ============================================
+             SECTION 2: 호텔 소개
+             - 이미지 2장 (메인 + 서브)
+             - 타이틀 "호텔 소개"
+             - 설명 텍스트
+             - CTA 버튼 "자세히 보기"
+        ============================================ -->
+        <section class="hotel-intro" id="hotel-intro">
+            <div class="hotel-intro__inner">
+                <!-- 이미지 패널 (슬라이드) -->
+                <div class="hotel-intro__img-wrap">
+                    <div class="hotel-intro__slide is-active"
+                        style="background-image: url('images/main/info_img01.jpg');"></div>
+                    <div class="hotel-intro__slide" style="background-image: url('images/main/info_img02.jpg');"></div>
+                    <!-- 화살표 (이미지 우하단) -->
+                    <button class="hotel-intro__arrow hotel-intro__arrow--prev" aria-label="이전 사진">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <polyline points="9,2 5,7 9,12" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="hotel-intro__arrow hotel-intro__arrow--next" aria-label="다음 사진">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <polyline points="5,2 9,7 5,12" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- 텍스트 패널 -->
+                <div class="hotel-intro__content">
+                    <div class="hotel-intro__text-body">
+                        <span class="hotel-intro__since">SINCE 1979</span>
+                        <div class="hotel-intro__heading">
+                            <h2 class="hotel-intro__title-en">Urban Oasis Retreat</h2>
+                            <p class="hotel-intro__title-kr">도심 속 오아시스</p>
+                        </div>
+                        <p class="hotel-intro__desc">1979년 개관 이래 부산 동래의 랜드마크로 자리잡은 호텔농심은 천년 역사의 동래온천과 금정산의 자연이 어우러진 도심 속
+                            휴식처입니다.</p>
+                    </div>
+                    <a href="#" class="hotel-intro__cta">
+                        <span class="hotel-intro__cta-line"></span>
+                        <span class="hotel-intro__cta-text">자세히 보기</span>
+                        <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+                            <line x1="3.75" y1="9" x2="14.25" y2="9" stroke="currentColor" stroke-width="1.125" />
+                            <polyline points="9,3.75 14.25,9 9,14.25" fill="none" stroke="currentColor"
+                                stroke-width="1.125" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             SECTION 3: 스페셜오퍼
+             - 타이틀 "Special Offers" + "스페셜오퍼"
+             - 페이지네이션 닷
+             - 가로 스크롤 카드 캐러셀
+             - 중앙 피처드 카드 (glassmorphism)
+             - 하단 장식 라인
+             - 패키지/프로모션 버튼
+        ============================================ -->
+        <section class="special-offers" id="special-offers">
+            <!-- 타이틀 -->
+            <div class="special-offers__header">
+                <h2 class="special-offers__title-en">Special Offers</h2>
+                <p class="special-offers__title-kr">스페셜오퍼</p>
+            </div>
+
+            <!-- 카테고리 토글 (구 닷 위치) -->
+            <div class="offers-toggle">
+                <div class="offers-toggle__thumb"></div>
+                <button class="offers-toggle__btn is-active" data-cat="package">패키지</button>
+                <button class="offers-toggle__btn" data-cat="promotion">프로모션</button>
+            </div>
+
+            <!-- 페이지네이션 닷 (하단으로 이동 - CSS 위치 변경) -->
+            <div class="special-offers__dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot is-active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+
+            <!-- 카드 캐러셀 (플랫 구조, 클릭으로 전환) -->
+            <div class="special-offers__carousel" id="offers-carousel">
+                <!-- [이미지] 카드 0 -->
+                <div class="offer-card" data-idx="0">
+                    <div class="offer-card__thumb">
+                        <div class="offer-card__overlay"></div>
+                        <div class="offer-card__info">
+                            <h3 class="offer-card__info-title">2025 F/W 스파 패키지</h3>
+                            <p class="offer-card__info-desc">가을·겨울 시즌 한정, 프리미엄 스파 트리트먼트와 함께하는 특별한 투숙 경험.</p>
+                            <span class="offer-card__info-date">2025.09.01 ~ 2026.02.28</span>
+                            <a href="#" class="offer-card__cta">
+                                <span class="offer-card__cta-line"></span>
+                                <span class="offer-card__cta-text">자세히 보기</span>
+                                <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+                                    <line x1="3.75" y1="9" x2="14.25" y2="9" stroke="currentColor"
+                                        stroke-width="1.125" />
+                                    <polyline points="9,3.75 14.25,9 9,14.25" fill="none" stroke="currentColor"
+                                        stroke-width="1.125" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="offer-card__name">2025 F/W 스파 패키지</p>
+                </div>
+
+                <!-- [이미지] 카드 1 -->
+                <div class="offer-card" data-idx="1">
+                    <div class="offer-card__thumb">
+                        <div class="offer-card__overlay"></div>
+                        <div class="offer-card__info">
+                            <h3 class="offer-card__info-title">2025 겨울을 부탁해 패키지</h3>
+                            <p class="offer-card__info-desc">겨울의 차가운 공기 속에서도 따뜻한 온천과 휴식으로 포근한 하루를 선물합니다.</p>
+                            <span class="offer-card__info-date">2026.03.01 ~ 2026.05.31</span>
+                            <a href="#" class="offer-card__cta">
+                                <span class="offer-card__cta-line"></span>
+                                <span class="offer-card__cta-text">자세히 보기</span>
+                                <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+                                    <line x1="3.75" y1="9" x2="14.25" y2="9" stroke="currentColor"
+                                        stroke-width="1.125" />
+                                    <polyline points="9,3.75 14.25,9 9,14.25" fill="none" stroke="currentColor"
+                                        stroke-width="1.125" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="offer-card__name">2025 겨울을 부탁해 패키지</p>
+                </div>
+
+                <!-- [이미지] 카드 2 -->
+                <div class="offer-card" data-idx="2">
+                    <div class="offer-card__thumb">
+                        <div class="offer-card__overlay"></div>
+                        <div class="offer-card__info">
+                            <h3 class="offer-card__info-title">2026 금정산 메아리 패키지</h3>
+                            <p class="offer-card__info-desc">금정산 자연의 여운과 함께하는 힐링 스테이를 경험해보세요.</p>
+                            <span class="offer-card__info-date">2026-01-01 ~ 2026-02-28</span>
+                            <a href="#" class="offer-card__cta">
+                                <span class="offer-card__cta-line"></span>
+                                <span class="offer-card__cta-text">자세히 보기</span>
+                                <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+                                    <line x1="3.75" y1="9" x2="14.25" y2="9" stroke="currentColor"
+                                        stroke-width="1.125" />
+                                    <polyline points="9,3.75 14.25,9 9,14.25" fill="none" stroke="currentColor"
+                                        stroke-width="1.125" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="offer-card__name">2026 금정산 메아리 패키지</p>
+                </div>
+
+                <!-- [이미지] 카드 3 (초기 활성) -->
+                <div class="offer-card is-active" data-idx="3">
+                    <div class="offer-card__thumb"
+                        style="background-image: url('images/main/9b813aeef0884866d8cac719370cb8df.png');">
+                        <div class="offer-card__overlay"></div>
+                        <div class="offer-card__info">
+                            <h3 class="offer-card__info-title">SRT X 호텔농심 프로모션</h3>
+                            <p class="offer-card__info-desc">5성급 호텔에서 숙박과 온천을 한번에 즐겨보세요!</p>
+                            <span class="offer-card__info-date">2026-01-01 ~ 2026-12-31</span>
+                            <a href="#" class="offer-card__cta">
+                                <span class="offer-card__cta-line"></span>
+                                <span class="offer-card__cta-text">자세히 보기</span>
+                                <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+                                    <line x1="3.75" y1="9" x2="14.25" y2="9" stroke="currentColor"
+                                        stroke-width="1.125" />
+                                    <polyline points="9,3.75 14.25,9 9,14.25" fill="none" stroke="currentColor"
+                                        stroke-width="1.125" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="offer-card__name">SRT X 호텔농심 프로모션</p>
+                </div>
+
+                <!-- [이미지] 카드 4 -->
+                <div class="offer-card" data-idx="4">
+                    <div class="offer-card__thumb">
+                        <div class="offer-card__overlay"></div>
+                        <div class="offer-card__info">
+                            <h3 class="offer-card__info-title">2026 S/S 스파 패키지</h3>
+                            <p class="offer-card__info-desc">봄.여름 시즌 프라이빗한 스파룸에서 즐기는 특별한 온천 여행</p>
+                            <span class="offer-card__info-date">2026-03-01 ~ 2026-08-31</span>
+                            <a href="#" class="offer-card__cta">
+                                <span class="offer-card__cta-line"></span>
+                                <span class="offer-card__cta-text">자세히 보기</span>
+                                <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+                                    <line x1="3.75" y1="9" x2="14.25" y2="9" stroke="currentColor"
+                                        stroke-width="1.125" />
+                                    <polyline points="9,3.75 14.25,9 9,14.25" fill="none" stroke="currentColor"
+                                        stroke-width="1.125" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="offer-card__name">2026 S/S 스파 패키지</p>
+                </div>
+
+                <!-- [이미지] 카드 5 -->
+                <div class="offer-card" data-idx="5">
+                    <div class="offer-card__thumb" style="background-image: url('images/main/main_15404627323.png');">
+                        <div class="offer-card__overlay"></div>
+                        <div class="offer-card__info">
+                            <h3 class="offer-card__info-title">2026 농심 친환경 패키지</h3>
+                            <p class="offer-card__info-desc">환경을 생각한 선택으로 완성되는 더욱 가치 있는 휴식.</p>
+                            <span class="offer-card__info-date">2026-03-01 ~ 2026-12-31</span>
+                            <a href="#" class="offer-card__cta">
+                                <span class="offer-card__cta-line"></span>
+                                <span class="offer-card__cta-text">자세히 보기</span>
+                                <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+                                    <line x1="3.75" y1="9" x2="14.25" y2="9" stroke="currentColor"
+                                        stroke-width="1.125" />
+                                    <polyline points="9,3.75 14.25,9 9,14.25" fill="none" stroke="currentColor"
+                                        stroke-width="1.125" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="offer-card__name">2026 농심 친환경 패키지</p>
+                </div>
+
+                <!-- [이미지] 카드 6 -->
+                <div class="offer-card" data-idx="6">
+                    <div class="offer-card__thumb">
+                        <div class="offer-card__overlay"></div>
+                        <div class="offer-card__info">
+                            <h3 class="offer-card__info-title">2026 봄이 왔나봄 패키지</h3>
+                            <p class="offer-card__info-desc">봄을 맞아 준비한 시즌 패키지로, 더욱 풍성한 휴식을 누려보세요.</p>
+                            <span class="offer-card__info-date">2026-03-01 ~ 2026-05-31</span>
+                            <a href="#" class="offer-card__cta">
+                                <span class="offer-card__cta-line"></span>
+                                <span class="offer-card__cta-text">자세히 보기</span>
+                                <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+                                    <line x1="3.75" y1="9" x2="14.25" y2="9" stroke="currentColor"
+                                        stroke-width="1.125" />
+                                    <polyline points="9,3.75 14.25,9 9,14.25" fill="none" stroke="currentColor"
+                                        stroke-width="1.125" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="offer-card__name">2026 봄이 왔나봄 패키지</p>
+                </div>
+            </div>
+
+            <!-- 장식 라인 -->
+            <div class="special-offers__lines">
+                <span class="line line--left"></span>
+                <span class="line line--right"></span>
+            </div>
+
+        </section>
+
+        <!-- ============================================
+             SECTION 4: 객실 (Accommodations)
+             - 타이틀 "Accommodations" + "객실"
+             - 장식 라인
+             - 좌측 사이드바 네비: 세로 목록 + 구분선 + 활성 인디케이터
+             - 우측 콘텐츠: 이미지(540px) + 상세정보(540px)
+               - 카테고리, 객실명(한/영), 설명, 스펙, 서브룸 썸네일, CTA
+        ============================================ -->
+        <section class="accommodations">
+            <!-- 타이틀 -->
+            <div class="accommodations__header">
+                <h2 class="accommodations__title-en">Accommodations</h2>
+                <p class="accommodations__title-kr">객실</p>
+            </div>
+
+            <!-- 장식 구분선 -->
+            <div class="accommodations__divider"></div>
+
+            <!-- 메인 콘텐츠 -->
+            <div class="accommodations__content">
+                <!-- 좌측 사이드바 네비게이션 -->
+                <nav class="accommodations__nav">
+                    <div class="accommodations__nav-line"></div>
+                    <div class="accommodations__nav-accent"></div>
+                    <ul class="accommodations__nav-list">
+                        <li><a href="#" class="is-active" data-room="deluxe">디럭스<span
+                                    class="nav-dot is-active"></span></a></li>
+                        <li><a href="#" data-room="high-deluxe">하이디럭스<span class="nav-dot"></span></a></li>
+                        <li><a href="#" data-room="luxury">럭셔리<span class="nav-dot"></span></a></li>
+                        <li><a href="#" data-room="superior-suite">슈페리어스위트<span class="nav-dot"></span></a></li>
+                        <li><a href="#" data-room="spa">스파<span class="nav-dot"></span></a></li>
+                        <li><a href="#" data-room="collection">컬렉션<span class="nav-dot"></span></a></li>
+                    </ul>
+                </nav>
+
+                <!-- ============================================================
+                     객실 패널 (6종)
+                     - data-room: 네비게이션 data-room과 일치
+                     - hidden: 비활성 패널 (JS로 전환)
+                     - [이미지] 주석 위치에 실제 이미지 경로 교체
+                     총 이미지: 메인 6장 + 썸네일 16장 = 22장
+                ============================================================ -->
+
+                <!-- ① 디럭스 (썸네일 4개) -->
+                <div class="accommodations__panel is-active" data-room="deluxe">
+                    <div class="accommodations__image">
+                        <div class="accommodations__image-bg"
+                            style="background-image: url('images/rooms/imgi_37_room_bg01.jpg');"></div>
+                        <div class="accommodations__image-gradient"></div>
+                    </div>
+                    <div class="accommodations__info">
+                        <span class="accommodations__category">Standard</span>
+                        <h3 class="accommodations__room-name">디럭스 트윈</h3>
+                        <span class="accommodations__room-name-en">Deluxe Twin</span>
+                        <p class="accommodations__room-desc">
+                            고풍스럽고 넉넉한 한국 전통 온돌 룸과 모던풍의 편안한 분위기가
+                            어우러진 디럭스 룸에서는 내 집 같이 편안하고 여유로운 휴식을
+                            느낄 수 있습니다.
+                        </p>
+                        <div class="accommodations__specs">
+                            <div class="spec">
+                                <span class="spec__label">객실 크기</span>
+                                <span class="spec__value">42㎡</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec__label">침대</span>
+                                <span class="spec__value">Twin · Double</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec__label">전망</span>
+                                <span class="spec__value">City</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec__label">인원</span>
+                                <span class="spec__value">2인</span>
+                            </div>
+                        </div>
+                        <div class="accommodations__subrooms">
+                            <!-- [이미지] 디럭스 썸네일 → images/rooms/imgi_37_room_bg01.jpg ~ thumb_4.jpg -->
+                            <div class="subroom is-active" data-img="images/rooms/imgi_37_room_bg01.jpg"
+                                data-name="디럭스 트윈" data-name-en="Deluxe Twin"
+                                data-desc="고풍스럽고 넉넉한 한국 전통 온돌 룸과 모던풍의 편안한 분위기가 어우러진 디럭스 룸에서는 내 집 같이 편안하고 여유로운 휴식을 느낄 수 있습니다."
+                                data-size="42㎡" data-bed="Twin" data-view="City" data-guest="2인">
+                                <div class="subroom__thumb"
+                                    style="background-image: url('images/rooms/imgi_37_room_bg01.jpg');"></div>
+                                <span class="subroom__name">트윈</span>
+                            </div>
+                            <div class="subroom" data-img="images/rooms/imgi_38_room_bg02.jpg" data-name="디럭스 더블"
+                                data-name-en="Deluxe Double"
+                                data-desc="모던한 인테리어와 편안한 더블 베드로 구성된 디럭스 더블은 커플에게 최적의 선택입니다." data-size="42㎡"
+                                data-bed="Double" data-view="City" data-guest="2인">
+                                <div class="subroom__thumb"
+                                    style="background-image: url('images/rooms/imgi_38_room_bg02.jpg');"></div>
+                                <span class="subroom__name">더블</span>
+                            </div>
+                            <div class="subroom" data-img="images/rooms/imgi_39_room_bg03.jpg" data-name="디럭스 온돌"
+                                data-name-en="Deluxe Ondol"
+                                data-desc="한국 전통 온돌 방식을 현대적으로 재해석한 공간으로 따뜻한 바닥에서 특별한 휴식을 경험하세요." data-size="42㎡"
+                                data-bed="Ondol" data-view="City" data-guest="2인">
+                                <div class="subroom__thumb"
+                                    style="background-image: url('images/rooms/imgi_39_room_bg03.jpg');"></div>
+                                <span class="subroom__name">온돌</span>
+                            </div>
+                            <div class="subroom" data-img="images/rooms/imgi_41_room_bg04.jpg" data-name="디럭스 더블 스탠다드"
+                                data-name-en="Deluxe Double Standard"
+                                data-desc="합리적인 가격으로 호텔농심의 품격 있는 서비스를 경험할 수 있는 스탠다드 더블 객실입니다." data-size="42㎡"
+                                data-bed="Double" data-view="City View" data-guest="2인">
+                                <div class="subroom__thumb"
+                                    style="background-image: url('images/rooms/imgi_41_room_bg04.jpg');"></div>
+                                <span class="subroom__name">더블 스탠다드</span>
+                            </div>
+                        </div>
+                        <a href="#" class="accommodations__cta">
+                            <span class="accommodations__cta-line"></span>
+                            <span class="accommodations__cta-text">객실 상세보기</span>
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <line x1="3.75" y1="9" x2="14.25" y2="9" stroke="currentColor" stroke-width="1.125" />
+                                <polyline points="9,3.75 14.25,9 9,14.25" fill="none" stroke="currentColor"
+                                    stroke-width="1.125" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ② 하이디럭스 (썸네일 2개) -->
+                <div class="accommodations__panel" data-room="high-deluxe">
+                    <div class="accommodations__image">
+                        <div class="accommodations__image-bg"
+                            style="background-image: url('images/rooms/imgi_40_room_bg05.jpg');"></div>
+                        <div class="accommodations__image-gradient"></div>
+                    </div>
+                    <div class="accommodations__info">
+                        <span class="accommodations__category">Superior</span>
+                        <h3 class="accommodations__room-name">하이디럭스 킹</h3>
+                        <span class="accommodations__room-name-en">High Deluxe King</span>
+                        <p class="accommodations__room-desc">
+                            세련된 인테리어와 한층 넓어진 공간으로 더욱 쾌적한 숙박 경험을
+                            제공합니다. 금정산의 청정한 자연과 부산의 스카이라인을 감상하며
+                            여유로운 휴식을 즐기세요.
+                        </p>
+                        <div class="accommodations__specs">
+                            <div class="spec">
+                                <span class="spec__label">객실 크기</span>
+                                <span class="spec__value">52㎡</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec__label">침대</span>
+                                <span class="spec__value">King · Twin</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec__label">전망</span>
+                                <span class="spec__value">Mountain · City</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec__label">인원</span>
+                                <span class="spec__value">2인</span>
+                            </div>
+                        </div>
+                        <div class="accommodations__subrooms">
+                            <!-- [이미지] 하이디럭스 썸네일 → images/rooms/imgi_40_room_bg05.jpg ~ thumb_2.jpg -->
+                            <div class="subroom is-active" data-img="images/rooms/imgi_40_room_bg05.jpg"
+                                data-name="하이디럭스 킹" data-name-en="High Deluxe King"
+                                data-desc="세련된 인테리어와 한층 넓어진 공간으로 더욱 쾌적한 숙박 경험을 제공합니다. 금정산의 청정한 자연과 부산의 스카이라인을 감상하며 여유로운 휴식을 즐기세요."
+                                data-size="52㎡" data-bed="King" data-view="Mountain · City" data-guest="2인">
+                                <div class="subroom__thumb"
+                                    style="background-image: url('images/rooms/imgi_40_room_bg05.jpg');"></div>
+                                <span class="subroom__name">킹</span>
+                            </div>
+                            <div class="subroom" data-img="images/rooms/imgi_42_room_bg06.jpg" data-name="하이디럭스 트윈"
+                                data-name-en="High Deluxe Twin"
+                                data-desc="두 개의 싱글 베드로 구성된 트윈 타입으로 편안한 개인 공간과 함께 고급스러운 숙박을 제공합니다." data-size="52㎡"
+                                data-bed="Twin" data-view="Mountain · City" data-guest="2인">
+                                <div class="subroom__thumb"
+                                    style="background-image: url('images/rooms/imgi_42_room_bg06.jpg');"></div>
+                                <span class="subroom__name">트윈</span>
+                            </div>
+                        </div>
+                        <a href="#" class="accommodations__cta">
+                            <span class="accommodations__cta-line"></span>
+                            <span class="accommodations__cta-text">객실 상세보기</span>
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <line x1="3.75" y1="9" x2="14.25" y2="9" stroke="currentColor" stroke-width="1.125" />
+                                <polyline points="9,3.75 14.25,9 9,14.25" fill="none" stroke="currentColor"
+                                    stroke-width="1.125" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ③ 럭셔리 (썸네일 3개) -->
+                <div class="accommodations__panel" data-room="luxury">
+                    <div class="accommodations__image">
+                        <div class="accommodations__image-bg"
+                            style="background-image: url('images/rooms/imgi_30_room_bg07.jpg');"></div>
+                        <div class="accommodations__image-gradient"></div>
+                    </div>
+                    <div class="accommodations__info">
+                        <span class="accommodations__category">Luxury</span>
+                        <h3 class="accommodations__room-name">럭셔리 킹</h3>
+                        <span class="accommodations__room-name-en">Luxury King</span>
+                        <p class="accommodations__room-desc">
+                            최상급 소재와 정교한 디자인이 조화를 이루는 럭셔리 룸은 특별한
+                            날을 더욱 빛나게 합니다. 탁 트인 전망과 고급스러운 어메니티로
+                            진정한 럭셔리를 경험하세요.
+                        </p>
+                        <div class="accommodations__specs">
+                            <div class="spec">
+                                <span class="spec__label">객실 크기</span>
+                                <span class="spec__value">62㎡</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec__label">침대</span>
+                                <span class="spec__value">King · Twin</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec__label">전망</span>
+                                <span class="spec__value">Ocean · Mountain</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec__label">인원</span>
+                                <span class="spec__value">2인</span>
+                            </div>
+                        </div>
+                        <div class="accommodations__subrooms">
+                            <!-- [이미지] 럭셔리 썸네일 → images/rooms/imgi_30_room_bg07.jpg ~ thumb_3.jpg -->
+                            <div class="subroom is-active" data-img="images/rooms/imgi_30_room_bg07.jpg"
+                                data-name="럭셔리 킹" data-name-en="Luxury King"
+                                data-desc="최상급 소재와 정교한 디자인이 조화를 이루는 럭셔리 룸은 특별한 날을 더욱 빛나게 합니다. 탁 트인 전망과 고급스러운 어메니티로 진정한 럭셔리를 경험하세요."
+                                data-size="62㎡" data-bed="King" data-view="Ocean · Mountain" data-guest="2인">
+                                <div class="subroom__thumb"
+                                    style="background-image: url('images/rooms/imgi_30_room_bg07.jpg');"></div>
+                                <span class="subroom__name">킹</span>
+                            </div>
+                            <div class="subroom" data-img="images/rooms/imgi_31_room_bg08.jpg" data-name="럭셔리 트윈"
+                                data-name-en="Luxury Twin" data-desc="럭셔리 트윈은 두 개의 베드로 두 분 모두에게 최고의 편안함을 제공합니다."
+                                data-size="62㎡" data-bed="Twin" data-view="Ocean · Mountain" data-guest="2인">
+                                <div class="subroom__thumb"
+                                    style="background-image: url('images/rooms/imgi_31_room_bg08.jpg');"></div>
+                                <span class="subroom__name">트윈</span>
+                            </div>
+                            <div class="subroom" data-img="images/rooms/imgi_32_room_bg09.jpg" data-name="럭셔리 패밀리"
+                                data-name-en="Luxury Family"
+                                data-desc="가족 여행을 위한 넉넉한 공간과 추가 침대로 온 가족이 함께 즐기는 특별한 숙박을 경험하세요." data-size="62㎡"
+                                data-bed="Twin · Extra" data-view="Ocean · Mountain" data-guest="최대 4인">
+                                <div class="subroom__thumb"
+                                    style="background-image: url('images/rooms/imgi_32_room_bg09.jpg');"></div>
+                                <span class="subroom__name">패밀리</span>
+                            </div>
+                        </div>
+                        <a href="#" class="accommodations__cta">
+                            <span class="accommodations__cta-line"></span>
+                            <span class="accommodations__cta-text">객실 상세보기</span>
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <line x1="3.75" y1="9" x2="14.25" y2="9" stroke="currentColor" stroke-width="1.125" />
+                                <polyline points="9,3.75 14.25,9 9,14.25" fill="none" stroke="currentColor"
+                                    stroke-width="1.125" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ④ 슈페리어스위트 (썸네일 2개) -->
+                <div class="accommodations__panel" data-room="superior-suite">
+                    <div class="accommodations__image">
+                        <div class="accommodations__image-bg"
+                            style="background-image: url('images/rooms/imgi_33_room_bg10.jpg');"></div>
+                        <div class="accommodations__image-gradient"></div>
+                    </div>
+                    <div class="accommodations__info">
+                        <span class="accommodations__category">Suite</span>
+                        <h3 class="accommodations__room-name">슈페리어 스위트</h3>
+                        <span class="accommodations__room-name-en">Superior Suite</span>
+                        <p class="accommodations__room-desc">
+                            독립된 거실과 침실로 구성된 스위트는 넓고 우아한 공간에서
+                            품격 있는 휴식을 선사합니다. 개인화된 컨시어지 서비스와 함께
+                            호텔농심의 정수를 경험하세요.
+                        </p>
+                        <div class="accommodations__specs">
+                            <div class="spec">
+                                <span class="spec__label">객실 크기</span>
+                                <span class="spec__value">85㎡</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec__label">침대</span>
+                                <span class="spec__value">King</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec__label">전망</span>
+                                <span class="spec__value">Ocean</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec__label">인원</span>
+                                <span class="spec__value">2인</span>
+                            </div>
+                        </div>
+                        <div class="accommodations__subrooms">
+                            <!-- [이미지] 슈페리어스위트 썸네일 → images/rooms/imgi_33_room_bg10.jpg ~ thumb_2.jpg -->
+                            <div class="subroom is-active" data-img="images/rooms/imgi_33_room_bg10.jpg"
+                                data-name="슈페리어 스위트" data-name-en="Superior Suite"
+                                data-desc="독립된 거실과 침실로 구성된 스위트는 넓고 우아한 공간에서 품격 있는 휴식을 선사합니다. 개인화된 컨시어지 서비스와 함께 호텔농심의 정수를 경험하세요."
+                                data-size="85㎡" data-bed="King" data-view="Ocean" data-guest="2인">
+                                <div class="subroom__thumb"
+                                    style="background-image: url('images/rooms/imgi_33_room_bg10.jpg');"></div>
+                                <span class="subroom__name">스탠다드</span>
+                            </div>
+                            <div class="subroom" data-img="images/rooms/imgi_34_room_bg11.jpg" data-name="슈페리어 딜럭스 스위트"
+                                data-name-en="Superior Deluxe Suite"
+                                data-desc="한층 업그레이드된 딜럭스 스위트는 더 넓은 거실과 프리미엄 침구로 최상의 럭셔리 경험을 제공합니다." data-size="95㎡"
+                                data-bed="King" data-view="Ocean Panorama" data-guest="2인">
+                                <div class="subroom__thumb"
+                                    style="background-image: url('images/rooms/imgi_34_room_bg11.jpg');"></div>
+                                <span class="subroom__name">딜럭스</span>
+                            </div>
+                        </div>
+                        <a href="#" class="accommodations__cta">
+                            <span class="accommodations__cta-line"></span>
+                            <span class="accommodations__cta-text">객실 상세보기</span>
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <line x1="3.75" y1="9" x2="14.25" y2="9" stroke="currentColor" stroke-width="1.125" />
+                                <polyline points="9,3.75 14.25,9 9,14.25" fill="none" stroke="currentColor"
+                                    stroke-width="1.125" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ⑤ 스파 (썸네일 2개) -->
+                <div class="accommodations__panel" data-room="spa">
+                    <div class="accommodations__image">
+                        <div class="accommodations__image-bg"
+                            style="background-image: url('images/rooms/imgi_35_room_bg12.jpg');"></div>
+                        <div class="accommodations__image-gradient"></div>
+                    </div>
+                    <div class="accommodations__info">
+                        <span class="accommodations__category">Spa &amp; Wellness</span>
+                        <h3 class="accommodations__room-name">스파 킹</h3>
+                        <span class="accommodations__room-name-en">Spa King</span>
+                        <p class="accommodations__room-desc">
+                            객실 내 전용 스파 욕조와 세계 최고 수준의 동래 온천수를 즐길 수
+                            있는 특별한 공간입니다. 몸과 마음의 완전한 재충전을 위한
+                            최적의 선택입니다.
+                        </p>
+                        <div class="accommodations__specs">
+                            <div class="spec">
+                                <span class="spec__label">객실 크기</span>
+                                <span class="spec__value">72㎡</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec__label">침대</span>
+                                <span class="spec__value">King · Twin</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec__label">전망</span>
+                                <span class="spec__value">Mountain · City</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec__label">인원</span>
+                                <span class="spec__value">2인</span>
+                            </div>
+                        </div>
+                        <div class="accommodations__subrooms">
+                            <!-- [이미지] 스파 썸네일 → images/rooms/imgi_35_room_bg12.jpg ~ thumb_2.jpg -->
+                            <div class="subroom is-active" data-img="images/rooms/imgi_35_room_bg12.jpg"
+                                data-name="스파 킹" data-name-en="Spa King"
+                                data-desc="객실 내 전용 스파 욕조와 세계 최고 수준의 동래 온천수를 즐길 수 있는 특별한 공간입니다. 몸과 마음의 완전한 재충전을 위한 최적의 선택입니다."
+                                data-size="72㎡" data-bed="King" data-view="Mountain · City" data-guest="2인">
+                                <div class="subroom__thumb"
+                                    style="background-image: url('images/rooms/imgi_35_room_bg12.jpg');"></div>
+                                <span class="subroom__name">스파 킹</span>
+                            </div>
+                            <div class="subroom" data-img="images/rooms/imgi_36_room_bg13.jpg" data-name="스파 트윈"
+                                data-name-en="Spa Twin"
+                                data-desc="두 분이 함께 전용 스파 욕조를 이용하며 동래 온천수의 특별한 힐링을 경험할 수 있는 트윈 스파 객실입니다." data-size="72㎡"
+                                data-bed="Twin" data-view="Mountain · City" data-guest="2인">
+                                <div class="subroom__thumb"
+                                    style="background-image: url('images/rooms/imgi_36_room_bg13.jpg');"></div>
+                                <span class="subroom__name">스파 트윈</span>
+                            </div>
+                        </div>
+                        <a href="#" class="accommodations__cta">
+                            <span class="accommodations__cta-line"></span>
+                            <span class="accommodations__cta-text">객실 상세보기</span>
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <line x1="3.75" y1="9" x2="14.25" y2="9" stroke="currentColor" stroke-width="1.125" />
+                                <polyline points="9,3.75 14.25,9 9,14.25" fill="none" stroke="currentColor"
+                                    stroke-width="1.125" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ⑥ 컬렉션 (썸네일 3개) -->
+                <div class="accommodations__panel" data-room="collection">
+                    <div class="accommodations__image">
+                        <div class="accommodations__image-bg"
+                            style="background-image: url('images/rooms/imgi_30_room_bg07.jpg');"></div>
+                        <div class="accommodations__image-gradient"></div>
+                    </div>
+                    <div class="accommodations__info">
+                        <span class="accommodations__category">Signature Collection</span>
+                        <h3 class="accommodations__room-name">시그니처 스위트</h3>
+                        <span class="accommodations__room-name-en">Signature Suite</span>
+                        <p class="accommodations__room-desc">
+                            호텔농심이 자랑하는 최상위 컬렉션 스위트는 타의 추종을 불허하는
+                            럭셔리와 독보적인 디자인을 자랑합니다. 특별한 순간을 완성하는
+                            최고의 선택입니다.
+                        </p>
+                        <div class="accommodations__specs">
+                            <div class="spec">
+                                <span class="spec__label">객실 크기</span>
+                                <span class="spec__value">120㎡</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec__label">침대</span>
+                                <span class="spec__value">King</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec__label">전망</span>
+                                <span class="spec__value">Ocean Panorama</span>
+                            </div>
+                            <div class="spec">
+                                <span class="spec__label">인원</span>
+                                <span class="spec__value">2~4인</span>
+                            </div>
+                        </div>
+                        <div class="accommodations__subrooms">
+                            <!-- [이미지] 컬렉션 썸네일 → images/rooms/imgi_37_room_bg01.jpg ~ thumb_3.jpg -->
+                            <div class="subroom is-active" data-img="images/rooms/imgi_37_room_bg01.jpg"
+                                data-name="시그니처 스위트" data-name-en="Signature Suite"
+                                data-desc="호텔농심이 자랑하는 최상위 컬렉션 스위트는 타의 추종을 불허하는 럭셔리와 독보적인 디자인을 자랑합니다. 특별한 순간을 완성하는 최고의 선택입니다."
+                                data-size="120㎡" data-bed="King" data-view="Ocean Panorama" data-guest="2~4인">
+                                <div class="subroom__thumb"
+                                    style="background-image: url('images/rooms/imgi_37_room_bg01.jpg');"></div>
+                                <span class="subroom__name">프리미엄</span>
+                            </div>
+                            <div class="subroom" data-img="images/rooms/imgi_38_room_bg02.jpg" data-name="그랜드 시그니처 스위트"
+                                data-name-en="Grand Signature Suite"
+                                data-desc="최상위 소재와 맞춤 제작 가구로 이루어진 그랜드 스위트는 비교할 수 없는 럭셔리 공간을 제공합니다." data-size="130㎡"
+                                data-bed="King" data-view="Ocean Panorama" data-guest="2~4인">
+                                <div class="subroom__thumb"
+                                    style="background-image: url('images/rooms/imgi_38_room_bg02.jpg');"></div>
+                                <span class="subroom__name">시그니처</span>
+                            </div>
+                            <div class="subroom" data-img="images/rooms/imgi_39_room_bg03.jpg" data-name="로열 그랜드 스위트"
+                                data-name-en="Royal Grand Suite"
+                                data-desc="호텔농심 최고의 스위트 룸으로 넓은 테라스와 프라이빗 다이닝 공간을 갖춘 특별한 경험을 선사합니다." data-size="150㎡"
+                                data-bed="King" data-view="Ocean Panorama" data-guest="최대 6인">
+                                <div class="subroom__thumb"
+                                    style="background-image: url('images/rooms/imgi_39_room_bg03.jpg');"></div>
+                                <span class="subroom__name">그랜드</span>
+                            </div>
+                        </div>
+                        <a href="#" class="accommodations__cta">
+                            <span class="accommodations__cta-line"></span>
+                            <span class="accommodations__cta-text">객실 상세보기</span>
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <line x1="3.75" y1="9" x2="14.25" y2="9" stroke="currentColor" stroke-width="1.125" />
+                                <polyline points="9,3.75 14.25,9 9,14.25" fill="none" stroke="currentColor"
+                                    stroke-width="1.125" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================
+             SECTION 5: 멤버십 (Membership)
+             - 배경 패턴 이미지 (전통문양)
+             - "Membership" 타이틀 + 밑줄
+             - 설명 텍스트
+             - "Join Now" + "지금 가입하기" 링크 + 화살표 버튼
+        ============================================ -->
+        <!-- ============================================
+             SECTION 6: All Day, All Time (리뉴얼)
+             - 배경: #060e19 (dark navy)
+             - 구조: Top(120) + TimeBar(72) + Stage(708)
+             - 타임바: 선 중심 구조, 08~20 (2시간 간격)
+             - 스테이지: 크로스페이드 슬라이드
+        ============================================ -->
+        <section class="allday" aria-label="A Day at Hotel Nongshim">
+            <!-- 섹션 헤더 — 사진 외부 독립 영역 -->
+            <div class="allday__header">
+                <span class="allday__header-label">A DAY AT HOTEL NONGSHIM</span>
+                <h2 class="allday__header-title">All Day, All Time</h2>
+            </div>
+
+            <!-- 포토 스테이지 (크로스페이드) -->
+            <div class="allday__stage" id="alldayStage">
+
+                <!-- 선 중심 타임바 (사진 내부 하단 오버레이) -->
+                <div class="allday__timebar" role="tablist" aria-label="시간대 선택">
+                    <div class="allday__tb-track" id="tbTrack" aria-hidden="true">
+                        <div class="allday__tb-base"></div>
+                        <div class="allday__tb-fill" id="tbFill"></div>
+                        <div class="allday__tb-marker" id="tbMarker"></div>
+                        <div class="allday__tb-glow" id="tbGlow"></div>
+                    </div>
+                    <div class="allday__tb-labels">
+                        <button class="allday__tb-btn" data-idx="0" role="tab" aria-selected="false"
+                            aria-label="08시 Healing">08<span class="allday__tb-kw">Healing</span></button>
+                        <button class="allday__tb-btn" data-idx="1" role="tab" aria-selected="false"
+                            aria-label="10시 Leisurely">10<span class="allday__tb-kw">Leisurely</span></button>
+                        <button class="allday__tb-btn is-active" data-idx="2" role="tab" aria-selected="true"
+                            aria-label="12시 Dining">12<span class="allday__tb-kw">Dining</span></button>
+                        <button class="allday__tb-btn" data-idx="3" role="tab" aria-selected="false"
+                            aria-label="14시 Respite">14<span class="allday__tb-kw">Respite</span></button>
+                        <button class="allday__tb-btn" data-idx="4" role="tab" aria-selected="false"
+                            aria-label="16시 Facilities">16<span class="allday__tb-kw">Leisure</span></button>
+                        <button class="allday__tb-btn" data-idx="5" role="tab" aria-selected="false"
+                            aria-label="18시 Supper">18<span class="allday__tb-kw">Supper</span></button>
+                        <button class="allday__tb-btn" data-idx="6" role="tab" aria-selected="false"
+                            aria-label="20시 Bar">20<span class="allday__tb-kw">Bar</span></button>
+                    </div>
+                </div>
+                <div class="allday__slide" data-idx="0">
+                    <img class="allday__slide-bg" src="images/main/time_img03_1.jpg" alt="Wellness">
+                    <div class="allday__slide-overlay"></div>
+                    <div class="allday__slide-content">
+                        <div class="allday__slide-text">
+                            <span class="allday__slide-time">08:00</span>
+                            <h3 class="allday__slide-title">활력 넘치는 웰니스</h3>
+                            <p class="allday__slide-desc">금정산의 맑은 공기와 함께 시작하는<br>상쾌한 아침 운동 프로그램.</p>
+                            <a href="#" class="allday__slide-cta">자세히 보기</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="allday__slide" data-idx="1">
+                    <img class="allday__slide-bg" src="images/main/time_img04_1.jpg" alt="Lounge">
+                    <div class="allday__slide-overlay"></div>
+                    <div class="allday__slide-content">
+                        <div class="allday__slide-text">
+                            <span class="allday__slide-time">10:00</span>
+                            <h3 class="allday__slide-title">여유로운 라운지 타임</h3>
+                            <p class="allday__slide-desc">향긋한 커피 한 잔과 함께<br>창밖 정원을 바라보는 여유.</p>
+                            <a href="#" class="allday__slide-cta">자세히 보기</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="allday__slide is-active" data-idx="2">
+                    <img class="allday__slide-bg" src="images/main/time_img02_1.jpg" alt="Dining">
+                    <div class="allday__slide-overlay"></div>
+                    <div class="allday__slide-content">
+                        <div class="allday__slide-text">
+                            <span class="allday__slide-time">12:00</span>
+                            <h3 class="allday__slide-title">고즈넉한 내당에서 한끼 식사</h3>
+                            <p class="allday__slide-desc">역사와 전통의 멋이 녹아있는 내당에서<br>귀빈과 함께하는 한끼 식사를 즐겨 보세요.</p>
+                            <a href="#" class="allday__slide-cta">자세히 보기</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="allday__slide" data-idx="3">
+                    <img class="allday__slide-bg" src="images/main/time_img05_1.jpg" alt="Spa">
+                    <div class="allday__slide-overlay"></div>
+                    <div class="allday__slide-content">
+                        <div class="allday__slide-text">
+                            <span class="allday__slide-time">14:00</span>
+                            <h3 class="allday__slide-title">프리미엄 스파 케어</h3>
+                            <p class="allday__slide-desc">천년 동래온천수로 몸과 마음을<br>깊이 치유하는 시간.</p>
+                            <a href="#" class="allday__slide-cta">자세히 보기</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="allday__slide" data-idx="4">
+                    <img class="allday__slide-bg" src="images/main/time_img06_1.jpg" alt="Dining Evening">
+                    <div class="allday__slide-overlay"></div>
+                    <div class="allday__slide-content">
+                        <div class="allday__slide-text">
+                            <span class="allday__slide-time">16:00</span>
+                            <h3 class="allday__slide-title">특별한 다이닝</h3>
+                            <p class="allday__slide-desc">셰프의 정성이 담긴 코스 디너로<br>하루를 아름답게 마무리하세요.</p>
+                            <a href="#" class="allday__slide-cta">자세히 보기</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="allday__slide" data-idx="5">
+                    <img class="allday__slide-bg" src="images/main/time_img07_1.jpg" alt="Room">
+                    <div class="allday__slide-overlay"></div>
+                    <div class="allday__slide-content">
+                        <div class="allday__slide-text">
+                            <span class="allday__slide-time">18:00</span>
+                            <h3 class="allday__slide-title">편안한 객실에서의 휴식</h3>
+                            <p class="allday__slide-desc">온돌의 따뜻함과 모던한 편안함이<br>조화를 이루는 공간.</p>
+                            <a href="#" class="allday__slide-cta">자세히 보기</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="allday__slide" data-idx="6">
+                    <img class="allday__slide-bg" src="images/main/018bd5bbbe18360e35e8b4625f1c20e1.jpg" alt="Night">
+                    <div class="allday__slide-overlay"></div>
+                    <div class="allday__slide-content">
+                        <div class="allday__slide-text">
+                            <span class="allday__slide-time">20:00</span>
+                            <h3 class="allday__slide-title">로맨틱 나이트</h3>
+                            <p class="allday__slide-desc">호텔농심의 야경과 함께<br>잊지 못할 밤을 선사합니다.</p>
+                            <a href="#" class="allday__slide-cta">자세히 보기</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 고정 포토 카드 — 슬라이드 교체 시 JS로 src만 변경 -->
+                <div class="allday__photo-frame" aria-hidden="true">
+                    <div class="allday__photo-panel">
+                        <img class="allday__photo-img" src="images/main/time_img02_1.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             SECTION 6: 소개 영상 (Brand Film)
+             - 타이틀 "Brand Film" + "소개 영상"
+             - 장식 테두리가 있는 비디오 프레임
+        ============================================ -->
+        <section class="brand-film">
+            <div class="brand-film__frame">
+                <!-- 타이틀 -->
+                <div class="brand-film__header">
+                    <h2 class="brand-film__title-en">Brand Film</h2>
+                    <p class="brand-film__title-kr">소개 영상</p>
+                </div>
+                <div class="brand-film__video-wrap">
+                    <!-- [이미지] 소개 영상 썸네일 - 브랜드 영상 대표 이미지로 교체 -->
+                    <div class="brand-film__video">
+                        <div style="padding:56.25% 0 0 0;position:relative;"><iframe
+                                src="https://player.vimeo.com/video/600787438?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                                frameborder="0"
+                                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                                title="호텔농심.mp4"></iframe>
+                        </div>
+                        <script src="https://player.vimeo.com/api/player.js" defer></script>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="membership">
+            <div class="membership__title-wrap">
+                <h2 class="membership__title">Membership</h2>
+                <span class="membership__title-line"></span>
+            </div>
+
+            <p class="membership__desc">
+                일상의 흐름 속에서 한층 깊은 휴식을 만나는 순간, 호텔농심 멤버십이<br>
+                당신의 시간을 더 특별하게 채워드립니다.
+            </p>
+
+            <a href="#" class="membership__cta">
+                <div class="membership__cta-text">
+                    <span class="membership__cta-en">Join Now</span>
+                    <span class="membership__cta-kr">지금 가입하기</span>
+                </div>
+                <span class="membership__cta-arrow">
+                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                        stroke-width="1.25">
+                        <line x1="4" y1="10" x2="16" y2="10" />
+                        <polyline points="10,4 16,10 10,16" />
+                    </svg>
+                </span>
+            </a>
+        </section>
+
+        <!-- ============================================
+             SECTION 7: 오시는 길 (Location)
+             - 타이틀 "Location" + "오시는 길"
+             - 좌측: 지도 이미지 + 위치 아이콘
+             - 우측: 호텔명 + 주소/전화/주차 정보 + 네이버/카카오맵 링크
+        ============================================ -->
+        <section class="location">
+            <div class="location__inner">
+                <!-- 타이틀 -->
+                <div class="location__header">
+                    <h2 class="location__title-en">Location</h2>
+                    <p class="location__title-kr">오시는 길</p>
+                </div>
+
+                <div class="location__content">
+                    <!-- 좌측: 지도 -->
+                    <div class="location__map">
+                        <!-- * 카카오맵 - 지도퍼가기 -->
+                        <!-- 1. 지도 노드 -->
+                        <div id="daumRoughmapContainer1773295218606"
+                            class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                    </div>
+
+                    <!-- 우측: 정보 -->
+                    <div class="location__info">
+                        <h3 class="location__hotel-name">호텔농심</h3>
+                        <hr class="location__info-line">
+
+                        <dl class="location__details">
+                            <div class="location__detail-row">
+                                <dt>주소</dt>
+                                <dd>부산시 동래구 금강공원로 20번길 23
+                                    <button class="btn-copy" aria-label="주소 복사">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <rect x="5" y="5" width="9" height="9" rx="1" stroke="currentColor"
+                                                stroke-width="1.2" />
+                                            <path d="M3 11V3a1 1 0 0 1 1-1h8" stroke="currentColor" stroke-width="1.2"
+                                                stroke-linecap="round" />
+                                        </svg>
+                                    </button>
+                                </dd>
+                            </div>
+                            <div class="location__detail-row">
+                                <dt>전화번호</dt>
+                                <dd>051. 550. 2100</dd>
+                            </div>
+                            <div class="location__detail-row">
+                                <dt>주차</dt>
+                                <dd>별관 주차 빌딩과 호텔·허심청 지하,<br>대형 차량도 수용 할 수 있는 야외 주차장을 갖추고 있습니다.</dd>
+                            </div>
+                        </dl>
+
+                        <!-- 카카오 지도에서 크게 보기 -->
+                        <div class="location__links">
+                            <a href="https://map.kakao.com/?urlX=973973&urlY=483794&itemId=8157055" target="_blank"
+                                rel="noopener" class="location__link--map" aria-label="카카오 지도에서 크게 보기">
+                                <!-- 외부 링크(지도 열기) 아이콘 -->
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                                    <path
+                                        d="M7.5 3H3.75A.75.75 0 0 0 3 3.75v10.5c0 .414.336.75.75.75h10.5A.75.75 0 0 0 15 14.25V10.5"
+                                        stroke="currentColor" stroke-width="1.3" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <polyline points="11,2 16,2 16,7" stroke="currentColor" stroke-width="1.3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <line x1="9" y1="9" x2="16" y2="2" stroke="currentColor" stroke-width="1.3"
+                                        stroke-linecap="round" />
+                                </svg>
+                                <span>지도 열기</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================
+         FOOTER (푸터)
+         - 배경: #060e19 (다크 네이비)
+         - 로고 + SNS 아이콘
+         - 회사 정보 (주소/TEL/사업자 등)
+         - 구분선
+         - 주요 링크 (호텔농심/고객문의/인재채용)
+         - 정책 링크 (개인정보/이메일/이용약관 등)
+         - 저작권 표시
+    ============================================ -->
+    <footer class="footer">
+        <div class="footer__top">
+            <!-- 로고 -->
+            <div class="footer__logo">
+                <!-- [이미지] 푸터 로고 - 흰색 버전 로고로 교체 가능 -->
+                <img src="images/h_logo.png" alt="호텔농심" width="181" height="39">
+            </div>
+            <!-- SNS 아이콘 (SVG) -->
+            <div class="footer__sns">
+                <a href="#" aria-label="Facebook">
+                    <svg width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M14 6h3V2h-3c-2.21 0-4 1.79-4 4v2H8v4h2v10h4V12h3l1-4h-4V6z" fill="currentColor" />
+                    </svg>
+                </a>
+                <a href="#" aria-label="Blog">
+                    <svg width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M4 4h16v16H4V4zm2 2v12h12V6H6zm2 2h8v2H8V8zm0 4h5v2H8v-2z" fill="currentColor" />
+                    </svg>
+                </a>
+                <a href="#" aria-label="Instagram">
+                    <svg width="24" height="24" viewBox="0 0 24 24">
+                        <rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor"
+                            stroke-width="1.5" />
+                        <circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                        <circle cx="17.5" cy="6.5" r="1.25" fill="currentColor" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- 회사 정보 -->
+        <div class="footer__info">
+            <div class="footer__info-line">
+                <span>주소 : 부산 동래구 금강공원로20번길 23</span>
+                <span>TEL : 051-550-2100</span>
+                <span>상호명 : (주)농심</span>
+            </div>
+            <div class="footer__info-line">
+                <span>대표자명 : 이병학 (LEE BYUNG HAK)</span>
+                <span>사업자번호 : 118-81-03914</span>
+                <span>통신판매업신고 : 부산동래-0024호</span>
+            </div>
+        </div>
+
+        <hr class="footer__divider">
+
+        <!-- 주요 링크 -->
+        <div class="footer__links">
+            <div class="footer__links-main">
+                <a href="#" class="footer__link-bold">호텔농심</a>
+                <a href="#">고객문의</a>
+                <a href="#">인재채용</a>
+            </div>
+            <div class="footer__links-policy">
+                <a href="#">개인정보처리방침</a>
+                <a href="#">이메일무단수집거부</a>
+                <a href="#">이용약관</a>
+                <a href="#">사이트맵</a>
+                <a href="#">영상정보처리기기 운영·관리 방침</a>
+            </div>
+        </div>
+
+        <!-- 저작권 -->
+        <p class="footer__copyright">Copyright(c) 2019 hotel nongshim all right reserved</p>
+    </footer>
+
+    <!-- ============================================
+         FAB 알약 버튼
+    ============================================ -->
+    <div class="fab-pill" id="fabPill">
+
+        <!-- 예약/문의 -->
+        <button class="fab-btn" id="bookingTrigger" aria-label="예약·문의">
+            <svg class="fab-btn__icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <rect x="2.5" y="3.5" width="15" height="14" rx="2" stroke="currentColor" stroke-width="1.3" />
+                <line x1="2.5" y1="8" x2="17.5" y2="8" stroke="currentColor" stroke-width="1.3" />
+                <line x1="7" y1="1.5" x2="7" y2="5.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
+                <line x1="13" y1="1.5" x2="13" y2="5.5" stroke="currentColor" stroke-width="1.3"
+                    stroke-linecap="round" />
+            </svg>
+            <span class="fab-btn__label">예약·문의</span>
+        </button>
+
+        <!-- 멤버십 -->
+        <a class="fab-btn" href="#membership" id="fabMembership" aria-label="멤버십 가입">
+            <svg class="fab-btn__icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M2 15.5H18M3 15.5L5 8L9 12L10 5L11 12L15 8L17 15.5" stroke="currentColor" stroke-width="1.4"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span class="fab-btn__label">멤버십</span>
+        </a>
+
+        <!-- 맨위로 -->
+        <button class="fab-btn" id="fabScrollTop" aria-label="맨위로">
+            <svg class="fab-btn__icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M5 13L10 8L15 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <line x1="5" y1="6" x2="15" y2="6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+            </svg>
+            <span class="fab-btn__label">TOP</span>
+        </button>
+
+    </div>
+
+    <!-- ============================================
+         예약/문의 패널 위젯
+    ============================================ -->
+    <div class="booking-widget" id="bookingWidget">
+
+        <!-- 딤 배경 -->
+        <div class="booking-backdrop" id="bookingBackdrop"></div>
+
+        <!-- 패널 -->
+        <div class="booking-panel" id="bookingPanel" aria-hidden="true">
+
+            <!-- 패널 헤더 -->
+            <div class="booking-panel__header">
+                <div class="booking-panel__tabs">
+                    <button class="booking-panel__tab is-active" data-tab="reservation">예약</button>
+                    <button class="booking-panel__tab" data-tab="inquiry">문의</button>
+                </div>
+                <button class="booking-panel__close" id="bookingClose" aria-label="닫기">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <line x1="1" y1="1" x2="17" y2="17" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" />
+                        <line x1="17" y1="1" x2="1" y2="17" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- 예약 탭 -->
+            <div class="booking-content" id="tab-reservation">
+                <div class="booking-panel__intro">
+                    <p class="booking-panel__subtitle">RESERVATION</p>
+                    <h3 class="booking-panel__title">객실 예약</h3>
+                </div>
+
+                <form class="booking-form" id="bookingForm" novalidate>
+
+                    <!-- 날짜 -->
+                    <div class="booking-form__dates">
+                        <div class="booking-form__field">
+                            <label class="booking-form__label" for="checkin">체크인</label>
+                            <input class="booking-form__input" type="date" id="checkin" name="checkin">
+                        </div>
+                        <div class="booking-form__arrow">→</div>
+                        <div class="booking-form__field">
+                            <label class="booking-form__label" for="checkout">체크아웃</label>
+                            <input class="booking-form__input" type="date" id="checkout" name="checkout">
+                        </div>
+                    </div>
+
+                    <!-- 인원 (최대 4명, 슬라이드 숫자) -->
+                    <div class="booking-form__guests">
+                        <div class="booking-form__field">
+                            <label class="booking-form__label">성인</label>
+                            <div class="guest-counter">
+                                <button type="button" class="guest-counter__btn" data-target="adults"
+                                    data-action="minus" aria-label="성인 감소">−</button>
+                                <div class="guest-counter__track">
+                                    <span class="guest-counter__val" id="adults-val">2</span>
+                                </div>
+                                <button type="button" class="guest-counter__btn" data-target="adults" data-action="plus"
+                                    aria-label="성인 증가">+</button>
+                            </div>
+                        </div>
+                        <div class="booking-form__field">
+                            <label class="booking-form__label">아동</label>
+                            <div class="guest-counter">
+                                <button type="button" class="guest-counter__btn" data-target="children"
+                                    data-action="minus" aria-label="아동 감소" disabled>−</button>
+                                <div class="guest-counter__track">
+                                    <span class="guest-counter__val" id="children-val">0</span>
+                                </div>
+                                <button type="button" class="guest-counter__btn" data-target="children"
+                                    data-action="plus" aria-label="아동 증가">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 객실 유형 -->
+                    <div class="booking-form__field booking-form__field--full">
+                        <label class="booking-form__label">객실 유형</label>
+                        <div class="booking-select" id="roomTypeSelect" role="combobox" aria-haspopup="listbox"
+                            aria-expanded="false">
+                            <button type="button" class="booking-select__trigger" aria-label="객실 유형 선택">
+                                <span class="booking-select__value">전체 객실</span>
+                                <span class="booking-select__arrow">▾</span>
+                            </button>
+                            <div class="booking-select__menu" role="listbox" aria-label="객실 유형">
+                                <div class="booking-select__option booking-select__option--all is-active" data-value=""
+                                    role="option">전체 객실</div>
+                                <div class="booking-select__group-label">디럭스</div>
+                                <div class="booking-select__option" data-value="deluxe" role="option">디럭스룸</div>
+                                <div class="booking-select__option" data-value="high-deluxe" role="option">하이 디럭스룸</div>
+                                <div class="booking-select__group-label">럭셔리</div>
+                                <div class="booking-select__option" data-value="luxury" role="option">럭셔리룸</div>
+                                <div class="booking-select__option" data-value="luxury-ocean" role="option">럭셔리 오션뷰
+                                </div>
+                                <div class="booking-select__group-label">스위트</div>
+                                <div class="booking-select__option" data-value="suite" role="option">스위트룸</div>
+                                <div class="booking-select__option" data-value="exec-suite" role="option">이그제큐티브 스위트
+                                </div>
+                                <div class="booking-select__group-label">스파</div>
+                                <div class="booking-select__option" data-value="spa-deluxe" role="option">스파 디럭스</div>
+                                <div class="booking-select__option" data-value="spa-suite" role="option">스파 스위트</div>
+                                <div class="booking-select__group-label">컬렉션</div>
+                                <div class="booking-select__option" data-value="collection" role="option">컬렉션룸</div>
+                            </div>
+                            <input type="hidden" id="roomType" name="roomType" value="">
+                        </div>
+                    </div>
+
+                    <!-- 특별 요청 -->
+                    <div class="booking-form__field booking-form__field--full">
+                        <label class="booking-form__label" for="requests">특별 요청 <span
+                                class="booking-form__opt">(선택)</span></label>
+                        <textarea class="booking-form__textarea" id="requests" name="requests" rows="3"
+                            placeholder="특별히 요청하실 사항을 입력해 주세요."></textarea>
+                    </div>
+
+                    <button type="submit" class="booking-form__submit">예약 가능 확인</button>
+
+                    <p class="booking-form__note">* 최종 예약은 담당자 확인 후 완료됩니다.</p>
+                </form>
+            </div>
+
+            <!-- 문의 탭 -->
+            <div class="booking-content" id="tab-inquiry" hidden>
+                <div class="booking-panel__intro">
+                    <p class="booking-panel__subtitle">INQUIRY</p>
+                    <h3 class="booking-panel__title">문의하기</h3>
+                </div>
+
+                <!-- 비로그인 상태 (기본) -->
+                <div class="booking-login-gate">
+                    <div class="booking-login-gate__icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <circle cx="20" cy="14" r="7" stroke="currentColor" stroke-width="1.4" />
+                            <path d="M6 36c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="currentColor"
+                                stroke-width="1.4" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <p class="booking-login-gate__msg">로그인 후 이용하실 수 있습니다.</p>
+                    <a href="#" class="booking-login-gate__btn">로그인</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script charset="UTF-8" class="daum_roughmap_loader_script"
+        src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+    <!-- 3. 실행 스크립트 -->
+    <script charset="UTF-8">
+        new daum.roughmap.Lander({
+            "timestamp": "1773295218606",
+            "key": "itcmfu8suv9",
+            "mapWidth": "640",
+            "mapHeight": "360"
+        }).render();
+    </script>
+</body>
+
+</html>

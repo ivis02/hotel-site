@@ -1,0 +1,3938 @@
+/* ============================================
+   HOTEL NONGSHIM - REDESIGN STYLESHEET
+
+   목차:
+   0. Font-Face (로컬 폰트)
+   1. CSS Variables
+   2. Base Reset
+   3. Top Bar
+   4. Header / GNB
+   5. Hero (메인배너)
+   6. Hotel Intro (호텔소개)
+   7. Special Offers (스페셜오퍼)
+   8. Accommodations (객실)
+   9. All Day All Time
+   10. Brand Film (소개영상)
+   11. Location (오시는길)
+   12. Membership (멤버십)
+   13. Footer (푸터)
+============================================ */
+
+/* ============================================
+   0. FONT-FACE (로컬 폰트)
+   Noto Serif KR, SUIT, Petrona
+   Source Han Serif KR → Adobe Fonts (Typekit) 로드 (index.html 참고)
+============================================ */
+
+@font-face { font-family: 'Noto Serif KR'; font-weight: 200; font-display: swap; src: url('../font/NotoSerifKR-ExtraLight.woff2') format('woff2'), url('../font/NotoSerifKR-ExtraLight.woff') format('woff'); }
+@font-face { font-family: 'Noto Serif KR'; font-weight: 300; font-display: swap; src: url('../font/NotoSerifKR-Light.woff2') format('woff2'), url('../font/NotoSerifKR-Light.woff') format('woff'); }
+@font-face { font-family: 'Noto Serif KR'; font-weight: 400; font-display: swap; src: url('../font/NotoSerifKR-Regular.woff2') format('woff2'), url('../font/NotoSerifKR-Regular.woff') format('woff'); }
+@font-face { font-family: 'Noto Serif KR'; font-weight: 500; font-display: swap; src: url('../font/NotoSerifKR-Medium.woff2') format('woff2'), url('../font/NotoSerifKR-Medium.woff') format('woff'); }
+@font-face { font-family: 'Noto Serif KR'; font-weight: 600; font-display: swap; src: url('../font/NotoSerifKR-SemiBold.woff2') format('woff2'), url('../font/NotoSerifKR-SemiBold.woff') format('woff'); }
+@font-face { font-family: 'Noto Serif KR'; font-weight: 700; font-display: swap; src: url('../font/NotoSerifKR-Bold.woff2') format('woff2'), url('../font/NotoSerifKR-Bold.woff') format('woff'); }
+@font-face { font-family: 'Noto Serif KR'; font-weight: 800; font-display: swap; src: url('../font/NotoSerifKR-ExtraBold.woff2') format('woff2'), url('../font/NotoSerifKR-ExtraBold.woff') format('woff'); }
+@font-face { font-family: 'Noto Serif KR'; font-weight: 900; font-display: swap; src: url('../font/NotoSerifKR-Black.woff2') format('woff2'), url('../font/NotoSerifKR-Black.woff') format('woff'); }
+
+@font-face { font-family: 'SUIT'; font-weight: 100; font-display: swap; src: url('../font/SUIT-Thin.woff2') format('woff2'), url('../font/SUIT-Thin.woff') format('woff'); }
+@font-face { font-family: 'SUIT'; font-weight: 200; font-display: swap; src: url('../font/SUIT-ExtraLight.woff2') format('woff2'), url('../font/SUIT-ExtraLight.woff') format('woff'); }
+@font-face { font-family: 'SUIT'; font-weight: 300; font-display: swap; src: url('../font/SUIT-Light.woff2') format('woff2'), url('../font/SUIT-Light.woff') format('woff'); }
+@font-face { font-family: 'SUIT'; font-weight: 400; font-display: swap; src: url('../font/SUIT-Regular.woff2') format('woff2'), url('../font/SUIT-Regular.woff') format('woff'); }
+@font-face { font-family: 'SUIT'; font-weight: 500; font-display: swap; src: url('../font/SUIT-Medium.woff2') format('woff2'), url('../font/SUIT-Medium.woff') format('woff'); }
+@font-face { font-family: 'SUIT'; font-weight: 600; font-display: swap; src: url('../font/SUIT-SemiBold.woff2') format('woff2'), url('../font/SUIT-SemiBold.woff') format('woff'); }
+@font-face { font-family: 'SUIT'; font-weight: 700; font-display: swap; src: url('../font/SUIT-Bold.woff2') format('woff2'), url('../font/SUIT-Bold.woff') format('woff'); }
+@font-face { font-family: 'SUIT'; font-weight: 800; font-display: swap; src: url('../font/SUIT-ExtraBold.woff2') format('woff2'), url('../font/SUIT-ExtraBold.woff') format('woff'); }
+@font-face { font-family: 'SUIT'; font-weight: 900; font-display: swap; src: url('../font/SUIT-Heavy.woff2') format('woff2'), url('../font/SUIT-Heavy.woff') format('woff'); }
+
+@font-face { font-family: 'Petrona'; font-weight: 100; font-display: swap; src: url('../font/Petrona-Thin.woff2') format('woff2'), url('../font/Petrona-Thin.woff') format('woff'); }
+@font-face { font-family: 'Petrona'; font-weight: 200; font-display: swap; src: url('../font/Petrona-ExtraLight.woff2') format('woff2'), url('../font/Petrona-ExtraLight.woff') format('woff'); }
+@font-face { font-family: 'Petrona'; font-weight: 300; font-display: swap; src: url('../font/Petrona-Light.woff2') format('woff2'), url('../font/Petrona-Light.woff') format('woff'); }
+@font-face { font-family: 'Petrona'; font-weight: 400; font-display: swap; src: url('../font/Petrona-Regular.woff2') format('woff2'), url('../font/Petrona-Regular.woff') format('woff'); }
+@font-face { font-family: 'Petrona'; font-weight: 500; font-display: swap; src: url('../font/Petrona-Medium.woff2') format('woff2'), url('../font/Petrona-Medium.woff') format('woff'); }
+@font-face { font-family: 'Petrona'; font-weight: 600; font-display: swap; src: url('../font/Petrona-SemiBold.woff2') format('woff2'), url('../font/Petrona-SemiBold.woff') format('woff'); }
+@font-face { font-family: 'Petrona'; font-weight: 700; font-display: swap; src: url('../font/Petrona-Bold.woff2') format('woff2'), url('../font/Petrona-Bold.woff') format('woff'); }
+@font-face { font-family: 'Petrona'; font-weight: 800; font-display: swap; src: url('../font/Petrona-ExtraBold.woff2') format('woff2'), url('../font/Petrona-ExtraBold.woff') format('woff'); }
+@font-face { font-family: 'Petrona'; font-weight: 900; font-display: swap; src: url('../font/Petrona-Black.woff2') format('woff2'), url('../font/Petrona-Black.woff') format('woff'); }
+
+
+/* ============================================
+   1. CSS VARIABLES
+============================================ */
+:root {
+    /* 색상 팔레트 (7 Base Colors) */
+    --dark-navy: #060e19;
+    --blue: #00416a;
+    --gold: #b8996f;
+    --teal: #5ac6d0;
+    --cream: #f0ead6;
+    --warm-white: #fdfcfa;
+    --white: #ffffff;
+
+    /* 텍스트 */
+    --text-dark: #060e19;
+    --text-body: #51565e;
+    --text-light: #8f9398;
+
+    /* 폰트 스택 */
+    --font-batang: 'source-han-serif-korean', serif; /* Adobe Fonts / Typekit: Source Han Serif KR */
+    --font-noto: 'Noto Serif KR', serif;
+    --font-cormorant: 'Cormorant Garamond', serif;
+    --font-petrona: 'Petrona', serif;
+    --font-suit: 'SUIT', sans-serif;
+
+    /* 레이아웃 */
+    --page-width: 1920px;
+    --content-width: 1200px;
+
+    /* 전통 마름모 격자 배경 패턴 (금색 4% 불투명도) */
+    --bg-pattern:
+        repeating-linear-gradient( 45deg, rgba(184,153,111,0.04) 0, rgba(184,153,111,0.04) 1px, transparent 1px, transparent 28px),
+        repeating-linear-gradient(-45deg, rgba(184,153,111,0.04) 0, rgba(184,153,111,0.04) 1px, transparent 1px, transparent 28px);
+}
+
+
+/* ============================================
+   2. BASE RESET
+============================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--font-suit);
+    color: var(--text-dark);
+    background-color: var(--warm-white);
+    background-image: var(--bg-pattern);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a, a:link, a:visited, a:hover, a:active { text-decoration: none; color: inherit; }
+ul, ol { list-style: none; }
+img { max-width: 100%; display: block; }
+button { background: none; border: none; cursor: pointer; font-family: inherit; }
+
+
+/* ============================================
+   3. TOP BAR
+   위치: 히어로 위 고정, 투명 (디자인 y:24)
+============================================ */
+.topbar {
+    position: absolute;
+    top: 24px;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 360px;
+    max-width: var(--page-width);
+    margin: 0 auto;
+}
+
+.topbar__lang {
+    display: flex;
+}
+
+.topbar__lang a {
+    font-family: var(--font-suit);
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+    padding: 0 12px;
+    line-height: 1;
+    border-right: 0.5px solid rgba(255, 255, 255, 0.5);
+    transition: color 0.3s;
+}
+.topbar__lang a:last-child { border-right: none; }
+.topbar__lang a.is-active { color: var(--blue); font-weight: 500; }
+.topbar__lang a:hover { color: var(--white); }
+
+.topbar__auth {
+    display: flex;
+}
+
+.topbar__auth a {
+    font-family: var(--font-suit);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--white);
+    padding: 0 16px;
+    line-height: 1.2;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+    transition: color 0.3s;
+}
+.topbar__auth a:last-child { border-right: none; padding: 0 0 0 16px; }
+.topbar__auth a:hover { color: var(--white); }
+
+
+/* ============================================
+   4. HEADER / GNB
+   높이 80px, 반투명 다크 배경 (디자인 y:64)
+============================================ */
+.header {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.header--sticky {
+    position: fixed;
+    top: 0;
+    transform: translateY(-100%);
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+}
+
+.header--sticky.header--visible {
+    transform: translateY(0);
+}
+
+.header__gnb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 68px;
+    background: rgba(6, 14, 25, 0.6);
+    backdrop-filter: blur(10px);
+    gap: 96px;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    transition: background 0.3s ease;
+}
+
+/* 서브메뉴 열릴 때 GNB 배경 불투명하게 */
+.header__gnb:has(.gnb-item:hover) {
+    background: rgba(6, 14, 25, 0.96);
+}
+
+.gnb-menu {
+    display: flex;
+    gap: 12px;
+    align-self: stretch;        /* GNB 전체 높이로 늘림 */
+    align-items: center;
+}
+
+/* 1뎁스 li — 호버 영역을 GNB 전체 높이로 확장 */
+.gnb-item {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+}
+
+/* 1뎁스 링크 */
+.gnb-menu > .gnb-item > a {
+    font-family: var(--font-noto);
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 12px 32px;
+    line-height: 1.5;
+    position: relative;
+    transition: color 0.3s, font-weight 0.3s;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* GNB 밑줄 애니메이션 (1뎁스만) */
+.gnb-menu > .gnb-item > a::after {
+    content: '';
+    position: absolute;
+    bottom: 14px;          /* GNB 높이 68px 기준: 텍스트 하단 + 여백 */
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.gnb-menu > .gnb-item > a:hover::after,
+.gnb-menu > .gnb-item > a.is-active::after {
+    width: calc(100% - 64px);
+    left: 32px;
+}
+
+.gnb-menu > .gnb-item > a:hover,
+.gnb-menu > .gnb-item > a.is-active {
+    color: var(--white);
+    font-weight: 600;
+}
+
+/* ============================================
+   서브메뉴 패널 (1·2 뎁스)
+============================================ */
+
+/* 패널 — .header(position:absolute/fixed)에 귀속 */
+.gnb-submenu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 68px;                          /* .header__gnb 높이 */
+    background: rgba(6, 14, 25, 0.96);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 28px 0 32px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    z-index: 10;
+}
+
+.gnb-item:hover .gnb-submenu {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+
+/* 내부 컨텐츠 — 페이지 너비 맞춤 */
+.gnb-submenu__inner {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 60px;
+    display: flex;
+    gap: 56px;
+}
+
+/* 1뎁스 컬럼 */
+.gnb-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 100px;
+}
+
+/* 1뎁스 타이틀 */
+.gnb-col__title {
+    font-family: var(--font-noto);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+    transition: opacity 0.2s;
+}
+
+.gnb-col__title:hover {
+    opacity: 0.75;
+}
+
+/* 2뎁스 리스트 */
+.gnb-col__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.gnb-col__list a {
+    font-family: var(--font-noto);
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.gnb-col__list a:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 35px;
+    width: auto;
+}
+
+
+/* ============================================
+   5. HERO (메인배너)
+   높이: 960px, 풀 너비 배경
+============================================ */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 960px;
+    overflow: hidden;
+}
+
+/* GNB 가독성을 위한 상단 다크 블루 그라데이션 */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(
+        to bottom,
+        rgba(2, 8, 38, 0.52) 0%,
+        rgba(4, 12, 42, 0.28) 50%,
+        transparent 100%
+    );
+    z-index: 2;
+    pointer-events: none;
+}
+
+.hero__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1.2s ease;
+}
+
+@keyframes heroZoomOut {
+    from { transform: scale(1.06); }
+    to   { transform: scale(1.0); }
+}
+
+.hero__bg--next {
+    opacity: 0;
+    z-index: 0;
+}
+
+/* 상단 그라데이션 - 헤더 가독성 */
+.hero__gradient-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 600px;
+    background: linear-gradient(to bottom, rgba(6, 14, 25, 0.5) 0%, rgba(6, 14, 25, 0) 100%);
+    z-index: 1;
+}
+
+
+
+/* 슬라이드 카운터 (좌측, 디자인 x:184 y:625) */
+.hero__counter {
+    position: absolute;
+    left: 184px;
+    top: 585px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero__counter-current {
+    position: relative;
+    font-family: var(--font-batang);
+    font-size: 80px;
+    font-weight: 500;
+    color: var(--white);
+}
+
+/* 구분선: 꾸밈 전용 — HTML 요소 불필요, ::after로 처리 */
+.hero__counter-current::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 56px;
+    width: 54px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.5);
+    transform: rotate(-40deg);
+    transform-origin: left center;
+    pointer-events: none;
+}
+
+.hero__counter-total {
+    font-family: var(--font-batang);
+    font-size: 40px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+    margin-left: 73px;
+    margin-top: 0;
+}
+
+/* 메인 텍스트 (디자인 x:322 y:744) */
+.hero__text {
+    position: absolute;
+    left: 322px;
+    top: 700px;
+    z-index: 2;
+    width: 638px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.hero__title {
+    font-family: var(--font-batang);
+    font-size: 52px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.5;
+    text-shadow: 0 2px 12px rgba(6, 14, 25, 0.6), 0 1px 4px rgba(6, 14, 25, 0.45),
+                 0 0 22px rgba(6, 14, 25, 0.3);
+}
+
+.hero__subtitle {
+    font-family: var(--font-batang);
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.5;
+    text-shadow: 0 2px 10px rgba(6, 14, 25, 0.55), 0 1px 3px rgba(6, 14, 25, 0.4),
+                 0 0 16px rgba(6, 14, 25, 0.28);
+}
+
+/* 닷 인디케이터 (우측, 디자인 x:1700 y:240) */
+/* SVG 필터 숨김 */
+.svg-filters {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.hero__dots {
+    position: absolute;
+    right: 210px;
+    top: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    z-index: 2;
+    filter: url(#gooey-filter);
+}
+
+/* Gooey 무빙 닷 */
+.hero__moving-dot {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--teal);
+    transition: transform 0.6s cubic-bezier(0.6, 0, 0.4, 1.4), opacity 0.3s;
+    z-index: 1;
+}
+
+.hero__dots .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--white);
+    cursor: pointer;
+    transition: background-color 0.4s;
+}
+
+.hero__dots .dot.is-active {
+    background: var(--teal);
+    box-shadow: 0 0 8px rgba(90, 198, 208, 0.6);
+}
+
+/* 좌우 화살표 (디자인 y:496, 좌 x:43, 우 x:1856) */
+.hero__arrow {
+    position: absolute;
+    top: 496px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.75);
+    transition: color 0.3s;
+}
+.hero__arrow:hover {
+    color: var(--white);
+}
+.hero__arrow--left { left: 23px; }
+.hero__arrow--right { right: 28px; }
+@keyframes arrowWiggleLeft {
+    0%   { transform: translateX(0); }
+    30%  { transform: translateX(-4px); }
+    65%  { transform: translateX(3px); }
+    100% { transform: translateX(0); }
+}
+.hero__arrow--left:hover svg  { animation: arrowWiggleLeft 0.9s ease-in-out; }
+.hero__arrow--right:hover svg { animation: arrowWiggle 0.9s ease-in-out; }
+
+/* 카운터 전환 애니메이션 (투명도만) */
+@keyframes counterOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+@keyframes counterIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* 히어로 텍스트 페이드+살짝 상승 애니메이션 */
+@keyframes heroTextFade {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero__text .hero__title,
+.hero__text .hero__subtitle {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.hero__text.is-animating .hero__title {
+    animation: heroTextFade 0.65s ease-out forwards;
+}
+
+.hero__text.is-animating .hero__subtitle {
+    animation: heroTextFade 0.65s ease-out 0.35s forwards;
+}
+
+
+/* ============================================
+   6. HOTEL INTRO — 스플릿 레이아웃
+============================================ */
+.hotel-intro {
+    background-color: var(--warm-white);
+    background-image: var(--bg-pattern);
+    padding: 110px 0 80px;
+}
+
+.hotel-intro__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 80px;
+    display: flex;
+    align-items: stretch;
+    height: 620px;
+}
+
+/* ── 이미지 패널 (50%) ── */
+.hotel-intro__img-wrap {
+    flex: 0 0 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 슬라이드 레이어 (crossfade) */
+.hotel-intro__slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+}
+
+.hotel-intro__slide.is-active {
+    opacity: 1;
+}
+
+/* 화살표 버튼 (이미지 우하단) */
+.hotel-intro__arrow {
+    position: absolute;
+    bottom: 20px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(6, 14, 25, 0.32);
+    border: none;
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+    z-index: 2;
+    backdrop-filter: blur(4px);
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.hotel-intro__arrow:hover {
+    background: rgba(6, 14, 25, 0.55);
+    color: #fff;
+}
+
+.hotel-intro__arrow--prev { right: 52px; }
+.hotel-intro__arrow--next { right: 16px; }
+
+/* ── 텍스트 패널 (50%) ── */
+.hotel-intro__content {
+    flex: 0 0 50%;
+    padding: 0 0 0 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid rgba(184, 153, 111, 0.30);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 장식용 대형 연도 워터마크 */
+.hotel-intro__content::before {
+    content: '1979';
+    position: absolute;
+    bottom: -24px;
+    right: -16px;
+    font-family: var(--font-batang);
+    font-size: 200px;
+    font-weight: 700;
+    color: var(--gold);
+    opacity: 0.055;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    z-index: -1;
+}
+
+/* SINCE 1979 레이블 */
+.hotel-intro__since {
+    display: block;
+    font-family: var(--font-suit);
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 5px;
+    margin-bottom: 22px;
+}
+
+/* ── 헤딩 ── */
+.hotel-intro__heading {
+    margin-bottom: 24px;
+}
+
+.hotel-intro__title-en {
+    font-family: var(--font-batang);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 2px;
+    line-height: 1.3;
+    margin-bottom: 10px;
+}
+
+.hotel-intro__title-kr {
+    font-family: var(--font-noto);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+}
+
+/* gold 라인 좌→우 그려지는 효과 */
+.hotel-intro__heading::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    margin-top: 20px;
+    transition: width 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+}
+
+.hotel-intro.is-visible .hotel-intro__heading::after {
+    width: 50px;
+}
+
+/* ── 설명 텍스트 ── */
+.hotel-intro__desc {
+    font-family: var(--font-noto);
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-body);
+    line-height: 2.0;
+    letter-spacing: 0.2px;
+    margin-bottom: 36px;
+}
+
+/* ── 슬라이드 전환 시 텍스트 페이드 ── */
+@keyframes introFadeUp {
+    from { opacity: 0; transform: translateY(7px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 아웃 - 전체 동시 */
+.hotel-intro__text-body.is-switching .hotel-intro__since,
+.hotel-intro__text-body.is-switching .hotel-intro__heading,
+.hotel-intro__text-body.is-switching .hotel-intro__desc {
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+/* 인 - since → heading → desc 순차 */
+.hotel-intro__text-body.is-entering .hotel-intro__since {
+    animation: introFadeUp 0.38s ease both;
+}
+.hotel-intro__text-body.is-entering .hotel-intro__heading {
+    animation: introFadeUp 0.38s ease 0.09s both;
+}
+.hotel-intro__text-body.is-entering .hotel-intro__desc {
+    animation: introFadeUp 0.38s ease 0.18s both;
+}
+
+/* ── CTA (라인 + 텍스트 패턴) ── */
+.hotel-intro__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    padding: 4px 0;
+    align-self: flex-start;
+}
+
+.hotel-intro__cta-line {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--blue);
+    flex-shrink: 0;
+    transition: width 0.3s ease;
+}
+
+.hotel-intro__cta:hover .hotel-intro__cta-line {
+    width: 42px;
+}
+
+.hotel-intro__cta-text {
+    font-family: var(--font-noto);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-dark);
+    letter-spacing: 1px;
+}
+
+.hotel-intro__cta svg {
+    color: var(--text-dark);
+    transition: transform 0.25s ease;
+}
+
+.hotel-intro__cta:hover svg {
+    transform: translateX(3px);
+}
+
+/* ── 진입 애니메이션 ── */
+.hotel-intro__img-wrap,
+.hotel-intro__content {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.hotel-intro.is-visible .hotel-intro__img-wrap {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.05s;
+}
+
+.hotel-intro.is-visible .hotel-intro__content {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.22s;
+}
+
+
+/* ============================================
+   7. SPECIAL OFFERS (스페셜오퍼)
+   높이: 920px, 클립
+============================================ */
+.special-offers {
+    position: relative;
+    width: 100%;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    height: 940px;
+    overflow: hidden;
+    background-color: #f5f0e6;
+}
+
+.special-offers__header {
+    position: absolute;
+    left: 50%;
+    top: 80px;
+    transform: translateX(-50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 400px;
+}
+
+.special-offers__title-en {
+    font-family: var(--font-batang);
+    font-size: 40px;
+    font-weight: 700;
+    color: #1c2d16;
+    letter-spacing: 2px;
+    line-height: 1.5;
+}
+
+.special-offers__title-kr {
+    font-family: var(--font-noto);
+    font-size: 16px;
+    font-weight: 500;
+    color: #1c2d16;
+    letter-spacing: 1px;
+    line-height: 1.5;
+}
+
+/* 카테고리 토글 컨트롤 (구 닷 위치 top:238px) */
+.offers-toggle {
+    position: absolute;
+    top: 220px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.offers-toggle__thumb {
+    display: none;
+}
+
+.offers-toggle__btn {
+    position: relative;
+    font-family: var(--font-batang);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: rgba(28, 45, 22, 0.45);
+    padding: 7px 20px 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+    white-space: nowrap;
+}
+
+.offers-toggle__btn::after {
+    content: '';
+    position: absolute;
+    bottom: 1px;
+    left: 10px;
+    right: 10px;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.35s ease;
+}
+
+.offers-toggle__btn.is-active {
+    color: #1c2d16;
+    font-weight: 700;
+}
+
+.offers-toggle__btn.is-active::after {
+    transform: scaleX(1);
+}
+
+.offers-toggle__btn:not(.is-active):hover {
+    color: rgba(28, 45, 22, 0.7);
+}
+
+/* 페이지네이션 닷 (하단 이동 top:820px) */
+.special-offers__dots {
+    position: absolute;
+    left: 50%;
+    top: 820px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.special-offers__dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(184, 153, 111, 0.55);
+    background: #ede3d5;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.special-offers__dots .dot:hover {
+    border-color: var(--gold);
+    background: #dfc9a8;
+}
+
+.special-offers__dots .dot.is-active {
+    width: 10px;
+    height: 10px;
+    background: var(--gold);
+    border-color: var(--gold);
+    box-shadow: none;
+}
+
+/* 카드 캐러셀 */
+.special-offers__carousel {
+    position: absolute;
+    top: 302px;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    cursor: grab;
+    user-select: none;
+}
+
+.special-offers__carousel.is-dragging {
+    cursor: grabbing;
+    transition: none !important;
+}
+
+/* 카드 공통 */
+.offer-card {
+    position: relative;     /* name absolute 기준점 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.offer-card.is-active {
+    cursor: default;
+    margin: 0 40px;
+}
+
+.offer-card__thumb {
+    width: 220px;
+    height: 330px;
+    border-radius: 16px 0 16px 0;
+    background-color: #c1c3c6;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: box-shadow 0.3s;
+}
+
+/* 배경 이미지 레이어 — transform: scale()로 부드러운 줌 처리 */
+.offer-card__thumb::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.offer-card.is-active .offer-card__thumb {
+    width: 310px;
+    height: 465px;
+}
+
+/* 비활성 카드 호버 */
+.offer-card:not(.is-active):hover {
+    transform: translateY(-6px);
+}
+
+.offer-card:not(.is-active):hover .offer-card__thumb {
+    box-shadow: 0 12px 32px rgba(6, 14, 25, 0.15);
+}
+
+.offer-card__name {
+    position: absolute;         /* flex 흐름 밖 → 카드 높이에 영향 없음 */
+    top: calc(100% + 10px);     /* thumb 바로 아래 10px */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-family: var(--font-noto);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-dark);
+    line-height: 1.5;
+    text-align: center;
+    transition: opacity 0.25s;  /* 비활성화 시(나타날 때)만 fade 적용 */
+}
+
+.offer-card.is-active .offer-card__name {
+    opacity: 0;
+    pointer-events: none;
+    transition: none;           /* 활성화 시(사라질 때)는 즉시 — 위치 점프 전에 숨김 */
+}
+
+/* 오버레이 + 정보 (활성 카드만) */
+.offer-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(6, 14, 25, 0.5) 0%, rgba(255, 255, 255, 0) 65%);
+    opacity: 0;
+    /* transition 없음 → 비활성화 시 즉시 */
+}
+
+.offer-card.is-active .offer-card__overlay {
+    opacity: 1;
+    transition: opacity 0.4s; /* 활성화 시 fade-in만 */
+}
+
+.offer-card__info {
+    position: relative;
+    z-index: 1;
+    padding: 16px 20px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    opacity: 0;
+    transform: translateY(16px);
+    /* transition 없음 → 비활성화 시 즉시 숨김 */
+}
+
+.offer-card.is-active .offer-card__info {
+    opacity: 1;
+    transform: translateY(0);
+    /* transition은 is-active 안에만 → 활성화 시 fade-in만 적용 */
+    transition: opacity 0.4s 0.1s, transform 0.4s 0.1s;
+}
+
+.offer-card__info-title {
+    font-family: var(--font-noto);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.4;
+}
+
+.offer-card__info-desc {
+    font-family: var(--font-noto);
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.55;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+.offer-card__info-date {
+    font-family: var(--font-petrona);
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* 자세히 보기 CTA (활성 카드 호버 시 노출) */
+/* max-height로 info 패널 배경이 부드럽게 확장/축소됨
+   숨길 때: opacity 먼저 사라지고 → 높이 collapse (motion chain)
+   나타낼 때: 높이 먼저 열리고 → opacity 페이드인 (motion chain) */
+.offer-card__cta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 8px 0;
+    transition: max-height 0.2s ease-out,
+                opacity 0.1s ease-out,
+                margin-top 0.2s ease-out;
+}
+
+.offer-card.is-active:hover .offer-card__cta {
+    max-height: 48px;
+    opacity: 1;
+    margin-bottom: 2px;
+}
+
+.offer-card.is-active:hover .offer-card__thumb::before {
+    transform: scale(1.05);
+}
+
+.offer-card__cta-line {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--white);
+    transition: width 0.3s;
+}
+
+.offer-card__cta:hover .offer-card__cta-line {
+    width: 42px;
+}
+
+.offer-card__cta-text {
+    font-family: var(--font-noto);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--white);
+    letter-spacing: 1px;
+}
+
+.offer-card__cta svg {
+    color: var(--white);
+}
+
+/* 장식 라인 */
+.special-offers__lines {
+    position: absolute;
+    top: 823px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.special-offers__lines .line {
+    display: block;
+    height: 1px;
+    background: var(--cream);
+    width: 715px;
+}
+
+.line--left { margin-left: 21px; }
+.line--right { margin-right: 21px; }
+
+/* 하단 버튼 */
+.special-offers__actions {
+    position: absolute;
+    top: 820px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+}
+
+.special-offers__actions .btn {
+    padding: 12px 20px;
+}
+
+/* 스페셜오퍼 섹션 버튼: 패키지는 기본 filled, 프로모션은 아웃라인 */
+.special-offers__actions .btn--primary,
+.special-offers__actions .btn--primary:link,
+.special-offers__actions .btn--primary:visited {
+    background: var(--blue);
+    color: var(--white);
+    border-color: var(--blue);
+}
+.special-offers__actions .btn--primary:hover {
+    background: var(--dark-navy);
+    color: var(--white);
+    border-color: var(--dark-navy);
+}
+.special-offers__actions .btn--outline:hover {
+    background: var(--dark-navy);
+    color: var(--white);
+    border-color: var(--dark-navy);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: var(--font-suit);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    line-height: 1.5;
+    padding: 14px 14px;
+    border: 1.5px solid transparent;
+    border-radius: 100px;
+    text-align: center;
+    min-width: 156px;
+    min-height: 44px;
+    transition: background 0.3s, color 0.3s, border-color 0.3s, font-weight 0.1s;
+}
+
+.btn:hover {
+    font-weight: 400;
+}
+
+.btn--primary,
+.btn--primary:link,
+.btn--primary:visited {
+    background: var(--blue);
+    color: var(--white);
+}
+.btn--primary:hover {
+    background: var(--dark-navy);
+    color: var(--white);
+}
+
+.btn--outline,
+.btn--outline:link,
+.btn--outline:visited {
+    background: transparent;
+    color: var(--blue);
+    border-color: var(--blue);
+}
+.btn--outline:hover {
+    background: #f2f6f8;
+    color: var(--blue);
+    border-color: var(--dark-navy);
+}
+
+
+/* ============================================
+   8. ACCOMMODATIONS (객실)
+   높이: 1000px, 사이드바 내비 + 이미지/정보 패널
+============================================ */
+.accommodations {
+    position: relative;
+    width: 100%;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    height: 980px;
+    overflow: hidden;
+}
+
+.accommodations__header {
+    position: absolute;
+    left: 50%;
+    top: 80px;
+    transform: translateX(-50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 400px;
+}
+
+.accommodations__title-en {
+    font-family: var(--font-batang);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 2px;
+    line-height: 1.5;
+}
+
+.accommodations__title-kr {
+    font-family: var(--font-noto);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 1px;
+    line-height: 1.5;
+}
+
+/* 장식 구분선 */
+.accommodations__divider {
+    position: absolute;
+    left: 50%;
+    top: 190px;
+    transform: translateX(-50%);
+    width: 48px;
+    height: 8px;
+    background: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='8' viewBox='0 0 48 8'%3E%3Cline x1='0' y1='4' x2='19' y2='4' stroke='%23b8996f' stroke-width='0.8'/%3E%3Cline x1='29' y1='4' x2='48' y2='4' stroke='%23b8996f' stroke-width='0.8'/%3E%3Cpolygon points='24,1 27,4 24,7 21,4' fill='%23b8996f'/%3E%3C/svg%3E");
+    background-size: 48px 8px;
+    background-repeat: no-repeat;
+}
+
+/* 콘텐츠 영역 (사이드바 내비 + 패널) */
+.accommodations__content {
+    position: absolute;
+    left: 360px;
+    top: 262px;
+    width: 1200px;
+    height: 611px;
+}
+
+/* ---- 사이드바 네비게이션 ---- */
+.accommodations__nav {
+    position: absolute;
+    left: -140px;
+    top: 0;
+    width: 140px;
+    height: 342px;
+}
+
+.accommodations__nav-line {
+    z-index: 0;
+    position: absolute;
+    right: 13px;
+    top: 45px;
+    width: 1px;
+    height: 250px;
+    background: #dbcbb5;
+}
+
+.accommodations__nav-accent {
+    z-index: 0;
+    position: absolute;
+    right: 12px;
+    top: 45px;
+    width: 2px;
+    height: 0;
+    background: var(--text-dark);
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accommodations__nav-list {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.accommodations__nav-list li a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    height: 50px;
+    padding-right: 8px;
+    text-align: right;
+    font-family: var(--font-noto);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-light);
+    letter-spacing: 0.28px;
+    line-height: 1.6;
+    cursor: pointer;
+    transition: font-weight 0.3s, color 0.3s;
+}
+
+.accommodations__nav-list li a:hover {
+    color: var(--text-dark);
+}
+
+.accommodations__nav-list li a.is-active {
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+/* 내비 닷 인디케이터 */
+.nav-dot {
+    z-index: 1;
+    display: block;
+    align-self: center;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #dbcbb5;
+    background: var(--warm-white);
+    flex-shrink: 0;
+    transition: border-color 0.3s, background 0.3s;
+}
+
+.accommodations__nav-list li a:hover .nav-dot {
+    border-color: var(--gold);
+    background: #f9f1e4;
+}
+
+.nav-dot.is-active {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: var(--gold);
+}
+
+/* ---- 우측 패널 (이미지 + 정보) ---- */
+.accommodations__panel {
+    position: absolute;
+    left: 60px;
+    top: 0;
+    width: 1080px;
+    height: 611px;
+    display: flex;
+    background: transparent;
+    gap: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+}
+.accommodations__panel.is-active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* 객실 이미지 (좌측 540px) - 살짝 띄운 느낌 */
+.accommodations__image {
+    position: relative;
+    width: 540px;
+    height: 611px;
+    flex-shrink: 0;
+    overflow: hidden;
+    box-shadow: 8px 0 40px rgba(6, 14, 25, 0.14);
+}
+
+.accommodations__image-bg {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.accommodations__image-gradient {
+    display: none; /* 그라데이션 제거 */
+}
+
+/* 객실 정보 (우측 540px) */
+.accommodations__info {
+    position: relative;
+    width: 540px;
+    height: 611px;
+    flex-shrink: 0;
+    background: var(--warm-white);
+    padding: 0;
+}
+
+
+.accommodations__category {
+    position: absolute;
+    left: 48px;
+    top: 52px;
+    font-family: var(--font-petrona);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 2.6px;
+    line-height: 1.73;
+}
+
+.accommodations__room-name {
+    position: absolute;
+    left: 48px;
+    top: 79px;
+    font-family: var(--font-batang);
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text-dark);
+    letter-spacing: 0.96px;
+    line-height: 1.5;
+}
+
+.accommodations__room-name-en {
+    position: absolute;
+    left: 48px;
+    top: 140px;
+    font-family: var(--font-cormorant);
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+
+.accommodations__room-desc {
+    position: absolute;
+    left: 48px;
+    top: 184px;
+    width: 400px;
+    font-family: var(--font-noto);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* 스펙 그리드 (4칼럼 × 80px) */
+.accommodations__specs {
+    position: absolute;
+    left: 48px;
+    top: 299px;
+    width: 444px;
+    height: 79px;
+    display: flex;
+    gap: 12px;
+    border-bottom: 1px solid #ece3d7;
+}
+
+.spec {
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+}
+
+.spec__label {
+    padding-bottom: 8px;
+    font-family: var(--font-noto);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 1.4px;
+    line-height: 1.6;
+}
+
+.spec__value {
+    padding-left: 2px;
+    font-family: var(--font-noto);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* 서브룸 썸네일 */
+.accommodations__subrooms {
+    position: absolute;
+    left: 48px;
+    top: 402px;
+    display: flex;
+    gap: 12px;
+}
+
+.subroom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 84px;
+    cursor: pointer;
+}
+
+.subroom__thumb {
+    position: relative;
+    width: 84px;
+    height: 60px;
+    background: #e1e2e3;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+}
+
+/* 비활성 오버레이 */
+.subroom__thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.46);
+    transition: opacity 0.3s;
+}
+
+.subroom:hover .subroom__thumb {
+    box-shadow: 0 0 0 2px rgba(184, 153, 111, 0.45);
+}
+.subroom:hover .subroom__thumb::after {
+    opacity: 0.18;
+}
+
+.subroom.is-active .subroom__thumb {
+    box-shadow: 0 0 0 3px #9a7035;
+}
+.subroom.is-active .subroom__thumb::after {
+    opacity: 0;
+}
+
+.subroom__name {
+    font-family: var(--font-noto);
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-dark);
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* CTA 링크 (골드 라인 + 텍스트 + 화살표) */
+.accommodations__cta {
+    position: absolute;
+    left: 48px;
+    top: 510px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    height: 53px;
+    width: 120px;
+}
+
+
+.accommodations__cta-text {
+    font-family: var(--font-noto);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-dark);
+    letter-spacing: 1.5px;
+    line-height: 1.6;
+    position: absolute;
+    left: 0;
+    top: 16px;
+    transition: color 0.3s;
+}
+
+.accommodations__cta-text::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    margin-top: 5px;
+    transition: width 0.35s;
+}
+
+.accommodations__cta:hover .accommodations__cta-text::after {
+    width: 100%;
+}
+
+.accommodations__cta:hover .accommodations__cta-text {
+    color: var(--blue);
+}
+
+.accommodations__cta svg {
+    position: absolute;
+    left: 102px;
+    top: 17px;
+    color: var(--text-dark);
+    transition: transform 0.3s;
+}
+
+.accommodations__cta:hover svg {
+    transform: translateX(6px);
+    color: var(--blue);
+}
+
+
+/* ============================================
+   9. ALL DAY ALL TIME (리뉴얼)
+   높이: 900px, Stage 풀 높이 (타이틀·타임바 모두 사진 위 오버레이)
+============================================ */
+.allday {
+    position: relative;
+    width: 100%;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    height: 880px;
+    overflow: hidden;
+}
+
+/* ── 섹션 헤더 — 사진 위 그라디언트 오버레이 ── */
+.allday__header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 56px max(80px, calc(50% - 600px)) 160px;
+    gap: 18px;
+    background: linear-gradient(
+        to bottom,
+        rgba(6, 14, 25, 0.70) 0%,
+        rgba(6, 14, 25, 0.42) 40%,
+        rgba(6, 14, 25, 0.10) 72%,
+        transparent 100%
+    );
+}
+
+.allday__header-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-suit);
+    font-size: 10px;
+    font-weight: 400;
+    color: rgba(212, 180, 131, 0.65);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+/* 장식 단선 */
+.allday__header-label::before {
+    content: '';
+    display: block;
+    width: 22px;
+    height: 1px;
+    background: rgba(212, 180, 131, 0.65);
+    flex-shrink: 0;
+}
+
+.allday__header-title {
+    font-family: var(--font-batang);
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--warm-white);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+}
+
+/* ── 포토 스테이지 (전체 높이 채움) ── */
+.allday__stage {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.allday__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none; /* 비활성 슬라이드가 hover 이벤트 차단하는 버그 수정 */
+    transition: opacity 470ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.allday__slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.allday__slide-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: blur(6px);
+    transform: scale(1.04);
+}
+
+/* 하단 텍스트 가독성용 */
+.allday__slide-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to top, rgba(6, 14, 25, 0.97) 0%, rgba(6, 14, 25, 0.84) 28%, rgba(6, 14, 25, 0.55) 55%, rgba(6, 14, 25, 0.22) 80%, transparent 100%);
+}
+
+/* ── 시간대별 컬러 오버레이 (이미지 위 색온도 표현) ── */
+
+/* 08:00 Healing */
+.allday__slide[data-idx="0"] .allday__slide-overlay {
+    background:
+        linear-gradient(to top, rgba(6, 14, 25, 0.97) 0%, rgba(6, 14, 25, 0.84) 28%, rgba(6, 14, 25, 0.55) 55%, rgba(6, 14, 25, 0.22) 80%, transparent 100%),
+        linear-gradient(160deg, rgba(220, 140, 90, 0.07) 0%, transparent 100%);
+}
+
+/* 10:00 Leisurely */
+.allday__slide[data-idx="1"] .allday__slide-overlay {
+    background:
+        linear-gradient(to top, rgba(6, 14, 25, 0.97) 0%, rgba(6, 14, 25, 0.84) 28%, rgba(6, 14, 25, 0.55) 55%, rgba(6, 14, 25, 0.22) 80%, transparent 100%),
+        linear-gradient(160deg, rgba(220, 180, 100, 0.06) 0%, transparent 100%);
+}
+
+/* 12:00 Dining */
+.allday__slide[data-idx="2"] .allday__slide-overlay {
+    background:
+        linear-gradient(to top, rgba(6, 14, 25, 0.97) 0%, rgba(6, 14, 25, 0.84) 28%, rgba(6, 14, 25, 0.55) 55%, rgba(6, 14, 25, 0.22) 80%, transparent 100%);
+}
+
+/* 14:00 Respite */
+.allday__slide[data-idx="3"] .allday__slide-overlay {
+    background:
+        linear-gradient(to top, rgba(6, 14, 25, 0.97) 0%, rgba(6, 14, 25, 0.84) 28%, rgba(6, 14, 25, 0.55) 55%, rgba(6, 14, 25, 0.22) 80%, transparent 100%),
+        linear-gradient(155deg, rgba(200, 145, 65, 0.07) 0%, transparent 100%);
+}
+
+/* 16:00 Leisure */
+.allday__slide[data-idx="4"] .allday__slide-overlay {
+    background:
+        linear-gradient(to top, rgba(6, 14, 25, 0.97) 0%, rgba(6, 14, 25, 0.84) 28%, rgba(6, 14, 25, 0.55) 55%, rgba(6, 14, 25, 0.22) 80%, transparent 100%),
+        linear-gradient(145deg, rgba(200, 120, 40, 0.08) 0%, transparent 100%);
+}
+
+/* 18:00 Supper */
+.allday__slide[data-idx="5"] .allday__slide-overlay {
+    background:
+        linear-gradient(to top, rgba(6, 14, 25, 0.97) 0%, rgba(6, 14, 25, 0.84) 28%, rgba(6, 14, 25, 0.55) 55%, rgba(6, 14, 25, 0.22) 80%, transparent 100%),
+        linear-gradient(145deg, rgba(80, 60, 120, 0.08) 0%, transparent 100%);
+}
+
+/* 20:00 Bar */
+.allday__slide[data-idx="6"] .allday__slide-overlay {
+    background:
+        linear-gradient(to top, rgba(6, 14, 25, 0.97) 0%, rgba(6, 14, 25, 0.84) 28%, rgba(6, 14, 25, 0.55) 55%, rgba(6, 14, 25, 0.22) 80%, transparent 100%);
+}
+
+/* ── 사진 위 대형 타이틀 ── */
+.allday__stage-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    padding-top: 80px;
+    text-align: center;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.allday__stage-label {
+    font-family: var(--font-suit);
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.72);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65);
+}
+
+.allday__stage-heading {
+    font-family: var(--font-batang);
+    font-size: 92px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.10);
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.80);
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    text-shadow: 0 2px 40px rgba(0, 0, 0, 0.80), 0 0 100px rgba(0, 0, 0, 0.45);
+}
+
+/* 진입 애니메이션 — transition과 분리하여 hover 충돌 방지 */
+@keyframes alldayFadeIn {
+    from { opacity: 0; transform: translateY(14px) rotate(-1.8deg); }
+    to   { opacity: 1; transform: none; }
+}
+
+/* ── 슬라이드 본문 컨텐츠 ── */
+.allday__slide-content {
+    position: absolute;
+    left: max(80px, calc(50% - 600px));
+    bottom: 148px;
+}
+
+/* 텍스트 그룹 */
+.allday__slide-text {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* ── 고정 포토 카드 (항상 동일 위치, JS로 src 교체) ── */
+/* 포지셔닝 + 장식선 담당 wrapper */
+.allday__photo-frame {
+    position: absolute;
+    right: max(80px, calc(50% - 600px));
+    top: 200px;
+    bottom: 200px;
+    width: 480px;
+    z-index: 3;
+}
+
+/* 상하 전통 문양 띠 — 단선 + 작은 다이아 포인트 */
+.allday__photo-frame::before,
+.allday__photo-frame::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='12' viewBox='0 0 80 12'%3E%3Cline x1='0' y1='6' x2='37' y2='6' stroke='%23b8996f' stroke-width='0.7'/%3E%3Cline x1='43' y1='6' x2='80' y2='6' stroke='%23b8996f' stroke-width='0.7'/%3E%3Cpolygon points='40,3 43,6 40,9 37,6' fill='%23b8996f'/%3E%3C/svg%3E");
+    background-size: 80px 12px;
+    background-repeat: repeat-x;
+    background-position: left center;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.allday__photo-frame::before { top: -20px; }
+.allday__photo-frame::after  { bottom: -20px; }
+
+/* 이미지 클리핑 + 테두리 담당 */
+.allday__photo-panel {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 1px solid rgba(184, 153, 111, 0.30);
+    outline-offset: -1px;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.48);
+}
+
+.allday__photo-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.35s ease;
+}
+
+/* 텍스트 그룹: 기본 숨김 */
+.allday__slide-content > * {
+    opacity: 0;
+    transform-origin: left center;
+}
+
+/* 텍스트 내부 요소: 기본 숨김 */
+.allday__slide-text > * {
+    opacity: 0;
+    transform-origin: left center;
+}
+
+/* 활성 슬라이드: 텍스트 그룹 등장 */
+.allday__slide.is-active .allday__slide-content > *:nth-child(1) {
+    animation: alldayFadeIn 400ms 60ms ease both;
+}
+
+/* 텍스트 내부 순차 등장 */
+.allday__slide.is-active .allday__slide-text > *:nth-child(1) {
+    animation: alldayFadeIn 400ms 60ms ease both;
+}
+.allday__slide.is-active .allday__slide-text > *:nth-child(2) {
+    animation: alldayFadeIn 400ms 200ms ease both;
+}
+.allday__slide.is-active .allday__slide-text > *:nth-child(3) {
+    animation: alldayFadeIn 400ms 360ms ease both;
+}
+.allday__slide.is-active .allday__slide-text > *:nth-child(4) {
+    animation: alldayFadeIn 400ms 520ms ease both;
+}
+
+.allday__slide-time {
+    font-family: var(--font-suit);
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255, 235, 185, 0.88);
+    letter-spacing: 4px;
+}
+
+.allday__slide-title {
+    font-family: var(--font-noto);
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--warm-white);
+    line-height: 1.4;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.75);
+}
+
+.allday__slide-desc {
+    font-family: var(--font-suit);
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(253, 252, 250, 0.92);
+    line-height: 1.7;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.65);
+    margin-top: 16px;
+}
+
+/* 자세히보기 CTA + 호버 */
+.allday__slide-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-suit);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    margin-top: 12px;
+    transition: color 260ms ease, letter-spacing 260ms ease;
+}
+
+/* 화살표: 호버 시 슬라이드 인 */
+.allday__slide-cta::after {
+    content: '→';
+    font-size: 11px;
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: opacity 240ms ease, transform 240ms ease;
+}
+
+.allday__slide-cta:link,
+.allday__slide-cta:visited { color: var(--gold); }
+
+.allday__slide-cta:hover {
+    color: var(--warm-white);
+    letter-spacing: 2px;
+}
+
+.allday__slide-cta:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ── 선 중심 타임바 (Stage 하단 오버레이) ── */
+.allday__timebar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    height: 136px;
+    padding: 0 max(60px, calc(50% - 700px)) 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 18px;
+}
+
+/* 선 트랙 — 드래그 영역 */
+.allday__tb-track {
+    position: relative;
+    height: 16px;
+    cursor: ew-resize;
+}
+
+.allday__tb-base {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 1px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.38);
+}
+
+.allday__tb-fill {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 1.5px;
+    width: 33.33%;
+    background: #b89a6f;
+    transition: width 470ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* 활성 끝점 마커 */
+.allday__tb-marker {
+    position: absolute;
+    top: 50%;
+    left: 33.33%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #d4b483;
+    box-shadow:
+        0 0 0 3px rgba(212, 180, 131, 0.25),
+        0 0 0 6px rgba(212, 180, 131, 0.10),
+        0 0 14px rgba(212, 180, 131, 0.70);
+    pointer-events: none;
+    transition: left 470ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    animation: tb-marker-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes tb-marker-pulse {
+    0%, 100% {
+        box-shadow:
+            0 0 0 2px rgba(212, 180, 131, 0.28),
+            0 0 0 5px rgba(212, 180, 131, 0.10),
+            0 0 12px rgba(212, 180, 131, 0.65);
+    }
+    50% {
+        box-shadow:
+            0 0 0 4px rgba(212, 180, 131, 0.22),
+            0 0 0 9px rgba(212, 180, 131, 0.08),
+            0 0 24px rgba(212, 180, 131, 0.95);
+    }
+}
+
+.allday__tb-glow {
+    position: absolute;
+    top: 50%;
+    left: calc(33.33% - 20px);
+    transform: translateY(-50%);
+    width: 40px;
+    height: 16px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(212, 180, 131, 0.22) 0%, transparent 70%);
+    pointer-events: none;
+    transition: left 470ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    animation: tb-glow-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes tb-glow-pulse {
+    0%, 100% { opacity: 0.65; }
+    50%       { opacity: 1; }
+}
+
+/* 시간 레이블 — 선 위치와 정확히 일치하도록 absolute 배치 */
+.allday__tb-labels {
+    position: relative;
+    height: 42px;
+}
+
+.allday__tb-btn {
+    position: absolute;
+    top: 0;
+    font-family: var(--font-suit);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.68);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 20px 24px 16px;
+    line-height: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    transition: color 470ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* 각 버튼 위치: 인디케이터 점 중심 기준 */
+.allday__tb-btn[data-idx="0"] { left: 0%;      transform: translateX(-50%); }
+.allday__tb-btn[data-idx="1"] { left: 16.667%; transform: translateX(-50%); }
+.allday__tb-btn[data-idx="2"] { left: 33.333%; transform: translateX(-50%); }
+.allday__tb-btn[data-idx="3"] { left: 50%;     transform: translateX(-50%); }
+.allday__tb-btn[data-idx="4"] { left: 66.667%; transform: translateX(-50%); }
+.allday__tb-btn[data-idx="5"] { left: 83.333%; transform: translateX(-50%); }
+.allday__tb-btn[data-idx="6"] { left: 100%;    transform: translateX(-50%); }
+
+.allday__tb-btn.is-active {
+    color: #d4b483;
+    font-weight: 700;
+}
+
+/* 키워드 레이블 */
+.allday__tb-kw {
+    display: block;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.52);
+    transition: color 470ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.allday__tb-btn.is-active .allday__tb-kw {
+    color: rgba(212, 180, 131, 0.85);
+}
+
+/* 키보드 포커스 */
+.allday__tb-btn:focus-visible {
+    color: rgba(255, 255, 255, 0.96);
+    outline: none;
+}
+
+/* prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .allday__tb-fill,
+    .allday__tb-marker,
+    .allday__tb-glow,
+    .allday__tb-btn,
+    .allday__tb-kw,
+    .allday__slide,
+    .allday__slide-cta,
+    .allday__slide-cta::after {
+        transition: none;
+    }
+    .allday__tb-marker,
+    .allday__tb-glow,
+    .allday__slide-content > *,
+    .allday__slide-text > * {
+        animation: none;
+        opacity: 1;
+    }
+    /* bento: 애니메이션 없이 즉시 표시 */
+    .bento__main, .bento__sub, .bento__badge, .bento__info {
+        opacity: 1;
+        animation: none;
+    }
+    .hotel-intro__heading::after {
+        width: 50px;
+        transition: none;
+    }
+    .bento__main img, .bento__sub img {
+        transition: none;
+    }
+}
+
+
+/* ============================================
+   10. BRAND FILM (소개영상)
+   높이: 1000px
+============================================ */
+.brand-film {
+    width: 100%;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    height: 1000px;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--warm-white);
+    background-image: var(--bg-pattern);
+}
+
+.brand-film__frame {
+    position: absolute;
+    left: 410px;
+    top: 120px;
+    width: 1100px;
+    height: 821px;
+}
+
+.brand-film__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 400px;
+    margin: 0 auto 64px;
+}
+
+.brand-film__title-en {
+    font-family: var(--font-batang);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 2px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.brand-film__title-kr {
+    font-family: var(--font-noto);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 1px;
+    line-height: 1.5;
+    text-align: center;
+}
+.brand-film__title-kr::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 8px;
+    margin: 10px auto 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='8' viewBox='0 0 48 8'%3E%3Cline x1='0' y1='4' x2='19' y2='4' stroke='%23b8996f' stroke-width='0.8'/%3E%3Cline x1='29' y1='4' x2='48' y2='4' stroke='%23b8996f' stroke-width='0.8'/%3E%3Cpolygon points='24,1 27,4 24,7 21,4' fill='%23b8996f'/%3E%3C/svg%3E");
+    background-size: 48px 8px;
+    background-repeat: no-repeat;
+}
+
+/* 비디오 영역 (장식 테두리 포함) */
+.brand-film__video-wrap {
+    position: relative;
+    width: 1100px;
+    height: 647px;
+}
+
+/* 장식 테두리 — 전체 사각형 금선 + 코너 다이아몬드 장식 */
+.brand-film__video-wrap::before,
+.brand-film__video-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.brand-film__video-wrap::before,
+.brand-film__video-wrap::after {
+    background: none;
+}
+
+/* 영상 — 테두리에서 32px 내측에 위치 (상하좌우 동일 간격) */
+.brand-film__video {
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    width: 1036px;  /* 1100 − 64 */
+    overflow: hidden;
+    z-index: 2;
+}
+
+.brand-film__video img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* ============================================
+   11. LOCATION (오시는길)
+   높이: 920px
+============================================ */
+.location {
+    width: 100%;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    height: 880px;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--warm-white);
+    background-image: var(--bg-pattern);
+}
+
+.location__inner {
+    position: absolute;
+    left: 240px;
+    top: 80px;
+}
+
+.location__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 1440px;
+    margin-bottom: 64px;
+}
+
+.location__title-en {
+    font-family: var(--font-batang);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 2px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.location__title-kr {
+    font-family: var(--font-noto);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 1px;
+    line-height: 1.5;
+    text-align: center;
+}
+.location__title-kr::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 8px;
+    margin: 10px auto 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='8' viewBox='0 0 48 8'%3E%3Cline x1='0' y1='4' x2='19' y2='4' stroke='%23b8996f' stroke-width='0.8'/%3E%3Cline x1='29' y1='4' x2='48' y2='4' stroke='%23b8996f' stroke-width='0.8'/%3E%3Cpolygon points='24,1 27,4 24,7 21,4' fill='%23b8996f'/%3E%3C/svg%3E");
+    background-size: 48px 8px;
+    background-repeat: no-repeat;
+}
+
+/* 지도 + 정보 영역 */
+.location__content {
+    display: flex;
+    width: 1440px;
+}
+
+.location__map {
+    width: 720px;
+    height: 500px;
+    flex-shrink: 0;
+    border: 0.5px solid var(--text-dark);
+    background: var(--warm-white);
+    overflow: hidden;
+}
+
+.location__map-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.location__map-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3f3f4;
+}
+
+/* 우측 정보 */
+.location__info {
+    flex: 1;
+    padding: 56px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    height: 500px;
+}
+
+.location__hotel-name {
+    font-family: var(--font-noto);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--blue);
+    line-height: 1.5;
+}
+
+.location__info-line {
+    border: none;
+    border-top: 1px solid #dbcbb5;
+    margin: 0;
+}
+
+/* 상세 정보 (디자인: 라벨 gap:56, 값 gap:60) */
+.location__details {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    flex: 1;
+    padding: 0 10px;
+}
+
+.location__detail-row {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+}
+
+.location__detail-row dt {
+    font-family: var(--font-noto);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--gold);
+    line-height: 1.5;
+    width: 100px;
+    flex-shrink: 0;
+}
+
+.location__detail-row dd {
+    font-family: var(--font-suit);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-dark);
+    line-height: 1.5;
+    padding-top: 5px; /* dt 라벨보다 약간 아래에 위치 */
+}
+
+.btn-copy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    color: var(--text-light);
+    vertical-align: middle;
+    margin-left: 8px;
+    transition: color 0.3s;
+}
+.btn-copy:hover { color: var(--teal); }
+
+/* 외부 링크 */
+.location__links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 0 0 12px;
+    margin-top: 16px;
+}
+
+.location__link--map {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--gold);
+    font-family: var(--font-suit);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    opacity: 0.8;
+    transition: opacity 0.35s, filter 0.35s;
+}
+.location__link--map:hover {
+    opacity: 1;
+    /* font-weight 변경 제거 — 텍스트 리플로우로 크기가 변해 깜빡임 발생 */
+    filter: drop-shadow(0 0 6px rgba(184, 153, 111, 0.45));
+}
+.location__link--map svg {
+    width: 20px;
+    height: 20px;
+}
+
+
+/* ============================================
+   12. MEMBERSHIP (멤버십)
+   높이: 300px, absolute 레이아웃
+   디자인: 타이틀 x:439, 설명 x:791, CTA x:1300
+============================================ */
+.membership {
+    position: relative;
+    width: 100%;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    height: 300px;
+    overflow: hidden;
+    background-color: #14180e;
+    background-image: var(--bg-pattern);
+}
+
+/* 배경 패턴 (전통문양, opacity:0.5) */
+.membership__pattern {
+    position: absolute;
+    top: -224px;
+    left: -30px;
+    display: flex;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.membership__pattern-img {
+    width: 650px;
+    height: 650px;
+    object-fit: cover;
+    mix-blend-mode: hard-light;
+    opacity: 0.3;
+}
+
+/* 타이틀 "Membership" + 골드 밑줄 */
+.membership__title-wrap {
+    position: absolute;
+    left: 439px;
+    top: 114px;
+    width: fit-content;
+    z-index: 1;
+}
+
+.membership__title {
+    font-family: var(--font-batang);
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 2.64px;
+    line-height: 1.5;
+}
+
+.membership__title-line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: var(--gold);
+    margin-top: 3px;
+}
+
+/* 설명 텍스트 */
+.membership__desc {
+    position: absolute;
+    left: 791px;
+    top: 134px;
+    z-index: 1;
+    font-family: var(--font-noto);
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(232, 218, 190, 0.78);
+    letter-spacing: 0.3px;
+    line-height: 1.6;
+}
+
+/* CTA 링크 */
+.membership__cta {
+    position: absolute;
+    left: 1300px;
+    top: 138px;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.membership__cta-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.membership__cta-en {
+    font-family: var(--font-cormorant);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    line-height: 1.6;
+}
+
+.membership__cta-kr {
+    font-family: var(--font-noto);
+    font-size: 13px;
+    font-weight: 400;
+    color: #e8d8b8;
+    letter-spacing: 1.56px;
+    line-height: 1.6;
+    transition: color 0.3s;
+}
+
+.membership__cta:hover .membership__cta-kr {
+    color: #fdf0d0;
+}
+
+/* 화살표 원형 버튼 (디자인: x:108 from cta, y:4, 44x44) */
+.membership__cta-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    margin-left: 2px;
+    margin-top: 4px;
+    color: var(--gold);
+    transition: background 0.3s;
+}
+@keyframes arrowWiggle {
+    0%   { transform: translateX(0); }
+    30%  { transform: translateX(4px); }
+    65%  { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
+}
+
+.membership__cta-arrow:hover {
+    background: rgba(184,153,111,0.15);
+}
+
+.membership__cta:hover .membership__cta-arrow {
+    border-color: var(--gold);
+    background: rgba(184,153,111,0.15);
+}
+
+.membership__cta:hover .membership__cta-arrow svg {
+    animation: arrowWiggle 0.9s ease-in-out;
+}
+
+
+/* ============================================
+   13. FOOTER (푸터)
+   높이: 420px, 배경 #060e19, absolute 레이아웃
+============================================ */
+.footer {
+    width: 100%;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    height: 420px;
+    background: var(--dark-navy);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 로고 + SNS (디자인 x:360 y:64 width:1200) */
+.footer__top {
+    position: absolute;
+    left: 360px;
+    top: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1200px;
+}
+
+.footer__logo img {
+    height: 39px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+}
+
+.footer__sns {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.footer__sns a {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-suit);
+    font-size: 14px;
+    font-weight: 500;
+    color: #83878c;
+    transition: color 0.3s, opacity 0.3s;
+}
+.footer__sns a:hover { color: var(--white); }
+
+/* 회사 정보 (디자인 x:360 y:151) */
+.footer__info {
+    position: absolute;
+    left: 360px;
+    top: 151px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer__info-line {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.footer__info-line span {
+    font-family: var(--font-suit);
+    font-size: 14px;
+    font-weight: 400;
+    color: #cdcfd1;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+/* 구분선 (디자인 x:360 y:233 width:1198 height:2) */
+.footer__divider {
+    position: absolute;
+    left: 360px;
+    top: 233px;
+    border: none;
+    height: 2px;
+    background: #2b323c;
+    width: 1198px;
+}
+
+/* 링크 섹션 (디자인 x:357 y:265) */
+.footer__links {
+    position: absolute;
+    left: 357px;
+    top: 265px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.footer__links-main {
+    display: flex;
+    gap: 12px;
+}
+
+.footer__links-main a {
+    font-family: var(--font-suit);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--blue);
+    padding: 7.5px 10px 2.5px 5px;
+    transition: color 0.3s;
+}
+.footer__links-main a:hover { color: var(--teal); }
+
+.footer__links-policy {
+    display: flex;
+    gap: 4px;
+    padding: 0 3px;
+}
+
+.footer__links-policy a {
+    font-family: var(--font-suit);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--white);
+    opacity: 0.5;
+    padding: 6px 10px 5px 5px;
+    line-height: 0.93;
+    transition: opacity 0.3s;
+}
+.footer__links-policy a:first-child { padding-left: 0; }
+.footer__links-policy a:hover { opacity: 0.8; }
+
+/* 저작권 (디자인 x:1297 y:287) */
+.footer__copyright {
+    position: absolute;
+    left: 1297px;
+    top: 287px;
+    font-family: var(--font-petrona);
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--text-light);
+}
+
+
+/* ============================================
+   14. WATER RIPPLE (파문 인터랙션)
+============================================ */
+
+/* 공통 베이스 */
+.ripple-ring {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 9998;
+}
+
+/* 클릭 파문: 금색, 어느 배경에서도 보이게 */
+.ripple-ring--click {
+    border: 2px solid rgba(184, 153, 111, 1);
+    box-shadow: 0 0 5px rgba(184, 153, 111, 0.35), inset 0 0 5px rgba(184, 153, 111, 0.1);
+    animation: rippleClick 0.9s ease-out forwards;
+}
+@keyframes rippleClick {
+    0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+    55%  { opacity: 0.28; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+@keyframes rippleClickOuter {
+    0%   { transform: translate(-50%, -50%) scale(0); opacity: 0.45; }
+    55%  { opacity: 0.12; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+.ripple-ring--outer {
+    animation-name: rippleClickOuter;
+}
+
+
+/* ============================================
+   15. BOOKING WIDGET (예약/문의 플로팅)
+============================================ */
+
+/* --- FAB 알약 버튼 --- */
+.fab-pill {
+    position: fixed;
+    right: 16px;
+    bottom: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--warm-white);
+    border-radius: 999px;
+    border: 1px solid rgba(6, 14, 25, 0.22);
+    padding: 8px 0;
+    z-index: 900;
+    will-change: transform, opacity;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.fab-pill.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(8px);
+}
+
+.fab-btn {
+    width: 48px;
+    height: 52px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: rgba(6, 14, 25, 0.55);
+    cursor: pointer;
+    transition: color 0.2s;
+    border-radius: 999px;
+    text-decoration: none;
+}
+/* <a>:link/:visited 특이성(0,1,1) 극복 */
+.fab-pill .fab-btn:link,
+.fab-pill .fab-btn:visited {
+    color: rgba(6, 14, 25, 0.55);
+}
+.fab-btn:hover,
+.fab-pill .fab-btn:hover {
+    color: var(--blue);
+}
+.fab-btn__icon {
+    flex-shrink: 0;
+}
+.fab-btn__label {
+    font-family: var(--font-suit);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: inherit;
+}
+
+
+/* --- 딤 배경 --- */
+.booking-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 14, 25, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+.booking-widget.is-open .booking-backdrop {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* --- 패널 --- */
+.booking-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 340px;
+    height: 100vh;
+    background: var(--warm-white);
+    background-image: var(--bg-pattern);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    will-change: transform;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -4px 0 32px rgba(6, 14, 25, 0.16);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.booking-widget.is-open .booking-panel {
+    transform: translateX(0);
+}
+
+/* --- 패널 헤더 --- */
+.booking-panel__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 28px 28px 0;
+    border-bottom: 1px solid rgba(184, 153, 111, 0.25);
+    flex-shrink: 0;
+}
+.booking-panel__tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: none;
+}
+.booking-panel__tab {
+    font-family: var(--font-noto);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-light);
+    letter-spacing: 1px;
+    padding: 6px 18px 16px;
+    border-bottom: 1px solid transparent;
+    margin-bottom: -1px;
+    cursor: pointer;
+    transition: color 0.25s;
+}
+.booking-panel__tab.is-active {
+    color: var(--dark-navy);
+    border-bottom-color: var(--gold);
+    font-weight: 600;
+}
+.booking-panel__tab:not(.is-active):hover { color: var(--text-body); }
+.booking-panel__close {
+    color: var(--text-light);
+    padding: 6px 0 18px;
+    cursor: pointer;
+    transition: color 0.2s;
+    flex-shrink: 0;
+}
+.booking-panel__close:hover { color: var(--dark-navy); }
+
+/* --- 패널 인트로 --- */
+.booking-panel__intro {
+    padding: 36px 28px 32px;
+    border-bottom: none;
+    flex-shrink: 0;
+}
+.booking-panel__subtitle {
+    font-family: var(--font-suit);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 10px;
+}
+.booking-panel__title {
+    font-family: var(--font-batang);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--dark-navy);
+    letter-spacing: 1px;
+    line-height: 1.3;
+}
+
+/* --- 탭 콘텐츠 --- */
+.booking-content {
+    padding: 0 28px 32px;
+    flex: 1;
+}
+
+/* --- 예약 폼 --- */
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* 날짜 행 */
+.booking-form__dates {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    padding-top: 0;
+}
+.booking-form__dates .booking-form__field { flex: 1; }
+.booking-form__arrow {
+    font-size: 12px;
+    color: var(--gold);
+    padding-bottom: 10px;
+    flex-shrink: 0;
+    opacity: 0.6;
+}
+
+/* 인원 행 */
+.booking-form__guests {
+    display: flex;
+    gap: 16px;
+    border-top: 1px solid rgba(184, 153, 111, 0.15);
+    padding-top: 28px;
+    margin-top: 28px;
+}
+.booking-form__guests .booking-form__field { flex: 1; }
+
+/* 공통 field */
+.booking-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.booking-form__field--full {
+    width: 100%;
+    border-top: 1px solid rgba(184, 153, 111, 0.15);
+    padding-top: 28px;
+    margin-top: 28px;
+}
+
+/* 라벨 */
+.booking-form__label {
+    font-family: var(--font-suit);
+    font-size: 9px;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.85;
+}
+.booking-form__opt {
+    font-weight: 400;
+    color: rgba(184, 153, 111, 0.55);
+    text-transform: none;
+}
+
+/* 입력 공통: 하단 선만으로 미니멀하게 */
+.booking-form__input,
+.booking-form__textarea {
+    width: 100%;
+    background: var(--warm-white);
+    border: none;
+    border-bottom: 1px solid rgba(6, 14, 25, 0.14);
+    border-radius: 0;
+    padding: 8px 0;
+    font-family: var(--font-noto);
+    font-size: 13px;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+}
+.booking-form__input:focus {
+    border-bottom-color: var(--gold);
+}
+.booking-form__input[type="date"] { cursor: pointer; }
+.booking-form__textarea {
+    resize: none;
+    line-height: 1.8;
+    border: 1px solid rgba(6, 14, 25, 0.12);
+    padding: 10px 12px;
+    border-radius: 2px;
+}
+.booking-form__textarea:focus { border-color: rgba(184, 153, 111, 0.5); }
+.booking-form__textarea::placeholder {
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+/* 게스트 카운터 */
+.guest-counter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--warm-white);
+    border: none;
+    border-bottom: 1px solid rgba(6, 14, 25, 0.14);
+    border-radius: 0;
+    padding: 6px 0;
+}
+.guest-counter__btn {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--text-body);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: color 0.15s, background 0.15s;
+    line-height: 1;
+}
+.guest-counter__btn:hover {
+    color: var(--blue);
+    background: rgba(0, 65, 106, 0.06);
+}
+.guest-counter__btn:disabled,
+.guest-counter__btn[disabled] {
+    color: rgba(6, 14, 25, 0.18);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.guest-counter__track {
+    overflow: hidden;
+    width: 28px;
+    position: relative;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.guest-counter__val {
+    font-family: var(--font-batang);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--dark-navy);
+    width: 28px;
+    text-align: center;
+    display: block;
+}
+.guest-counter__val.slide-left-out  { animation: slideLeftOut  0.18s ease forwards; }
+.guest-counter__val.slide-left-in   { animation: slideLeftIn   0.18s ease forwards; }
+.guest-counter__val.slide-right-out { animation: slideRightOut 0.18s ease forwards; }
+.guest-counter__val.slide-right-in  { animation: slideRightIn  0.18s ease forwards; }
+
+@keyframes slideLeftOut  { to   { transform: translateX(-120%); opacity: 0; } }
+@keyframes slideLeftIn   { from { transform: translateX(120%);  opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes slideRightOut { to   { transform: translateX(120%);  opacity: 0; } }
+@keyframes slideRightIn  { from { transform: translateX(-120%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+/* 폼 섹션 구분 (dates는 separator 없음) */
+.booking-form__dates { padding-top: 0; margin-top: 0; border-top: none; }
+
+/* 커스텀 select 드롭다운 */
+.booking-select { position: relative; }
+.booking-select__trigger {
+    width: 100%;
+    background: var(--warm-white);
+    border: none;
+    border-bottom: 1px solid rgba(6, 14, 25, 0.14);
+    padding: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    color: var(--text-dark);
+    font-family: var(--font-noto);
+    font-size: 13px;
+    transition: border-color 0.2s;
+    text-align: left;
+}
+.booking-select.is-open .booking-select__trigger {
+    border-bottom-color: var(--gold);
+}
+.booking-select__arrow {
+    color: rgba(184, 153, 111, 0.7);
+    font-size: 10px;
+    flex-shrink: 0;
+    transition: transform 0.22s;
+}
+.booking-select.is-open .booking-select__arrow { transform: rotate(180deg); }
+.booking-select__menu {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0; right: 0;
+    background: #fff;
+    border: 1px solid rgba(184, 153, 111, 0.22);
+    box-shadow: 0 8px 24px rgba(6, 14, 25, 0.1);
+    z-index: 20;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    max-height: 260px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(184,153,111,0.3) transparent;
+}
+.booking-select.is-open .booking-select__menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+.booking-select__group-label {
+    font-family: var(--font-suit);
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    padding: 12px 14px 5px;
+    opacity: 0.75;
+    border-top: 1px solid rgba(184, 153, 111, 0.1);
+}
+.booking-select__group-label:first-child { border-top: none; }
+.booking-select__option {
+    padding: 9px 18px;
+    font-family: var(--font-noto);
+    font-size: 13px;
+    color: var(--text-body);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+.booking-select__option:hover {
+    background: rgba(184, 153, 111, 0.08);
+    color: var(--dark-navy);
+}
+.booking-select__option.is-active { color: var(--blue); font-weight: 500; }
+.booking-select__option--all {
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--text-light);
+    border-bottom: 1px solid rgba(184, 153, 111, 0.1);
+}
+
+/* 제출 버튼 */
+.booking-form__submit {
+    width: 100%;
+    background: var(--blue);
+    color: var(--white);
+    font-family: var(--font-batang);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    padding: 15px 14px;
+    border-radius: 0;
+    cursor: pointer;
+    transition: background 0.25s;
+    margin-top: 32px;
+}
+.booking-form__submit:hover { background: var(--dark-navy); }
+
+/* 안내 문구 */
+.booking-form__note {
+    font-family: var(--font-suit);
+    font-size: 10px;
+    color: var(--text-light);
+    letter-spacing: 0.5px;
+    text-align: center;
+    margin-top: 12px;
+    opacity: 0.7;
+}
+
+/* --- 문의 탭: 로그인 게이트 --- */
+.booking-login-gate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 56px 28px;
+    text-align: center;
+}
+.booking-login-gate__icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid rgba(184, 153, 111, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+}
+.booking-login-gate__msg {
+    font-family: var(--font-noto);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-body);
+    letter-spacing: 0.5px;
+    line-height: 1.9;
+}
+.booking-login-gate__btn {
+    display: inline-block;
+    padding: 11px 40px;
+    border: 1px solid rgba(184, 153, 111, 0.45);
+    border-radius: 0;
+    font-family: var(--font-batang);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--blue);
+    letter-spacing: 2px;
+    transition: background 0.25s, color 0.25s;
+}
+.booking-login-gate__btn:hover {
+    background: var(--blue);
+    color: var(--white);
+}
+
+/* ══════════════════════════════════════════
+   전통 장식 포인트 — 섹션 타이틀 & 강조 요소
+   ══════════════════════════════════════════ */
+
+/* 공통: 선 + 중앙 다이아 소형 accent (48×8) */
+.hotel-intro__since::after,
+.special-offers__title-kr::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 8px;
+    margin-top: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='8' viewBox='0 0 48 8'%3E%3Cline x1='0' y1='4' x2='19' y2='4' stroke='%23b8996f' stroke-width='0.8'/%3E%3Cline x1='29' y1='4' x2='48' y2='4' stroke='%23b8996f' stroke-width='0.8'/%3E%3Cpolygon points='24,1 27,4 24,7 21,4' fill='%23b8996f'/%3E%3C/svg%3E");
+    background-size: 48px 8px;
+    background-repeat: no-repeat;
+}
+
+/* special-offers 타이틀은 중앙 정렬 */
+.special-offers__title-kr::after {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* membership title-line: 매듭 2개 대칭 */
+.membership__title-line {
+    display: block;
+    width: 160px;
+    height: 10px;
+    background-color: transparent;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='10' viewBox='0 0 80 10'%3E%3Cline x1='0' y1='5' x2='35' y2='5' stroke='%23b8996f' stroke-width='0.8'/%3E%3Cline x1='45' y1='5' x2='80' y2='5' stroke='%23b8996f' stroke-width='0.8'/%3E%3Cpolygon points='40,2 43,5 40,8 37,5' fill='%23b8996f'/%3E%3C/svg%3E");
+    background-size: 80px 10px;
+    background-repeat: repeat-x;
+    background-position: left center;
+    margin: 6px auto 0;
+}
+
+
+/* ============================================
+   16. RESPONSIVE (반응형)
+   Breakpoints: 1440px / 1024px / 768px / 480px
+============================================ */
+
+/* ---- 햄버거 버튼 (기본: 숨김) ---- */
+.gnb-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 1100;
+    flex-shrink: 0;
+}
+
+.gnb-toggle__bar {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: rgba(255, 255, 255, 0.85);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+}
+
+.header.gnb-open .gnb-toggle__bar:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.header.gnb-open .gnb-toggle__bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.header.gnb-open .gnb-toggle__bar:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+
+/* ════════════════════════════════════════
+   1440px — 대형 화면 오버플로우 방지
+════════════════════════════════════════ */
+@media (max-width: 1440px) {
+
+    /* Topbar */
+    .topbar { padding: 0 120px; }
+
+    /* Accommodations: 360+1200=1560 → 120+1200=1320 */
+    .accommodations__content { left: 120px; }
+
+    /* Brand Film: 410+1100=1510 → center with max-width */
+    .brand-film__frame {
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 160px);
+        max-width: 1100px;
+    }
+    .brand-film__video-wrap { width: 100%; }
+    .brand-film__video { width: calc(100% - 64px); }
+
+    /* Special Offers 장식선: 고정 715px → 유동폭 */
+    .special-offers__lines .line { width: calc(50% - 88px); }
+
+    /* Membership: 비율 스케일 (1920 → 1440) */
+    .membership__title-wrap { left: 330px; }
+    .membership__desc       { left: 593px; }
+    .membership__cta        { left: 975px; }
+
+    /* Location */
+    .location__inner { left: 80px; }
+    .location__header { width: calc(100vw - 160px); }
+    .location__content { width: calc(100vw - 160px); }
+    .location__map { width: calc(50% - 12px); min-width: 480px; }
+
+    /* Footer */
+    .footer__top       { left: 80px; width: calc(100% - 160px); }
+    .footer__info      { left: 80px; }
+    .footer__divider   { left: 80px; width: calc(100% - 160px); }
+    .footer__links     { left: 80px; }
+    .footer__copyright { left: auto; right: 80px; }
+}
+
+
+/* ════════════════════════════════════════
+   1024px — 태블릿/작은 데스크탑
+════════════════════════════════════════ */
+@media (max-width: 1024px) {
+
+    /* ── Topbar: 숨김 ── */
+    .topbar { display: none; }
+
+    /* ── Header/GNB: 햄버거 모드 ── */
+    .gnb-toggle { display: flex; }
+
+    .header__gnb {
+        height: auto;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        gap: 0;
+    }
+
+    /* 데스크탑 메뉴 숨김 */
+    .gnb-menu.gnb-left,
+    .gnb-menu.gnb-right { display: none; }
+
+    /* 로고: transform 제거하여 정상 플로우로 */
+    .logo-item {
+        position: static;
+        transform: none;
+        z-index: auto;
+    }
+    .logo-item .gnb-submenu { display: none; }
+
+    /* 메뉴 열림: header → 풀스크린 드로어 */
+    .header.gnb-open {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow-y: auto;
+        background: rgba(6, 14, 25, 0.97);
+        backdrop-filter: blur(14px);
+        z-index: 1002;
+        transform: none;
+    }
+
+    /* GNB: 오픈 시 컬럼 레이아웃 */
+    .header.gnb-open .header__gnb {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0;
+        height: 60px;
+        justify-content: flex-start;
+    }
+
+    /* 로고 바: 고정 상단 */
+    .header.gnb-open .logo-item {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+        height: 60px;
+        display: flex;
+        align-items: center;
+    }
+    .header.gnb-open .gnb-toggle {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+    }
+
+    /* 메뉴 리스트 표시 */
+    .header.gnb-open .gnb-menu.gnb-left,
+    .header.gnb-open .gnb-menu.gnb-right {
+        display: flex;
+        flex-direction: column;
+        padding: 16px 0;
+        gap: 0;
+        align-self: unset;
+        align-items: stretch;
+        margin-top: 60px;
+    }
+    .header.gnb-open .gnb-menu.gnb-right {
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        margin-top: 0;
+    }
+
+    .header.gnb-open .gnb-item {
+        align-self: unset;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .header.gnb-open .gnb-menu > .gnb-item > a {
+        padding: 14px 28px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.75);
+        height: auto;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .header.gnb-open .gnb-menu > .gnb-item > a:hover { color: var(--white); }
+    .header.gnb-open .gnb-menu > .gnb-item > a::after { display: none; }
+
+    /* 서브메뉴: relative, 항상 표시 */
+    .header.gnb-open .gnb-submenu {
+        position: relative;
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+        box-shadow: none;
+        padding: 0;
+        background: rgba(255, 255, 255, 0.04);
+        border-top: none;
+        backdrop-filter: none;
+    }
+    .header.gnb-open .gnb-submenu__inner { padding: 0; gap: 20px; flex-wrap: wrap; }
+
+    /* ── Hero ── */
+    .hero { height: 720px; }
+    .hero__counter { left: 40px; top: 520px; }
+    .hero__counter-current { font-size: 60px; }
+    .hero__counter-total { font-size: 30px; }
+    .hero__text { left: 40px; top: 600px; width: calc(100% - 80px); }
+    .hero__title { font-size: 38px; }
+    .hero__subtitle { font-size: 17px; }
+    .hero__dots { right: 40px; top: 200px; }
+    .hero__arrow--left { left: 12px; }
+    .hero__arrow--right { right: 12px; }
+
+    /* ── Hotel Intro ── */
+    .hotel-intro { padding: 72px 0 64px; }
+    .hotel-intro__inner {
+        flex-direction: column;
+        height: auto;
+        padding: 0 40px;
+        gap: 40px;
+    }
+    .hotel-intro__img-wrap { flex: none; width: 100%; height: 400px; }
+    .hotel-intro__content {
+        flex: none;
+        width: 100%;
+        padding: 0;
+        border-left: none;
+        border-top: 1px solid rgba(184, 153, 111, 0.30);
+        padding-top: 32px;
+    }
+
+    /* ── Special Offers ── */
+    .special-offers { height: 900px; }
+    .special-offers__dots { top: 790px; }
+    .special-offers__lines { top: 793px; }
+    .special-offers__lines .line { width: calc(50% - 88px); }
+    .special-offers__actions { top: 790px; }
+
+    /* ── Accommodations ── */
+    .accommodations { height: auto; min-height: 900px; }
+    .accommodations__content {
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin-top: 220px;
+        padding: 0 40px;
+    }
+    .accommodations__nav {
+        position: absolute;
+        left: 40px;
+        top: 0;
+        width: auto;
+        height: auto;
+    }
+    .accommodations__nav-list { flex-direction: row; padding-top: 0; gap: 4px; }
+    .accommodations__nav-list li a {
+        flex-direction: column;
+        gap: 4px;
+        height: auto;
+        padding: 8px 16px;
+        justify-content: center;
+        font-size: 13px;
+    }
+    .accommodations__nav-line,
+    .accommodations__nav-accent { display: none; }
+    .accommodations__panel {
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        opacity: 1;
+        pointer-events: all;
+    }
+    .accommodations__panel.is-active { opacity: 1; }
+    .accommodations__image { width: 100%; height: 360px; flex-shrink: 0; }
+    .accommodations__info { width: 100%; height: auto; padding-bottom: 48px; position: relative; }
+    .accommodations__room-desc { width: calc(100% - 96px); }
+    .accommodations__cta { position: relative; left: 48px; top: 0; margin-top: 16px; }
+
+    /* ── AllDay ── */
+    .allday { height: 800px; }
+    .allday__header-title { font-size: 48px; }
+    .allday__stage-heading { font-size: 64px; }
+    .allday__photo-frame { right: 32px; width: 360px; top: 220px; bottom: 180px; }
+    .allday__slide-content { left: 40px; bottom: 160px; }
+    .allday__slide-title { font-size: 24px; }
+    .allday__timebar { padding: 0 40px 32px; }
+
+    /* ── Brand Film ── */
+    .brand-film { height: auto; min-height: 600px; padding-bottom: 80px; overflow: visible; }
+    .brand-film__frame {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: calc(100% - 80px);
+        max-width: 860px;
+        margin: 80px auto 0;
+        transform: none;
+    }
+    .brand-film__video-wrap { width: 100%; height: auto; aspect-ratio: 1100 / 647; }
+    .brand-film__video { position: absolute; top: 32px; left: 32px; width: calc(100% - 64px); height: auto; }
+
+    /* ── Membership ── */
+    .membership { height: auto; padding: 56px 40px; }
+    .membership__title-wrap { position: relative; left: auto; top: auto; margin-bottom: 24px; }
+    .membership__desc { position: relative; left: auto; top: auto; width: 100%; max-width: 520px; margin-bottom: 32px; }
+    .membership__cta { position: relative; left: auto; top: auto; }
+
+    /* ── Location ── */
+    .location { height: auto; }
+    .location__inner { position: relative; left: 0; top: 0; padding: 80px 40px 64px; }
+    .location__header { width: 100%; margin-bottom: 48px; }
+    .location__content { width: 100%; flex-direction: column; }
+    .location__map { width: 100%; height: 380px; min-width: unset; }
+    .location__info { height: auto; }
+
+    /* ── Footer ── */
+    .footer { height: auto; padding-bottom: 48px; }
+    .footer__top { position: relative; left: 0; top: 0; width: calc(100% - 80px); margin: 0 40px; padding-top: 48px; }
+    .footer__info { position: relative; left: 0; top: 0; margin: 24px 40px 0; }
+    .footer__divider { position: relative; left: 0; top: 0; margin: 24px 40px 0; width: calc(100% - 80px); }
+    .footer__links { position: relative; left: 0; top: 0; margin: 20px 40px 0; }
+    .footer__copyright { position: relative; left: auto; right: auto; top: 0; margin: 12px 40px 0; }
+}
+
+
+/* ════════════════════════════════════════
+   768px — 태블릿 세로 / 모바일
+════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+    /* ── Hero ── */
+    .hero { height: 100vh; }
+    .hero__counter { left: 24px; top: auto; bottom: 160px; }
+    .hero__counter-current { font-size: 48px; }
+    .hero__counter-total { font-size: 24px; }
+    .hero__text { left: 24px; top: auto; bottom: 80px; width: calc(100% - 48px); gap: 10px; }
+    .hero__title { font-size: 30px; }
+    .hero__subtitle { font-size: 15px; }
+    .hero__dots { display: none; }
+
+    /* ── Hotel Intro ── */
+    .hotel-intro { height: auto; padding: 60px 0; }
+    .hotel-intro__inner {
+        position: relative;
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+        left: auto;
+        top: auto;
+        padding: 0 24px;
+    }
+    .hotel-intro__img-wrap { flex: none; width: 100%; height: 300px; }
+    .hotel-intro__content {
+        flex: none;
+        width: 100%;
+        padding: 32px 0 0;
+        border-left: none;
+        border-top: 1px solid rgba(184, 153, 111, 0.3);
+    }
+    .hotel-intro__title-en { font-size: 30px; }
+    .hotel-intro__title-kr { font-size: 14px; }
+    .hotel-intro__desc { font-size: 14px; }
+
+    /* ── Special Offers ── */
+    .special-offers { height: auto; padding: 60px 24px; overflow: visible; }
+    .special-offers__header { position: relative; left: auto; top: auto; transform: none; width: 100%; margin-bottom: 32px; }
+    .special-offers__title-en { font-size: 30px; }
+    .offers-toggle { position: relative; top: auto; left: auto; transform: none; margin-bottom: 24px; }
+    .special-offers__lines { display: none; }
+    .special-offers__carousel {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .offer-card { position: relative; left: auto; top: auto; width: 100%; height: auto; margin: 0; }
+    .offer-card.is-active { margin: 0; }
+    .offer-card__thumb { width: 100%; height: 220px; }
+    .offer-card.is-active .offer-card__thumb { width: 100%; height: 220px; }
+    .special-offers__dots { position: relative; top: auto; left: auto; transform: none; margin-top: 24px; justify-content: center; }
+    .special-offers__actions { position: relative; top: auto; left: auto; transform: none; margin-top: 16px; justify-content: center; }
+
+    /* ── Accommodations ── */
+    .accommodations { height: auto; padding: 60px 0 40px; overflow: visible; }
+    .accommodations__header { position: relative; left: auto; top: auto; transform: none; text-align: center; padding: 0 24px; width: 100%; }
+    .accommodations__divider { position: relative; left: auto; top: auto; transform: none; margin: 12px auto 32px; }
+    .accommodations__content {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        flex-direction: column;
+        margin-top: 0;
+        padding: 0;
+    }
+    .accommodations__nav {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 0 16px;
+        margin-bottom: 20px;
+        left: auto;
+        top: auto;
+        height: auto;
+    }
+    .accommodations__nav-item { width: auto; }
+    .accommodations__nav-list { flex-direction: row; flex-wrap: wrap; padding: 0; gap: 4px; }
+    .accommodations__nav-list li a { padding: 8px 12px; font-size: 12px; flex-direction: column; gap: 4px; height: auto; justify-content: center; }
+    .accommodations__nav-line,
+    .accommodations__nav-accent { display: none; }
+    .accommodations__panel {
+        position: relative;
+        width: 100%;
+        left: auto;
+        top: auto;
+        height: auto;
+        flex-direction: column;
+        opacity: 1;
+        pointer-events: all;
+    }
+    .accommodations__panel.is-active { opacity: 1; }
+    .accommodations__image { width: 100%; height: 280px; flex-shrink: 0; }
+    .accommodations__info { width: 100%; height: auto; padding-bottom: 48px; position: relative; }
+    .accommodations__room-name { font-size: 20px; }
+    .accommodations__room-desc { font-size: 13px; width: calc(100% - 96px); }
+    .accommodations__specs { width: calc(100% - 96px); }
+    .accommodations__cta { position: relative; left: 48px; top: 0; margin-top: 16px; }
+    .accommodations__title-en { font-size: 30px; }
+    .subroom-list { flex-direction: row; flex-wrap: wrap; }
+
+    /* ── AllDay ── */
+    .allday { height: auto; min-height: 600px; overflow: hidden; }
+    .allday__photo-frame { display: none; }
+    .allday__slide-content { position: relative; left: auto; bottom: auto; padding: 40px 24px; }
+    .allday__timebar { position: relative; bottom: auto; padding: 0 24px 28px; }
+    .allday__header-title { font-size: 36px; }
+    .allday__stage-heading { font-size: 48px; }
+    .allday__slide-title { font-size: 22px; }
+    .allday__tb-btn { font-size: 11px; padding: 16px 12px 12px; }
+    .allday__tb-kw { font-size: 9px; }
+
+    /* ── Brand Film ── */
+    .brand-film { height: auto; padding: 60px 0 80px; overflow: visible; }
+    .brand-film__frame {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: calc(100% - 48px);
+        margin: 0 auto;
+        transform: none;
+        max-width: none;
+    }
+    .brand-film__header { margin-bottom: 32px; }
+    .brand-film__title-en { font-size: 30px; }
+    .brand-film__title-kr { font-size: 14px; }
+    .brand-film__video-wrap { width: 100%; height: auto; aspect-ratio: 16/9; }
+    .brand-film__video { position: relative; top: auto; left: auto; width: 100%; height: auto; }
+
+    /* ── Membership ── */
+    .membership { height: auto; padding: 60px 24px; overflow: visible; }
+    .membership__title-wrap { position: relative; left: auto; top: auto; }
+    .membership__desc { position: relative; left: auto; top: auto; margin-top: 20px; font-size: 13px; }
+    .membership__cta { position: relative; left: auto; top: auto; margin-top: 32px; }
+    .membership__title { font-size: 26px; }
+
+    /* ── Location ── */
+    .location { height: auto; padding: 60px 0; overflow: visible; }
+    .location__inner { position: relative; left: auto; top: auto; width: 100%; padding: 0 24px; }
+    .location__header { position: relative; left: auto; top: auto; width: 100%; margin-bottom: 32px; }
+    .location__title-en { font-size: 30px; }
+    .location__content { position: relative; left: auto; top: auto; width: 100%; flex-direction: column; gap: 24px; }
+    .location__map { width: 100%; min-width: auto; height: 250px; }
+    .location__info { width: 100%; height: auto; padding: 32px 0; }
+    .location__hotel-name { font-size: 18px; }
+    .location__detail-row dt { font-size: 16px; width: 80px; }
+    .location__detail-row dd { font-size: 14px; }
+    .location__details { gap: 32px; }
+
+    /* ── Footer ── */
+    .footer { height: auto; padding: 40px 0 80px; overflow: visible; }
+    .footer__top { position: relative; left: auto; top: auto; width: 100%; padding: 0 24px; flex-direction: column; gap: 32px; margin: 0; }
+    .footer__info { position: relative; left: auto; top: auto; padding: 0 24px; margin-top: 32px; flex-direction: column; gap: 16px; }
+    .footer__info-line { flex-wrap: wrap; gap: 8px; }
+    .footer__divider { position: relative; left: auto; top: auto; width: calc(100% - 48px); margin: 24px 24px; }
+    .footer__links { position: relative; left: auto; top: auto; flex-wrap: wrap; padding: 0 24px; margin: 0; }
+    .footer__links-main { flex-wrap: wrap; gap: 4px; }
+    .footer__links-main a { font-size: 14px; }
+    .footer__copyright { position: relative; left: auto; top: auto; right: auto; text-align: left; padding: 0 24px; margin-top: 12px; }
+}
+
+
+/* ════════════════════════════════════════
+   480px — 소형 모바일
+════════════════════════════════════════ */
+@media (max-width: 480px) {
+
+    /* ── Header: 햄버거 우측 정렬 ── */
+    .header__gnb { justify-content: flex-end; }
+
+    /* ── Hero ── */
+    .hero__counter { bottom: 140px; }
+    .hero__counter-current { font-size: 40px; }
+    .hero__text { bottom: 60px; }
+    .hero__title { font-size: 26px; }
+    .hero__subtitle { font-size: 14px; }
+
+    /* ── Hotel Intro ── */
+    .hotel-intro__inner { padding: 0 16px; }
+    .hotel-intro__img-wrap { height: 240px; }
+    .hotel-intro__title-en { font-size: 26px; }
+
+    /* ── Special Offers: 첫 번째 카드만 표시 ── */
+    .offer-card:not(:first-child) { display: none; }
+
+    /* ── Accommodations ── */
+    .accommodations__nav { padding: 0 16px; }
+    .accommodations__nav-list li a { font-size: 11px; padding: 6px 8px; }
+
+    /* ── AllDay ── */
+    .allday__header-title { font-size: 30px; }
+    .allday__stage-heading { font-size: 38px; }
+    .allday__slide-title { font-size: 19px; }
+    .allday__tb-btn { font-size: 10px; padding: 14px 8px 10px; }
+    .allday__tb-kw { display: none; }
+
+    /* ── Brand Film ── */
+    .brand-film__frame { width: calc(100% - 32px); }
+    .brand-film__title-en { font-size: 26px; }
+
+    /* ── Membership ── */
+    .membership { padding: 40px 16px; }
+    .membership__title { font-size: 22px; }
+
+    /* ── Location ── */
+    .location__inner { padding: 0 16px; }
+    .location__map { height: 240px; }
+    .location__info { padding: 24px 0; }
+
+    /* ── Footer ── */
+    .footer__top { padding: 0 16px; }
+    .footer__info { padding: 0 16px; margin-top: 24px; }
+    .footer__info-line span { font-size: 12px; }
+    .footer__divider { width: calc(100% - 32px); margin: 16px 16px; }
+    .footer__links { padding: 0 16px; }
+    .footer__copyright { padding: 0 16px; font-size: 11px; }
+}
+
+
