@@ -18,7 +18,9 @@
       "Bash(sed -n '2788,3586p' \"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/style.css\")",
       "Bash(\"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/footer.css\")",
       "Bash(sed -n '3587,4463p' \"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/style.css\")",
-      "Bash(\"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/responsive.css\")"
+      "Bash(\"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/responsive.css\")",
+      "Skill(update-config)",
+      "Skill(update-config:*)"
     ]
   }
 }
