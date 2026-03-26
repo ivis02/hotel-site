@@ -20,7 +20,8 @@
       "Bash(sed -n '3587,4463p' \"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/style.css\")",
       "Bash(\"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/responsive.css\")",
       "Skill(update-config)",
-      "Skill(update-config:*)"
+      "Skill(update-config:*)",
+      "Bash(node -e \"JSON.parse\\(require\\(''fs''\\).readFileSync\\(''C:/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/.claude/settings.local.json'',''utf8''\\)\\);console.log\\(''JSON 유효''\\)\")"
     ]
   },
   "hooks": {
