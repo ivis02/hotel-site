@@ -1,0 +1,679 @@
+// ============================================
+// HOTEL NONGSHIM - MAIN JAVASCRIPT
+// ============================================
+
+// ============================================
+// 1. HEADER SCROLL BEHAVIOR (스마트 헤더)
+//    - topbar: 스크롤 시 자연스럽게 사라짐 (absolute)
+//    - GNB: 스크롤 다운 시 사라지고, 업 시 상단 고정으로 나타남
+// ============================================
+const header = document.getElementById('header');
+let lastScroll = 0;
+const HEADER_THRESHOLD = 64; // header의 absolute top 위치 (이 지점에서 fixed↔absolute 위치 일치)
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll <= HEADER_THRESHOLD) {
+        if (header.classList.contains('header--sticky') && header.classList.contains('header--visible')) {
+            // 고정 헤더를 절대 위치로 부드럽게 내려놓는 "밀어내는" 효과
+            // compensate: fixed(y=0)와 absolute(y=THRESHOLD-scroll)가 일치하도록 음수 오프셋
+            const compensate = currentScroll - HEADER_THRESHOLD; // 음수값 (e.g. scroll=30 → -34)
+            header.style.transition = 'none';
+            header.style.transform = `translateY(${compensate}px)`; // fixed 위치에 맞춤
+            header.classList.remove('header--sticky', 'header--visible');
+            void header.offsetHeight;
+            // translateY(compensate→0): 헤더가 페이지 위치로 부드럽게 내려옴
+            header.style.transition = 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)';
+            header.style.transform = 'translateY(0)';
+            setTimeout(() => {
+                if (!header.classList.contains('header--sticky')) {
+                    header.style.transition = '';
+                    header.style.transform = '';
+                }
+            }, 520);
+        } else if (header.classList.contains('header--sticky')) {
+            // sticky 상태지만 숨겨진 경우 → 즉시 absolute로 전환
+            header.style.transition = 'none';
+            header.style.transform = '';
+            header.classList.remove('header--sticky', 'header--visible');
+            void header.offsetHeight;
+            header.style.transition = '';
+        }
+    } else if (currentScroll < lastScroll) {
+        // 스크롤 업 - 스티키 헤더 표시 (위에서 밀고 내려오는 효과)
+        header.style.transition = '';
+        header.style.transform = '';
+        if (!header.classList.contains('header--sticky')) {
+            header.style.transition = 'none';
+            header.classList.add('header--sticky');
+            void header.offsetHeight;
+            header.style.transition = '';
+            requestAnimationFrame(() => header.classList.add('header--visible'));
+        } else {
+            header.classList.add('header--visible');
+        }
+    } else {
+        // 스크롤 다운 - 스티키 헤더 숨김
+        header.style.transition = '';
+        header.style.transform = '';
+        header.classList.remove('header--visible');
+    }
+
+    lastScroll = currentScroll;
+});
+
+
+// ============================================
+// 2. HOTEL INTRO - 이미지 전환
+//    - 서브 이미지 클릭 시 메인으로 전환
+//    - 텍스트 내용도 함께 변경
+// ============================================
+const introImages = document.querySelectorAll('.hotel-intro__img');
+const introText = document.querySelector('.hotel-intro__text');
+const introTitle = document.querySelector('.hotel-intro__title');
+const introDesc = document.querySelector('.hotel-intro__desc');
+
+// 이미지별 텍스트 데이터 (수정 가능)
+const introData = [
+    {
+        title: '호텔 소개',
+        desc: '1979년 개관 이래 부산 동래의 랜드마크로 자리잡은 호텔농심은<br>천년 역사의 동래온천과 금정산의 자연이 어우러진 도심 속 휴식처입니다.'
+    },
+    {
+        title: '호텔 소개',
+        desc: '전통과 현대가 조화를 이루는 호텔농심의 내부 공간에서는<br>정갈하고 따뜻한 환대가 여러분의 특별한 순간을 완성합니다.'
+    }
+];
+
+introImages.forEach(img => {
+    img.addEventListener('click', () => {
+        const idx = parseInt(img.dataset.idx);
+        const currentActive = document.querySelector('.hotel-intro__img.is-active');
+
+        if (currentActive === img) return; // 이미 활성화된 이미지
+
+        // 이미지 전환
+        currentActive.classList.remove('is-active');
+        img.classList.add('is-active');
+
+        // 텍스트 페이드 아웃 → 내용 변경 → 페이드 인
+        introText.classList.add('is-switching');
+        setTimeout(() => {
+            introTitle.textContent = introData[idx].title;
+            introDesc.innerHTML = introData[idx].desc;
+            introText.classList.remove('is-switching');
+        }, 300);
+    });
+});
+
+
+// ============================================
+// 3. SPECIAL OFFERS - 무한 루프 캐러셀
+//    - 카드 클론으로 양쪽 확장 (무한 루프)
+//    - DOM 인덱스 기반 위치 계산
+//    - 카드 클릭 시 중앙 활성화 (클론 포함)
+//    - 드래그(스와이프)로 좌우 이동
+//    - 닷 인디케이터 연동
+// ============================================
+const carousel = document.getElementById('offers-carousel');
+const offerDots = document.querySelectorAll('.special-offers__dots .dot');
+const CARD_W = 220;       // 비활성 카드 너비
+const CARD_GAP = 40;      // flex gap (CSS와 동기화)
+const ACTIVE_MARGIN = 40; // 활성 카드 양쪽 추가 마진 (CSS와 동기화)
+const ACTIVE_W = 310;     // 활성 카드 너비
+const TOTAL = 7;          // 원본 카드 수
+
+// 카드 클론 생성 (양쪽에 원본 세트 복제 → 총 21장)
+const originalCards = Array.from(carousel.querySelectorAll('.offer-card'));
+const clonesBefore = originalCards.map(card => {
+    const clone = card.cloneNode(true);
+    clone.classList.add('is-clone');
+    clone.classList.remove('is-active');
+    return clone;
+});
+const clonesAfter = originalCards.map(card => {
+    const clone = card.cloneNode(true);
+    clone.classList.add('is-clone');
+    clone.classList.remove('is-active');
+    return clone;
+});
+clonesBefore.reverse().forEach(clone => carousel.prepend(clone));
+clonesAfter.forEach(clone => carousel.appendChild(clone));
+
+// 모든 카드 재수집: [clone0..6, orig0..6, clone0..6] (DOM 인덱스 0~20)
+const allCards = Array.from(carousel.querySelectorAll('.offer-card'));
+let currentDomIdx = TOTAL + 3; // 원본 카드 중 4번째(index 3) 활성 → DOM 인덱스 10
+let isAnimating = false;
+
+// 캐러셀 위치 계산: DOM 인덱스 기준, 활성 카드 중심을 화면 중앙에 배치
+function calculateOffset(domIdx) {
+    return -(domIdx * (CARD_W + CARD_GAP) + ACTIVE_MARGIN + ACTIVE_W / 2);
+}
+
+// 카드 활성 상태 + 닷 업데이트
+function updateCards() {
+    allCards.forEach((card, i) => {
+        card.classList.toggle('is-active', i === currentDomIdx);
+    });
+    const realIdx = ((currentDomIdx % TOTAL) + TOTAL) % TOTAL;
+    offerDots.forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === realIdx);
+    });
+}
+
+// 특정 DOM 인덱스로 이동
+function goTo(domIdx, animate = true) {
+    if (isAnimating) return;
+    currentDomIdx = domIdx;
+    updateCards();
+    void carousel.offsetHeight; // 레이아웃 강제 반영 후 offset 계산 (바운스 방지)
+
+    if (animate) {
+        carousel.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        isAnimating = true;
+    } else {
+        carousel.style.transition = 'none';
+    }
+    carousel.style.transform = `translateX(${calculateOffset(currentDomIdx)}px)`;
+
+    if (animate) {
+        setTimeout(() => {
+            isAnimating = false;
+            // 클론 영역이면 원본 영역으로 순간 이동 (무한 루프)
+            if (currentDomIdx < TOTAL || currentDomIdx >= TOTAL * 2) {
+                const realIdx = ((currentDomIdx % TOTAL) + TOTAL) % TOTAL;
+                currentDomIdx = TOTAL + realIdx;
+                updateCards();
+                carousel.style.transition = 'none';
+                carousel.style.transform = `translateX(${calculateOffset(currentDomIdx)}px)`;
+            }
+        }, 630);
+    }
+}
+
+// 카드 클릭 (클론 포함 - 가까운 카드로 자연스럽게 이동)
+allCards.forEach((card, i) => {
+    card.addEventListener('click', () => {
+        if (card.classList.contains('is-active') || card.classList.contains('is-dragged')) return;
+        goTo(i);
+    });
+});
+
+// 닷 클릭 (원본 영역 기준)
+offerDots.forEach((dot, i) => {
+    dot.addEventListener('click', () => goTo(TOTAL + i));
+});
+
+// 드래그 기능
+let isDragging = false;
+let dragStartX = 0;
+let dragBaseOffset = 0;
+
+carousel.addEventListener('mousedown', startDrag);
+carousel.addEventListener('touchstart', startDrag, { passive: true });
+document.addEventListener('mousemove', onDrag);
+document.addEventListener('touchmove', onDrag, { passive: false });
+document.addEventListener('mouseup', endDrag);
+document.addEventListener('touchend', endDrag);
+
+function startDrag(e) {
+    if (isAnimating) return;
+    isDragging = true;
+    dragStartX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+    dragBaseOffset = calculateOffset(currentDomIdx);
+    carousel.classList.add('is-dragging');
+    carousel.style.transition = 'none';
+}
+
+function onDrag(e) {
+    if (!isDragging) return;
+    if (e.type === 'touchmove') e.preventDefault();
+    const x = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+    carousel.style.transform = `translateX(${dragBaseOffset + (x - dragStartX)}px)`;
+}
+
+function endDrag(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    carousel.classList.remove('is-dragging');
+
+    const endX = e.type === 'touchend'
+        ? (e.changedTouches ? e.changedTouches[0].clientX : dragStartX)
+        : e.clientX;
+    const diff = endX - dragStartX;
+    // 클릭인지 드래그인지 판별
+    if (Math.abs(diff) < 5) {
+        // goTo 호출 없이 위치만 복구 (isAnimating 잠금 방지 → card click 이벤트가 정상 처리)
+        carousel.style.transition = 'none';
+        carousel.style.transform = `translateX(${calculateOffset(currentDomIdx)}px)`;
+        return;
+    }
+
+    // 드래그 후 클릭 방지 플래그
+    allCards.forEach(c => {
+        c.classList.add('is-dragged');
+        setTimeout(() => c.classList.remove('is-dragged'), 100);
+    });
+
+    // 드래그 거리 기반으로 가장 가까운 카드로 이동
+    const cardSlot = CARD_W + CARD_GAP;
+    const shift = Math.round(-diff / cardSlot);
+    goTo(currentDomIdx + shift);
+}
+
+// 초기 상태 (원본 카드 index 3 활성, 애니메이션 없이)
+goTo(TOTAL + 3, false);
+
+
+// ============================================
+// 3-2. SPECIAL OFFERS - 카테고리 토글 + 카드 플립
+// ============================================
+const categoryData = {
+    package: [
+        { title: '2025 F/W 스파 패키지', desc: '가을·겨울 시즌 한정, 프리미엄 스파 트리트먼트와 함께하는 특별한 투숙 경험.', date: '2025.09.01 ~ 2026.02.28', img: '' },
+        { title: '봄맞이 온천 패키지', desc: '금정산 벚꽃과 천년 온천의 조화, 봄을 느끼는 힐링 스테이.', date: '2026.03.01 ~ 2026.05.31', img: '' },
+        { title: '프리미엄 다이닝 패키지', desc: '셰프의 특별 코스 디너와 프리미엄 와인 페어링을 즐기는 미식 여행.', date: '2025.01.01 ~ 2025.12.31', img: '' },
+        { title: '2025 농심 친환경 패키지', desc: '자연을 생각한 선물과 온천의 여유로, 지속가능한 하루를 경험해보세요.', date: '2025.03.01 ~ 2025.12.31', img: 'images/main/9b813aeef0884866d8cac719370cb8df.png' },
+        { title: '허심청 온천 체험', desc: '천년 동래온천의 정수, 허심청에서 몸과 마음을 치유하는 온천 여행.', date: '2025.01.01 ~ 2025.12.31', img: '' },
+        { title: '객실 & 조식 패키지', desc: '신선한 제철 식재료로 준비된 조식 뷔페와 편안한 객실의 완벽한 조합.', date: '2025.01.01 ~ 2025.12.31', img: 'images/main/main_15404627323.png' },
+        { title: 'SRT 온천 여행 패키지', desc: 'SRT 이용 고객 전용, 부산역에서 호텔까지 셔틀과 온천 입장권 포함.', date: '2025.06.01 ~ 2025.12.31', img: '' }
+    ],
+    promotion: [
+        { title: '얼리버드 30% 할인', desc: '30일 전 예약 시 전 객실 30% 특별 할인, 조식 포함 혜택.', date: '2026.01.01 ~ 2026.12.31', img: '' },
+        { title: '커플 스파 프로모션', desc: '두 분이 함께하는 프리미엄 커플 스파, 샴페인 & 딸기 서비스.', date: '2026.02.14 ~ 2026.03.31', img: '' },
+        { title: '가족 여름 패키지', desc: '어린이 무료 입장, 키즈풀 & 가족 연회장 우선 예약 혜택.', date: '2026.06.01 ~ 2026.08.31', img: '' },
+        { title: '시니어 특별 할인', desc: '65세 이상 어르신 전용 특별 요금, 웰니스 프로그램 포함.', date: '2026.01.01 ~ 2026.12.31', img: '' },
+        { title: '부산 시티 투어 패키지', desc: '부산 대표 관광지 투어와 호텔 숙박이 결합된 도심 탐방 패키지.', date: '2026.03.01 ~ 2026.11.30', img: '' },
+        { title: '웨딩 애니버서리', desc: '결혼기념일 특별 패키지, 꽃 장식·케이크·스파 바우처 증정.', date: '2026.01.01 ~ 2026.12.31', img: '' },
+        { title: '연말 카운트다운 프로모션', desc: '신년맞이 특별 이벤트, 루프탑 불꽃 뷰 룸 우선 배정 혜택.', date: '2025.12.24 ~ 2026.01.02', img: '' }
+    ]
+};
+
+let currentCategory = 'package';
+
+function updateCardContent(card, data) {
+    const thumb = card.querySelector('.offer-card__thumb');
+    if (data.img) {
+        thumb.style.backgroundImage = `url('${data.img}')`;
+    } else {
+        thumb.style.removeProperty('background-image');
+    }
+    const titleEl = card.querySelector('.offer-card__info-title');
+    const descEl  = card.querySelector('.offer-card__info-desc');
+    const dateEl  = card.querySelector('.offer-card__info-date');
+    const nameEl  = card.querySelector('.offer-card__name');
+    if (titleEl) titleEl.textContent = data.title;
+    if (descEl)  descEl.textContent  = data.desc;
+    if (dateEl)  dateEl.textContent  = data.date;
+    if (nameEl)  nameEl.textContent  = data.title;
+}
+
+function updateToggleThumb() {
+    const thumb = document.querySelector('.offers-toggle__thumb');
+    const activeBtn = document.querySelector('.offers-toggle__btn.is-active');
+    if (!thumb || !activeBtn) return;
+    thumb.style.left = activeBtn.offsetLeft + 'px';
+    thumb.style.width = activeBtn.offsetWidth + 'px';
+}
+
+function flipToCategory(newCat) {
+    if (newCat === currentCategory) return;
+    currentCategory = newCat;
+    const data = categoryData[newCat];
+
+    // 토글 버튼 상태 + 썸 이동
+    document.querySelectorAll('.offers-toggle__btn').forEach(btn => {
+        btn.classList.toggle('is-active', btn.dataset.cat === newCat);
+    });
+    updateToggleThumb();
+
+    // 21장 카드 모두 순차 플립 (중앙 먼저 → 양쪽 파급)
+    allCards.forEach((card, domIdx) => {
+        const dist = Math.abs(domIdx - currentDomIdx);
+        const delay = dist * 100;
+        const realIdx = ((domIdx % TOTAL) + TOTAL) % TOTAL;
+
+        setTimeout(() => {
+            // Phase 1: 위로 접힘 (0 → 90deg)
+            card.style.transition = 'transform 0.22s ease-in';
+            card.style.transform = 'perspective(1000px) rotateX(90deg)';
+
+            setTimeout(() => {
+                // 내용 교체 (카드 측면이 정면 - 보이지 않는 순간)
+                updateCardContent(card, data[realIdx]);
+
+                // Phase 2: 아래에서 펼쳐짐 (-90deg → 0deg)
+                card.style.transition = 'none';
+                card.style.transform = 'perspective(1000px) rotateX(-90deg)';
+                void card.offsetHeight; // force reflow
+                card.style.transition = 'transform 0.22s ease-out';
+                card.style.transform = 'perspective(1000px) rotateX(0deg)';
+
+                // 인라인 스타일 정리
+                setTimeout(() => {
+                    card.style.transition = '';
+                    card.style.transform = '';
+                }, 230);
+            }, 220);
+        }, delay);
+    });
+}
+
+document.querySelectorAll('.offers-toggle__btn').forEach(btn => {
+    btn.addEventListener('click', () => flipToCategory(btn.dataset.cat));
+});
+
+// 썸 초기 위치 설정
+updateToggleThumb();
+
+
+// ============================================
+// 4. ACCOMMODATIONS - 사이드바 네비 + 서브룸 클릭
+// ============================================
+const navLinks = document.querySelectorAll('.accommodations__nav-list li a');
+const navAccent = document.querySelector('.accommodations__nav-accent');
+const panels = document.querySelectorAll('.accommodations__panel');
+
+// 서브룸 클릭 (활성 패널 내부만) + 메인 이미지·텍스트 업데이트
+function bindSubrooms(panel) {
+    const subrooms   = panel.querySelectorAll('.subroom');
+    const imgBg      = panel.querySelector('.accommodations__image-bg');
+    const roomName   = panel.querySelector('.accommodations__room-name');
+    const roomNameEn = panel.querySelector('.accommodations__room-name-en');
+    const roomDesc   = panel.querySelector('.accommodations__room-desc');
+    const specValues = panel.querySelectorAll('.spec__value');
+
+    subrooms.forEach(room => {
+        room.addEventListener('click', () => {
+            subrooms.forEach(r => r.classList.remove('is-active'));
+            room.classList.add('is-active');
+
+            const d = room.dataset;
+            if (d.img)    imgBg.style.backgroundImage = `url('${d.img}')`;
+            if (d.name)   roomName.textContent   = d.name;
+            if (d.nameEn) roomNameEn.textContent  = d.nameEn;
+            if (d.desc)   roomDesc.textContent    = d.desc;
+            const vals = [d.size, d.bed, d.view, d.guest];
+            specValues.forEach((el, i) => { if (vals[i]) el.textContent = vals[i]; });
+        });
+    });
+}
+panels.forEach(p => bindSubrooms(p));
+
+// 객실 사이드바 네비게이션 클릭
+navLinks.forEach((link, i) => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        navLinks.forEach(l => {
+            l.classList.remove('is-active');
+            l.querySelector('.nav-dot').classList.remove('is-active');
+        });
+        link.classList.add('is-active');
+        link.querySelector('.nav-dot').classList.add('is-active');
+        // 액센트 바 위치 이동 (50px 간격)
+        if (navAccent) {
+            navAccent.style.height = (i * 50) + 'px';
+        }
+        // 패널 전환
+        const target = link.dataset.room;
+        panels.forEach(p => {
+            if (p.dataset.room === target) {
+                p.removeAttribute('hidden');
+            } else {
+                p.setAttribute('hidden', '');
+            }
+        });
+    });
+});
+
+
+// ============================================
+// 5. ALL DAY ALL TIME - 슬라이스 전환 + 자동 진행
+//    - 클릭 시 활성 슬라이스 전환
+//    - 5초마다 자동으로 다음 시간대로 이동
+//    - 수동 클릭 시 타이머 리셋
+// ============================================
+const slices = document.querySelectorAll('.allday__slice');
+const sliceArray = Array.from(slices);
+let currentSliceIdx = 0;
+let alldayTimer = null;
+
+function activateSlice(slice) {
+    if (slice.classList.contains('allday__slice--active')) return;
+
+    // 이전 활성 슬라이스 비활성화
+    const prevActive = document.querySelector('.allday__slice--active');
+    if (prevActive) {
+        prevActive.classList.remove('allday__slice--active');
+        const prevContent = prevActive.querySelector('.allday__active-content');
+        const prevOverlayActive = prevActive.querySelector('.allday__slice-overlay--active');
+        if (prevContent) prevContent.remove();
+        if (prevOverlayActive) prevOverlayActive.classList.remove('allday__slice-overlay--active');
+    }
+
+    // 새 슬라이스 활성화
+    slice.classList.add('allday__slice--active');
+    const d = slice.dataset; // HTML data-* 속성에서 직접 읽음
+
+    const overlay = slice.querySelector('.allday__slice-overlay');
+    if (overlay) overlay.classList.add('allday__slice-overlay--active');
+
+    if (!slice.querySelector('.allday__active-content') && d.label) {
+        requestAnimationFrame(() => {
+            // RAF 실행 전에 이미 비활성화된 경우 무시 (레이스 컨디션 방지)
+            if (!slice.classList.contains('allday__slice--active')) return;
+            if (!slice.querySelector('.allday__active-content')) {
+                const content = document.createElement('div');
+                content.className = 'allday__active-content';
+                content.innerHTML = `
+                    <span class="allday__active-time">${d.time}</span>
+                    <h3 class="allday__active-label">${d.label}</h3>
+                    <p class="allday__active-desc">${d.desc}</p>
+                    <a href="#" class="allday__active-cta">자세히 보기</a>
+                `;
+                slice.appendChild(content);
+            }
+        });
+    }
+}
+
+function startAlldayTimer() {
+    clearInterval(alldayTimer);
+    alldayTimer = setInterval(() => {
+        currentSliceIdx = (currentSliceIdx + 1) % sliceArray.length;
+        activateSlice(sliceArray[currentSliceIdx]);
+    }, 5000);
+}
+
+slices.forEach((slice, i) => {
+    slice.addEventListener('click', () => {
+        currentSliceIdx = i;
+        activateSlice(slice);
+        startAlldayTimer(); // 수동 클릭 시 타이머 리셋
+    });
+});
+
+// 초기 활성화 + 자동 진행 시작
+activateSlice(sliceArray[0]);
+startAlldayTimer();
+
+
+// ============================================
+// 6. HERO - Gooey 인디케이터 + 슬라이드 시스템
+// ============================================
+const heroSlides = [
+    {
+        bg: 'images/main/main_1540462708.jpg',
+        title: '그 곳, 호텔농심',
+        subtitle: '신선한 공기와 맑은 온천수를 벗삼아 휴식을 취하는 곳'
+    },
+    {
+        bg: 'images/main/main_1540462725.jpg',
+        title: '온천의 품격',
+        subtitle: '부산 동래의 깊은 역사 속에서 피어나는 따뜻한 안식'
+    },
+    {
+        bg: 'images/main/main_1540462732.jpg',
+        title: '자연과 하나되다',
+        subtitle: '금정산 자락 아래, 도심 속 특별한 휴식을 경험하세요'
+    }
+];
+
+const heroDots = document.querySelectorAll('.hero__dots .dot');
+const heroCounter = document.querySelector('.hero__counter-current');
+const heroMovingDot = document.querySelector('.hero__moving-dot');
+const heroBgA = document.querySelector('.hero__bg--a');
+const heroBgNext = document.querySelector('.hero__bg--next');
+const heroTextWrap = document.querySelector('.hero__text');
+const heroTitle = document.querySelector('.hero__title');
+const heroSubtitle = document.querySelector('.hero__subtitle');
+
+const HERO_DOT_DISTANCE = 14 + 28; // dot size(14px) + gap(28px)
+const HERO_ELASTIC = 'transform 0.6s cubic-bezier(0.6, 0, 0.4, 1.4), opacity 0.3s';
+const HERO_ANIM_MS = 600;
+let heroCurrentIdx = 0;
+let heroAutoTimer = null;
+let heroDotTimer = null; // 닷 활성화 setTimeout 추적 (race condition 방지)
+
+function heroMoveTo(targetIdx) {
+    if (targetIdx === heroCurrentIdx) return;
+
+    // 이전 setTimeout이 남아 있으면 취소 (race condition: 두 닷이 동시에 활성화되는 버그 방지)
+    if (heroDotTimer !== null) {
+        clearTimeout(heroDotTimer);
+        heroDotTimer = null;
+    }
+
+    const numDots = heroDots.length;
+    const isWrap = (heroCurrentIdx === numDots - 1) && (targetIdx === 0);
+    const targetY = targetIdx * HERO_DOT_DISTANCE;
+    const slide = heroSlides[targetIdx];
+
+    // --- 닷 인디케이터 ---
+    heroDots.forEach(d => d.classList.remove('is-active'));
+
+    if (isWrap) {
+        heroMovingDot.style.opacity = '0';
+        heroMovingDot.style.transition = 'none';
+        heroMovingDot.style.transform = `translateY(${targetY}px)`;
+        heroDotTimer = setTimeout(() => {
+            heroMovingDot.style.transition = HERO_ELASTIC;
+            heroMovingDot.style.opacity = '1';
+            heroDots[targetIdx].classList.add('is-active');
+            heroDotTimer = null;
+        }, 50);
+    } else {
+        heroMovingDot.style.opacity = '1';
+        heroMovingDot.style.transition = HERO_ELASTIC;
+        heroMovingDot.style.transform = `translateY(${targetY}px)`;
+        heroDotTimer = setTimeout(() => {
+            heroDots[targetIdx].classList.add('is-active');
+            heroDotTimer = null;
+        }, HERO_ANIM_MS);
+    }
+
+    // --- 배경 크로스페이드 ---
+    heroBgNext.style.backgroundImage = `url('${slide.bg}')`;
+    heroBgNext.style.opacity = '1';
+    setTimeout(() => {
+        heroBgA.style.backgroundImage = `url('${slide.bg}')`;
+        heroBgNext.style.transition = 'none';
+        heroBgNext.style.opacity = '0';
+        setTimeout(() => {
+            heroBgNext.style.transition = 'opacity 0.8s ease';
+        }, 50);
+    }, 850);
+
+    // --- 텍스트 교체 + 슬라이드업 ---
+    heroTextWrap.classList.remove('is-animating');
+    void heroTextWrap.offsetHeight; // reflow
+    heroTitle.textContent = slide.title;
+    heroSubtitle.textContent = slide.subtitle;
+    heroTextWrap.classList.add('is-animating');
+
+    // --- 카운터 (크로스페이드: ghost를 형제 요소로 → heroCounter opacity 건드리지 않아 깜빡임 없음) ---
+    if (heroCounter) {
+        // cloneNode: 같은 CSS 클래스(hero__counter-current)를 그대로 사용 → 폰트/색상 완벽 일치
+        const ghost = heroCounter.cloneNode(true);
+        ghost.style.cssText = 'position:absolute;top:0;left:0;opacity:1;transition:opacity 0.45s ease;pointer-events:none;';
+        heroCounter.parentElement.appendChild(ghost); // 형제로 추가, heroCounter 위에 그려짐
+        heroCounter.textContent = String(targetIdx + 1).padStart(2, '0'); // 즉시 교체 (ghost가 덮고 있음)
+        requestAnimationFrame(() => {
+            ghost.style.opacity = '0'; // ghost만 fade-out → 새 숫자 드러남
+            setTimeout(() => ghost.remove(), 460);
+        });
+    }
+
+    heroCurrentIdx = targetIdx;
+}
+
+// 초기 세팅 (첫번째 슬라이드)
+function heroInit() {
+    const slide = heroSlides[0];
+    heroBgA.style.backgroundImage = `url('${slide.bg}')`;
+    heroTitle.textContent = slide.title;
+    heroSubtitle.textContent = slide.subtitle;
+    heroMovingDot.style.transform = 'translateY(0px)';
+    heroDots[0].classList.add('is-active');
+    if (heroCounter) heroCounter.textContent = '01';
+    heroCurrentIdx = 0;
+    // 첫 텍스트 애니메이션
+    heroTextWrap.classList.add('is-animating');
+}
+heroInit();
+
+// 클릭 이벤트
+heroDots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+        heroMoveTo(i);
+        heroResetTimer();
+    });
+});
+
+// 자동 순환 (4초)
+function heroResetTimer() {
+    clearInterval(heroAutoTimer);
+    heroAutoTimer = setInterval(() => {
+        const next = (heroCurrentIdx + 1) % heroDots.length;
+        heroMoveTo(next);
+    }, 4000);
+}
+heroResetTimer();
+
+// 좌우 화살표
+const heroArrowLeft = document.querySelector('.hero__arrow--left');
+const heroArrowRight = document.querySelector('.hero__arrow--right');
+
+if (heroArrowLeft) {
+    heroArrowLeft.addEventListener('click', () => {
+        const idx = heroCurrentIdx <= 0 ? heroDots.length - 1 : heroCurrentIdx - 1;
+        heroMoveTo(idx);
+        heroResetTimer();
+    });
+}
+
+if (heroArrowRight) {
+    heroArrowRight.addEventListener('click', () => {
+        const idx = heroCurrentIdx >= heroDots.length - 1 ? 0 : heroCurrentIdx + 1;
+        heroMoveTo(idx);
+        heroResetTimer();
+    });
+}
+
+
+// ============================================
+// 7. 주소 복사 기능
+// ============================================
+const btnCopy = document.querySelector('.btn-copy');
+if (btnCopy) {
+    btnCopy.addEventListener('click', () => {
+        const address = '부산시 동래구 금강공원로 20번길 23';
+        navigator.clipboard.writeText(address).then(() => {
+            btnCopy.style.color = 'var(--teal)';
+            setTimeout(() => {
+                btnCopy.style.color = '';
+            }, 1500);
+        });
+    });
+}

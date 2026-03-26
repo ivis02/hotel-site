@@ -1,0 +1,520 @@
+/* ============================================
+   5. HERO (메인배너)
+   높이: 960px, 풀 너비 배경
+============================================ */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 960px;
+    overflow: hidden;
+}
+
+/* GNB 가독성을 위한 상단 다크 블루 그라데이션 */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(
+        to bottom,
+        rgba(2, 8, 38, 0.52) 0%,
+        rgba(4, 12, 42, 0.28) 50%,
+        transparent 100%
+    );
+    z-index: 2;
+    pointer-events: none;
+}
+
+.hero__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    transition: opacity 1.2s ease;
+}
+
+@keyframes heroZoomOut {
+    from { transform: scale(1.06); }
+    to   { transform: scale(1.0); }
+}
+
+.hero__bg--next {
+    opacity: 0;
+    z-index: 0;
+}
+
+/* 상단 그라데이션 - 헤더 가독성 */
+.hero__gradient-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 600px;
+    background: linear-gradient(to bottom, rgba(6, 14, 25, 0.5) 0%, rgba(6, 14, 25, 0) 100%);
+    z-index: 1;
+}
+
+
+
+/* 슬라이드 카운터 (좌측, 디자인 x:184 y:625) */
+.hero__counter {
+    position: absolute;
+    left: 184px;
+    top: 585px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero__counter-current {
+    position: relative;
+    font-family: var(--font-batang);
+    font-size: 80px;
+    font-weight: 500;
+    color: var(--white);
+}
+
+/* 구분선: 꾸밈 전용 — HTML 요소 불필요, ::after로 처리 */
+.hero__counter-current::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 56px;
+    width: 54px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.5);
+    transform: rotate(-40deg);
+    transform-origin: left center;
+    pointer-events: none;
+}
+
+.hero__counter-total {
+    font-family: var(--font-batang);
+    font-size: 40px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+    margin-left: 73px;
+    margin-top: 0;
+}
+
+/* 메인 텍스트 (디자인 x:322 y:744) */
+.hero__text {
+    position: absolute;
+    left: 322px;
+    top: 700px;
+    z-index: 2;
+    width: 638px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.hero__title {
+    font-family: var(--font-batang);
+    font-size: 52px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.5;
+    text-shadow: 0 2px 12px rgba(6, 14, 25, 0.6), 0 1px 4px rgba(6, 14, 25, 0.45),
+                 0 0 22px rgba(6, 14, 25, 0.3);
+}
+
+.hero__subtitle {
+    font-family: var(--font-batang);
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.5;
+    text-shadow: 0 2px 10px rgba(6, 14, 25, 0.55), 0 1px 3px rgba(6, 14, 25, 0.4),
+                 0 0 16px rgba(6, 14, 25, 0.28);
+}
+
+/* 닷 인디케이터 (우측, 디자인 x:1700 y:240) */
+/* SVG 필터 숨김 */
+.svg-filters {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.hero__dots {
+    position: absolute;
+    right: 210px;
+    top: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    z-index: 2;
+    filter: url(#gooey-filter);
+}
+
+/* Gooey 무빙 닷 */
+.hero__moving-dot {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--teal);
+    transition: transform 0.6s cubic-bezier(0.6, 0, 0.4, 1.4), opacity 0.3s;
+    z-index: 1;
+}
+
+.hero__dots .dot {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--white);
+    cursor: pointer;
+    transition: background-color 0.4s;
+}
+/* 탭타겟 44px 확보 (WCAG 2.5.5) */
+.hero__dots .dot::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+}
+
+.hero__dots .dot.is-active {
+    background: var(--teal);
+    box-shadow: 0 0 8px rgba(90, 198, 208, 0.6);
+}
+
+/* 좌우 화살표 (디자인 y:496, 좌 x:43, 우 x:1856) */
+.hero__arrow {
+    position: absolute;
+    top: 496px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.75);
+    transition: color 0.3s;
+}
+.hero__arrow:hover {
+    color: var(--white);
+}
+.hero__arrow--left { left: 23px; }
+.hero__arrow--right { right: 28px; }
+@keyframes arrowWiggleLeft {
+    0%   { transform: translateX(0); }
+    30%  { transform: translateX(-4px); }
+    65%  { transform: translateX(3px); }
+    100% { transform: translateX(0); }
+}
+.hero__arrow--left:hover svg  { animation: arrowWiggleLeft 0.9s ease-in-out; }
+.hero__arrow--right:hover svg { animation: arrowWiggle 0.9s ease-in-out; }
+
+/* 카운터 전환 애니메이션 (투명도만) */
+@keyframes counterOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+@keyframes counterIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* 히어로 텍스트 페이드+살짝 상승 애니메이션 */
+@keyframes heroTextFade {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero__text .hero__title,
+.hero__text .hero__subtitle {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.hero__text.is-animating .hero__title {
+    animation: heroTextFade 0.65s ease-out forwards;
+}
+
+.hero__text.is-animating .hero__subtitle {
+    animation: heroTextFade 0.65s ease-out 0.35s forwards;
+}
+
+
+/* ============================================
+   6. HOTEL INTRO — 스플릿 레이아웃
+============================================ */
+.hotel-intro {
+    background-color: var(--warm-white);
+    background-image: var(--bg-pattern);
+    padding: 110px 0 80px;
+}
+
+.hotel-intro__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 80px;
+    display: flex;
+    align-items: stretch;
+    height: 620px;
+}
+
+/* ── 이미지 패널 (50%) ── */
+.hotel-intro__img-wrap {
+    flex: 0 0 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 슬라이드 레이어 (crossfade) */
+.hotel-intro__slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+}
+
+.hotel-intro__slide.is-active {
+    opacity: 1;
+}
+
+/* 화살표 버튼 (이미지 우하단) */
+.hotel-intro__arrow {
+    position: absolute;
+    bottom: 20px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(6, 14, 25, 0.32);
+    border: none;
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+    z-index: 2;
+    backdrop-filter: blur(4px);
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.hotel-intro__arrow:hover {
+    background: rgba(6, 14, 25, 0.55);
+    color: #fff;
+}
+
+.hotel-intro__arrow--prev { right: 52px; }
+.hotel-intro__arrow--next { right: 16px; }
+
+/* ── 텍스트 패널 (50%) ── */
+.hotel-intro__content {
+    flex: 0 0 50%;
+    padding: 0 0 0 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid rgba(184, 153, 111, 0.30);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 장식용 대형 연도 워터마크 */
+.hotel-intro__content::before {
+    content: '1979';
+    position: absolute;
+    bottom: -24px;
+    right: -16px;
+    font-family: var(--font-batang);
+    font-size: 200px;
+    font-weight: 700;
+    color: var(--gold);
+    opacity: 0.055;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    z-index: -1;
+}
+
+/* SINCE 1979 레이블 */
+.hotel-intro__since {
+    display: block;
+    font-family: var(--font-suit);
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 5px;
+    margin-bottom: 22px;
+}
+
+/* ── 헤딩 ── */
+.hotel-intro__heading {
+    margin-bottom: 24px;
+}
+
+.hotel-intro__title-en {
+    font-family: var(--font-batang);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 2px;
+    line-height: 1.3;
+    margin-bottom: 10px;
+}
+
+.hotel-intro__title-kr {
+    font-family: var(--font-noto);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+}
+
+/* gold 라인 좌→우 그려지는 효과 */
+.hotel-intro__heading::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    margin-top: 20px;
+    transition: width 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+}
+
+.hotel-intro.is-visible .hotel-intro__heading::after {
+    width: 50px;
+}
+
+/* ── 설명 텍스트 ── */
+.hotel-intro__desc {
+    font-family: var(--font-noto);
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-body);
+    line-height: 2.0;
+    letter-spacing: 0.2px;
+    margin-bottom: 36px;
+}
+
+/* ── 슬라이드 전환 시 텍스트 페이드 ── */
+@keyframes introFadeUp {
+    from { opacity: 0; transform: translateY(7px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 아웃 - 전체 동시 */
+.hotel-intro__text-body.is-switching .hotel-intro__since,
+.hotel-intro__text-body.is-switching .hotel-intro__heading,
+.hotel-intro__text-body.is-switching .hotel-intro__desc {
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+/* 인 - since → heading → desc 순차 */
+.hotel-intro__text-body.is-entering .hotel-intro__since {
+    animation: introFadeUp 0.38s ease both;
+}
+.hotel-intro__text-body.is-entering .hotel-intro__heading {
+    animation: introFadeUp 0.38s ease 0.09s both;
+}
+.hotel-intro__text-body.is-entering .hotel-intro__desc {
+    animation: introFadeUp 0.38s ease 0.18s both;
+}
+
+/* ── CTA (라인 + 텍스트 패턴) ── */
+.hotel-intro__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    padding: 4px 0;
+    align-self: flex-start;
+}
+
+.hotel-intro__cta-line {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--blue);
+    flex-shrink: 0;
+    transition: width 0.3s ease;
+}
+
+.hotel-intro__cta:hover .hotel-intro__cta-line {
+    width: 42px;
+}
+
+.hotel-intro__cta-text {
+    font-family: var(--font-noto);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-dark);
+    letter-spacing: 1px;
+}
+
+.hotel-intro__cta svg {
+    color: var(--text-dark);
+    transition: transform 0.25s ease;
+}
+
+.hotel-intro__cta:hover svg {
+    transform: translateX(3px);
+}
+
+/* ── 진입 애니메이션 ── */
+.hotel-intro__img-wrap,
+.hotel-intro__content {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.hotel-intro.is-visible .hotel-intro__img-wrap {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.05s;
+}
+
+.hotel-intro.is-visible .hotel-intro__content {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.22s;
+}
+
+/* ============================================
+   prefers-reduced-motion: 히어로·인트로 애니메이션 비활성화
+============================================ */
+@media (prefers-reduced-motion: reduce) {
+    .hero__bg,
+    .hero__text,
+    .hero__title,
+    .hero__subtitle { animation: none; transition: none; }
+
+    .hero__arrow--left svg,
+    .hero__arrow--right svg { animation: none; }
+
+    .hotel-intro__content,
+    .hotel-intro__text-body.is-switching .hotel-intro__since,
+    .hotel-intro__text-body.is-switching .hotel-intro__heading,
+    .hotel-intro__text-body.is-switching .hotel-intro__desc { transition: none; }
+
+    .hotel-intro__text-body.is-entering .hotel-intro__since,
+    .hotel-intro__text-body.is-entering .hotel-intro__heading,
+    .hotel-intro__text-body.is-entering .hotel-intro__desc {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+

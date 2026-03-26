@@ -1,0 +1,2316 @@
+/* ============================================
+   HOTEL NONGSHIM - REDESIGN STYLESHEET
+
+   목차:
+   0. Font-Face (로컬 폰트)
+   1. CSS Variables
+   2. Base Reset
+   3. Top Bar
+   4. Header / GNB
+   5. Hero (메인배너)
+   6. Hotel Intro (호텔소개)
+   7. Special Offers (스페셜오퍼)
+   8. Accommodations (객실)
+   9. All Day All Time
+   10. Brand Film (소개영상)
+   11. Location (오시는길)
+   12. Membership (멤버십)
+   13. Footer (푸터)
+============================================ */
+
+/* ============================================
+   0. FONT-FACE (로컬 폰트)
+   Noto Serif KR, SUIT, Petrona
+   Source Han Serif KR → Adobe Fonts (Typekit) 로드 (index.html 참고)
+============================================ */
+
+@font-face { font-family: 'Noto Serif KR'; font-weight: 200; font-display: swap; src: url('../font/NotoSerifKR-ExtraLight.woff2') format('woff2'), url('../font/NotoSerifKR-ExtraLight.woff') format('woff'); }
+@font-face { font-family: 'Noto Serif KR'; font-weight: 300; font-display: swap; src: url('../font/NotoSerifKR-Light.woff2') format('woff2'), url('../font/NotoSerifKR-Light.woff') format('woff'); }
+@font-face { font-family: 'Noto Serif KR'; font-weight: 400; font-display: swap; src: url('../font/NotoSerifKR-Regular.woff2') format('woff2'), url('../font/NotoSerifKR-Regular.woff') format('woff'); }
+@font-face { font-family: 'Noto Serif KR'; font-weight: 500; font-display: swap; src: url('../font/NotoSerifKR-Medium.woff2') format('woff2'), url('../font/NotoSerifKR-Medium.woff') format('woff'); }
+@font-face { font-family: 'Noto Serif KR'; font-weight: 600; font-display: swap; src: url('../font/NotoSerifKR-SemiBold.woff2') format('woff2'), url('../font/NotoSerifKR-SemiBold.woff') format('woff'); }
+@font-face { font-family: 'Noto Serif KR'; font-weight: 700; font-display: swap; src: url('../font/NotoSerifKR-Bold.woff2') format('woff2'), url('../font/NotoSerifKR-Bold.woff') format('woff'); }
+@font-face { font-family: 'Noto Serif KR'; font-weight: 800; font-display: swap; src: url('../font/NotoSerifKR-ExtraBold.woff2') format('woff2'), url('../font/NotoSerifKR-ExtraBold.woff') format('woff'); }
+@font-face { font-family: 'Noto Serif KR'; font-weight: 900; font-display: swap; src: url('../font/NotoSerifKR-Black.woff2') format('woff2'), url('../font/NotoSerifKR-Black.woff') format('woff'); }
+
+@font-face { font-family: 'SUIT'; font-weight: 100; font-display: swap; src: url('../font/SUIT-Thin.woff2') format('woff2'), url('../font/SUIT-Thin.woff') format('woff'); }
+@font-face { font-family: 'SUIT'; font-weight: 200; font-display: swap; src: url('../font/SUIT-ExtraLight.woff2') format('woff2'), url('../font/SUIT-ExtraLight.woff') format('woff'); }
+@font-face { font-family: 'SUIT'; font-weight: 300; font-display: swap; src: url('../font/SUIT-Light.woff2') format('woff2'), url('../font/SUIT-Light.woff') format('woff'); }
+@font-face { font-family: 'SUIT'; font-weight: 400; font-display: swap; src: url('../font/SUIT-Regular.woff2') format('woff2'), url('../font/SUIT-Regular.woff') format('woff'); }
+@font-face { font-family: 'SUIT'; font-weight: 500; font-display: swap; src: url('../font/SUIT-Medium.woff2') format('woff2'), url('../font/SUIT-Medium.woff') format('woff'); }
+@font-face { font-family: 'SUIT'; font-weight: 600; font-display: swap; src: url('../font/SUIT-SemiBold.woff2') format('woff2'), url('../font/SUIT-SemiBold.woff') format('woff'); }
+@font-face { font-family: 'SUIT'; font-weight: 700; font-display: swap; src: url('../font/SUIT-Bold.woff2') format('woff2'), url('../font/SUIT-Bold.woff') format('woff'); }
+@font-face { font-family: 'SUIT'; font-weight: 800; font-display: swap; src: url('../font/SUIT-ExtraBold.woff2') format('woff2'), url('../font/SUIT-ExtraBold.woff') format('woff'); }
+@font-face { font-family: 'SUIT'; font-weight: 900; font-display: swap; src: url('../font/SUIT-Heavy.woff2') format('woff2'), url('../font/SUIT-Heavy.woff') format('woff'); }
+
+@font-face { font-family: 'Petrona'; font-weight: 100; font-display: swap; src: url('../font/Petrona-Thin.woff2') format('woff2'), url('../font/Petrona-Thin.woff') format('woff'); }
+@font-face { font-family: 'Petrona'; font-weight: 200; font-display: swap; src: url('../font/Petrona-ExtraLight.woff2') format('woff2'), url('../font/Petrona-ExtraLight.woff') format('woff'); }
+@font-face { font-family: 'Petrona'; font-weight: 300; font-display: swap; src: url('../font/Petrona-Light.woff2') format('woff2'), url('../font/Petrona-Light.woff') format('woff'); }
+@font-face { font-family: 'Petrona'; font-weight: 400; font-display: swap; src: url('../font/Petrona-Regular.woff2') format('woff2'), url('../font/Petrona-Regular.woff') format('woff'); }
+@font-face { font-family: 'Petrona'; font-weight: 500; font-display: swap; src: url('../font/Petrona-Medium.woff2') format('woff2'), url('../font/Petrona-Medium.woff') format('woff'); }
+@font-face { font-family: 'Petrona'; font-weight: 600; font-display: swap; src: url('../font/Petrona-SemiBold.woff2') format('woff2'), url('../font/Petrona-SemiBold.woff') format('woff'); }
+@font-face { font-family: 'Petrona'; font-weight: 700; font-display: swap; src: url('../font/Petrona-Bold.woff2') format('woff2'), url('../font/Petrona-Bold.woff') format('woff'); }
+@font-face { font-family: 'Petrona'; font-weight: 800; font-display: swap; src: url('../font/Petrona-ExtraBold.woff2') format('woff2'), url('../font/Petrona-ExtraBold.woff') format('woff'); }
+@font-face { font-family: 'Petrona'; font-weight: 900; font-display: swap; src: url('../font/Petrona-Black.woff2') format('woff2'), url('../font/Petrona-Black.woff') format('woff'); }
+
+
+/* ============================================
+   1. CSS VARIABLES
+============================================ */
+:root {
+    /* 색상 팔레트 (7 Base Colors) */
+    --dark-navy: #060e19;
+    --blue: #00416a;
+    --gold: #b8996f;
+    --teal: #5ac6d0;
+    --cream: #f0ead6;
+    --warm-white: #fdfcfa;
+    --white: #ffffff;
+
+    /* 텍스트 */
+    --text-dark: #060e19;
+    --text-body: #51565e;
+    --text-light: #8f9398;
+
+    /* 폰트 스택 */
+    --font-batang: 'source-han-serif-korean', serif; /* Adobe Fonts / Typekit: Source Han Serif KR */
+    --font-noto: 'Noto Serif KR', serif;
+    --font-cormorant: 'Cormorant Garamond', serif;
+    --font-petrona: 'Petrona', serif;
+    --font-suit: 'SUIT', sans-serif;
+
+    /* 레이아웃 */
+    --page-width: 1920px;
+    --content-width: 1200px;
+}
+
+
+/* ============================================
+   2. BASE RESET
+============================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--font-suit);
+    color: var(--text-dark);
+    background: var(--white);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a, a:link, a:visited, a:hover, a:active { text-decoration: none; color: inherit; }
+ul, ol { list-style: none; }
+img { max-width: 100%; display: block; }
+button { background: none; border: none; cursor: pointer; font-family: inherit; }
+
+
+/* ============================================
+   3. TOP BAR
+   위치: 히어로 위 고정, 투명 (디자인 y:24)
+============================================ */
+.topbar {
+    position: absolute;
+    top: 24px;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 360px;
+    max-width: var(--page-width);
+    margin: 0 auto;
+}
+
+.topbar__lang {
+    display: flex;
+}
+
+.topbar__lang a {
+    font-family: var(--font-suit);
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+    padding: 0 12px;
+    line-height: 1;
+    border-right: 0.5px solid rgba(255, 255, 255, 0.5);
+    transition: color 0.3s;
+}
+.topbar__lang a:last-child { border-right: none; }
+.topbar__lang a.is-active { color: var(--blue); font-weight: 500; }
+.topbar__lang a:hover { color: var(--white); }
+
+.topbar__auth {
+    display: flex;
+}
+
+.topbar__auth a {
+    font-family: var(--font-suit);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--white);
+    padding: 0 16px;
+    line-height: 1.2;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+    transition: color 0.3s;
+}
+.topbar__auth a:last-child { border-right: none; padding: 0 0 0 16px; }
+.topbar__auth a:hover { color: var(--white); }
+
+
+/* ============================================
+   4. HEADER / GNB
+   높이 80px, 반투명 다크 배경 (디자인 y:64)
+============================================ */
+.header {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.header--sticky {
+    position: fixed;
+    top: 0;
+    transform: translateY(-100%);
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+}
+
+.header--sticky.header--visible {
+    transform: translateY(0);
+}
+
+.header__gnb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 68px;
+    background: rgba(6, 14, 25, 0.6);
+    backdrop-filter: blur(10px);
+    gap: 96px;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    transition: background 0.3s ease;
+}
+
+/* 서브메뉴 열릴 때 GNB 배경 불투명하게 */
+.header__gnb:has(.gnb-item:hover) {
+    background: rgba(6, 14, 25, 0.96);
+}
+
+.gnb-menu {
+    display: flex;
+    gap: 12px;
+    align-self: stretch;        /* GNB 전체 높이로 늘림 */
+    align-items: center;
+}
+
+/* 1뎁스 li — 호버 영역을 GNB 전체 높이로 확장 */
+.gnb-item {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+}
+
+/* 1뎁스 링크 */
+.gnb-menu > .gnb-item > a {
+    font-family: var(--font-noto);
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 12px 32px;
+    line-height: 1.5;
+    position: relative;
+    transition: color 0.3s, font-weight 0.3s;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* GNB 밑줄 애니메이션 (1뎁스만) */
+.gnb-menu > .gnb-item > a::after {
+    content: '';
+    position: absolute;
+    bottom: 14px;          /* GNB 높이 68px 기준: 텍스트 하단 + 여백 */
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.gnb-menu > .gnb-item > a:hover::after,
+.gnb-menu > .gnb-item > a.is-active::after {
+    width: calc(100% - 64px);
+    left: 32px;
+}
+
+.gnb-menu > .gnb-item > a:hover,
+.gnb-menu > .gnb-item > a.is-active {
+    color: var(--white);
+    font-weight: 600;
+}
+
+/* ============================================
+   서브메뉴 패널 (1·2 뎁스)
+============================================ */
+
+/* 패널 — .header(position:absolute/fixed)에 귀속 */
+.gnb-submenu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 68px;                          /* .header__gnb 높이 */
+    background: rgba(6, 14, 25, 0.96);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 28px 0 32px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    z-index: 10;
+}
+
+.gnb-item:hover .gnb-submenu {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+
+/* 내부 컨텐츠 — 페이지 너비 맞춤 */
+.gnb-submenu__inner {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 60px;
+    display: flex;
+    gap: 56px;
+}
+
+/* 1뎁스 컬럼 */
+.gnb-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 100px;
+}
+
+/* 1뎁스 타이틀 */
+.gnb-col__title {
+    font-family: var(--font-noto);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+    transition: opacity 0.2s;
+}
+
+.gnb-col__title:hover {
+    opacity: 0.75;
+}
+
+/* 2뎁스 리스트 */
+.gnb-col__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.gnb-col__list a {
+    font-family: var(--font-noto);
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.gnb-col__list a:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 35px;
+    width: auto;
+}
+
+
+/* ============================================
+   5. HERO (메인배너)
+   높이: 960px, 풀 너비 배경
+============================================ */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 960px;
+    overflow: hidden;
+}
+
+.hero__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 0.8s ease;
+}
+
+.hero__bg--next {
+    opacity: 0;
+    z-index: 0;
+}
+
+/* 상단 그라데이션 - 헤더 가독성 */
+.hero__gradient-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 600px;
+    background: linear-gradient(to bottom, rgba(6, 14, 25, 0.5) 0%, rgba(6, 14, 25, 0) 100%);
+    z-index: 1;
+}
+
+
+/* 슬라이드 카운터 (좌측, 디자인 x:184 y:625) */
+.hero__counter {
+    position: absolute;
+    left: 184px;
+    top: 585px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero__counter-current {
+    position: relative;
+    font-family: var(--font-batang);
+    font-size: 80px;
+    font-weight: 500;
+    color: var(--white);
+}
+
+/* 구분선: 꾸밈 전용 — HTML 요소 불필요, ::after로 처리 */
+.hero__counter-current::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 56px;
+    width: 54px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.5);
+    transform: rotate(-40deg);
+    transform-origin: left center;
+    pointer-events: none;
+}
+
+.hero__counter-total {
+    font-family: var(--font-batang);
+    font-size: 40px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+    margin-left: 73px;
+    margin-top: 0;
+}
+
+/* 메인 텍스트 (디자인 x:322 y:744) */
+.hero__text {
+    position: absolute;
+    left: 322px;
+    top: 700px;
+    z-index: 2;
+    width: 638px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.hero__title {
+    font-family: var(--font-batang);
+    font-size: 52px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.5;
+    text-shadow: 0 2px 12px rgba(6, 14, 25, 0.6), 0 1px 4px rgba(6, 14, 25, 0.45),
+                 0 0 22px rgba(6, 14, 25, 0.3);
+}
+
+.hero__subtitle {
+    font-family: var(--font-batang);
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.5;
+    text-shadow: 0 2px 10px rgba(6, 14, 25, 0.55), 0 1px 3px rgba(6, 14, 25, 0.4),
+                 0 0 16px rgba(6, 14, 25, 0.28);
+}
+
+/* 닷 인디케이터 (우측, 디자인 x:1700 y:240) */
+/* SVG 필터 숨김 */
+.svg-filters {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.hero__dots {
+    position: absolute;
+    right: 210px;
+    top: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    z-index: 2;
+    filter: url(#gooey-filter);
+}
+
+/* Gooey 무빙 닷 */
+.hero__moving-dot {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--teal);
+    transition: transform 0.6s cubic-bezier(0.6, 0, 0.4, 1.4), opacity 0.3s;
+    z-index: 1;
+}
+
+.hero__dots .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--white);
+    cursor: pointer;
+    transition: background-color 0.4s;
+}
+
+.hero__dots .dot.is-active {
+    background: var(--teal);
+    box-shadow: 0 0 8px rgba(90, 198, 208, 0.6);
+}
+
+/* 좌우 화살표 (디자인 y:496, 좌 x:43, 우 x:1856) */
+.hero__arrow {
+    position: absolute;
+    top: 496px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.75);
+    transition: color 0.3s;
+}
+.hero__arrow:hover {
+    color: var(--white);
+}
+.hero__arrow--left { left: 23px; }
+.hero__arrow--right { right: 28px; }
+@keyframes arrowWiggleLeft {
+    0%   { transform: translateX(0); }
+    30%  { transform: translateX(-4px); }
+    65%  { transform: translateX(3px); }
+    100% { transform: translateX(0); }
+}
+.hero__arrow--left:hover svg  { animation: arrowWiggleLeft 0.9s ease-in-out; }
+.hero__arrow--right:hover svg { animation: arrowWiggle 0.9s ease-in-out; }
+
+/* 카운터 전환 애니메이션 (투명도만) */
+@keyframes counterOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+@keyframes counterIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* 히어로 텍스트 페이드+살짝 상승 애니메이션 */
+@keyframes heroTextFade {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero__text .hero__title,
+.hero__text .hero__subtitle {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.hero__text.is-animating .hero__title {
+    animation: heroTextFade 0.65s ease-out forwards;
+}
+
+.hero__text.is-animating .hero__subtitle {
+    animation: heroTextFade 0.65s ease-out 0.35s forwards;
+}
+
+
+/* ============================================
+   6. HOTEL INTRO (호텔소개)
+   높이: 920px, padding 120px 72px
+============================================ */
+.hotel-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 72px;
+    width: 100%;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 120px 72px;
+    height: 920px;
+}
+
+/* 이미지 영역: 클릭으로 메인/서브 전환 */
+.hotel-intro__images {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    height: 520px;
+}
+
+.hotel-intro__img {
+    width: 280px;
+    overflow: hidden;
+    background: #ebeced;
+    cursor: pointer;
+    position: relative;
+    transition: flex 0.6s cubic-bezier(0.4, 0, 0.2, 1), width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hotel-intro__img.is-active {
+    flex: 1;
+    width: auto;
+    cursor: default;
+}
+
+.hotel-intro__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 서브 이미지 호버 효과 */
+.hotel-intro__img:not(.is-active)::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(6, 14, 25, 0.15);
+    transition: background 0.3s;
+}
+
+.hotel-intro__img:not(.is-active):hover::after {
+    background: rgba(6, 14, 25, 0);
+}
+
+/* 텍스트 블록 (클릭 시 전환 애니메이션 포함) */
+.hotel-intro__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 800px;
+    transition: opacity 0.3s ease;
+}
+
+.hotel-intro__text.is-switching {
+    opacity: 0;
+}
+
+.hotel-intro__title {
+    font-family: var(--font-batang);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+.hotel-intro__desc {
+    font-family: var(--font-noto);
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--text-body);
+    letter-spacing: 0.5px;
+    line-height: 1.9;
+    text-align: center;
+}
+
+.hotel-intro__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: var(--font-suit);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 1.5px;
+    padding: 13px 28px;
+    border: 1.5px solid var(--blue);
+    border-radius: 0;
+    min-height: 44px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.hotel-intro__cta:hover {
+    background: var(--blue);
+    color: var(--white);
+}
+
+
+/* ============================================
+   7. SPECIAL OFFERS (스페셜오퍼)
+   높이: 920px, 클립
+============================================ */
+.special-offers {
+    position: relative;
+    width: 100%;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    height: 920px;
+    overflow: hidden;
+}
+
+.special-offers__header {
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    transform: translateX(-50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 400px;
+}
+
+.special-offers__title-en {
+    font-family: var(--font-batang);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: 2px;
+    line-height: 1.5;
+}
+
+.special-offers__title-kr {
+    font-family: var(--font-noto);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 1px;
+    line-height: 1.5;
+}
+
+/* 카테고리 토글 컨트롤 (구 닷 위치 top:238px) */
+.offers-toggle {
+    position: absolute;
+    top: 238px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    border: 1px solid rgba(0, 65, 106, 0.22);
+    background: rgba(240, 234, 214, 0.3);
+    border-radius: 100px;
+    padding: 3px;
+}
+
+.offers-toggle__thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    height: calc(100% - 6px);
+    background: var(--blue);
+    border-radius: 100px;
+    transition: left 0.38s cubic-bezier(0.4, 0, 0.2, 1), width 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.offers-toggle__btn {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-suit);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.8px;
+    color: rgba(6, 14, 25, 0.42);
+    padding: 8px 22px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+    white-space: nowrap;
+    text-align: center;
+    border-radius: 100px;
+}
+
+.offers-toggle__btn.is-active {
+    color: var(--white);
+}
+
+.offers-toggle__btn:not(.is-active):hover {
+    color: var(--blue);
+}
+
+/* 페이지네이션 닷 (하단 이동 top:820px) */
+.special-offers__dots {
+    position: absolute;
+    left: 50%;
+    top: 820px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.special-offers__dots .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #b3c6d2;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.special-offers__dots .dot:hover {
+    background: #668da6;
+}
+
+.special-offers__dots .dot.is-active {
+    width: 10px;
+    height: 10px;
+    background: var(--text-dark);
+    box-shadow: 0 0 0 2px rgba(184, 153, 111, 0.4);
+}
+
+/* 카드 캐러셀 */
+.special-offers__carousel {
+    position: absolute;
+    top: 302px;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    cursor: grab;
+    user-select: none;
+}
+
+.special-offers__carousel.is-dragging {
+    cursor: grabbing;
+    transition: none !important;
+}
+
+/* 카드 공통 */
+.offer-card {
+    position: relative;     /* name absolute 기준점 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.offer-card.is-active {
+    cursor: default;
+    margin: 0 40px;
+}
+
+.offer-card__thumb {
+    width: 220px;
+    height: 330px;
+    border-radius: 16px 0 16px 0;
+    background-color: #c1c3c6;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: box-shadow 0.3s;
+}
+
+/* 배경 이미지 레이어 — transform: scale()로 부드러운 줌 처리 */
+.offer-card__thumb::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.offer-card.is-active .offer-card__thumb {
+    width: 310px;
+    height: 465px;
+}
+
+/* 비활성 카드 호버 */
+.offer-card:not(.is-active):hover {
+    transform: translateY(-6px);
+}
+
+.offer-card:not(.is-active):hover .offer-card__thumb {
+    box-shadow: 0 12px 32px rgba(6, 14, 25, 0.15);
+}
+
+.offer-card__name {
+    position: absolute;         /* flex 흐름 밖 → 카드 높이에 영향 없음 */
+    top: calc(100% + 10px);     /* thumb 바로 아래 10px */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-family: var(--font-noto);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-dark);
+    line-height: 1.5;
+    text-align: center;
+    transition: opacity 0.25s;  /* 비활성화 시(나타날 때)만 fade 적용 */
+}
+
+.offer-card.is-active .offer-card__name {
+    opacity: 0;
+    pointer-events: none;
+    transition: none;           /* 활성화 시(사라질 때)는 즉시 — 위치 점프 전에 숨김 */
+}
+
+/* 오버레이 + 정보 (활성 카드만) */
+.offer-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(6, 14, 25, 0.5) 0%, rgba(255, 255, 255, 0) 65%);
+    opacity: 0;
+    /* transition 없음 → 비활성화 시 즉시 */
+}
+
+.offer-card.is-active .offer-card__overlay {
+    opacity: 1;
+    transition: opacity 0.4s; /* 활성화 시 fade-in만 */
+}
+
+.offer-card__info {
+    position: relative;
+    z-index: 1;
+    padding: 16px 20px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    opacity: 0;
+    transform: translateY(16px);
+    /* transition 없음 → 비활성화 시 즉시 숨김 */
+}
+
+.offer-card.is-active .offer-card__info {
+    opacity: 1;
+    transform: translateY(0);
+    /* transition은 is-active 안에만 → 활성화 시 fade-in만 적용 */
+    transition: opacity 0.4s 0.1s, transform 0.4s 0.1s;
+}
+
+.offer-card__info-title {
+    font-family: var(--font-noto);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.4;
+}
+
+.offer-card__info-desc {
+    font-family: var(--font-noto);
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.55;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+.offer-card__info-date {
+    font-family: var(--font-petrona);
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* 자세히 보기 CTA (활성 카드 호버 시 노출) */
+/* max-height로 info 패널 배경이 부드럽게 확장/축소됨
+   숨길 때: opacity 먼저 사라지고 → 높이 collapse (motion chain)
+   나타낼 때: 높이 먼저 열리고 → opacity 페이드인 (motion chain) */
+.offer-card__cta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 8px 0;
+    transition: max-height 0.2s ease-out,
+                opacity 0.1s ease-out,
+                margin-top 0.2s ease-out;
+}
+
+.offer-card.is-active:hover .offer-card__cta {
+    max-height: 48px;
+    opacity: 1;
+    margin-bottom: 2px;
+}
+
+.offer-card.is-active:hover .offer-card__thumb::before {
+    transform: scale(1.05);
+}
+
+.offer-card__cta-line {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--white);
+    transition: width 0.3s;
+}
+
+.offer-card__cta:hover .offer-card__cta-line {
+    width: 42px;
+}
+
+.offer-card__cta-text {
+    font-family: var(--font-noto);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--white);
+    letter-spacing: 1px;
+}
+
+.offer-card__cta svg {
+    color: var(--white);
+}
+
+/* 장식 라인 */
+.special-offers__lines {
+    position: absolute;
+    top: 823px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.special-offers__lines .line {
+    display: block;
+    height: 1px;
+    background: var(--cream);
+    width: 715px;
+}
+
+.line--left { margin-left: 21px; }
+.line--right { margin-right: 21px; }
+
+/* 하단 버튼 */
+.special-offers__actions {
+    position: absolute;
+    top: 820px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+}
+
+.special-offers__actions .btn {
+    padding: 12px 20px;
+}
+
+/* 스페셜오퍼 섹션 버튼: 패키지는 기본 filled, 프로모션은 아웃라인 */
+.special-offers__actions .btn--primary,
+.special-offers__actions .btn--primary:link,
+.special-offers__actions .btn--primary:visited {
+    background: var(--blue);
+    color: var(--white);
+    border-color: var(--blue);
+}
+.special-offers__actions .btn--primary:hover {
+    background: var(--dark-navy);
+    color: var(--white);
+    border-color: var(--dark-navy);
+}
+.special-offers__actions .btn--outline:hover {
+    background: var(--dark-navy);
+    color: var(--white);
+    border-color: var(--dark-navy);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: var(--font-suit);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    line-height: 1.5;
+    padding: 14px 14px;
+    border: 1.5px solid transparent;
+    border-radius: 100px;
+    text-align: center;
+    min-width: 156px;
+    min-height: 44px;
+    transition: background 0.3s, color 0.3s, border-color 0.3s, font-weight 0.1s;
+}
+
+.btn:hover {
+    font-weight: 400;
+}
+
+.btn--primary,
+.btn--primary:link,
+.btn--primary:visited {
+    background: var(--blue);
+    color: var(--white);
+}
+.btn--primary:hover {
+    background: var(--dark-navy);
+    color: var(--white);
+}
+
+.btn--outline,
+.btn--outline:link,
+.btn--outline:visited {
+    background: transparent;
+    color: var(--blue);
+    border-color: var(--blue);
+}
+.btn--outline:hover {
+    background: #f2f6f8;
+    color: var(--blue);
+    border-color: var(--dark-navy);
+}
+
+
+/* ============================================
+   8. ACCOMMODATIONS (객실)
+   높이: 1000px, 사이드바 내비 + 이미지/정보 패널
+============================================ */
+.accommodations {
+    position: relative;
+    width: 100%;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    height: 1000px;
+    overflow: hidden;
+}
+
+.accommodations__header {
+    position: absolute;
+    left: 50%;
+    top: 120px;
+    transform: translateX(-50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 400px;
+}
+
+.accommodations__title-en {
+    font-family: var(--font-batang);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: 2px;
+    line-height: 1.5;
+}
+
+.accommodations__title-kr {
+    font-family: var(--font-noto);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 1px;
+    line-height: 1.5;
+}
+
+/* 장식 구분선 */
+.accommodations__divider {
+    position: absolute;
+    left: 50%;
+    top: 234px;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 1px;
+    background: var(--gold);
+}
+
+/* 콘텐츠 영역 (사이드바 내비 + 패널) */
+.accommodations__content {
+    position: absolute;
+    left: 360px;
+    top: 262px;
+    width: 1200px;
+    height: 611px;
+}
+
+/* ---- 사이드바 네비게이션 ---- */
+.accommodations__nav {
+    position: absolute;
+    left: -140px;
+    top: 0;
+    width: 140px;
+    height: 342px;
+}
+
+.accommodations__nav-line {
+    z-index: 0;
+    position: absolute;
+    right: 13px;
+    top: 45px;
+    width: 1px;
+    height: 250px;
+    background: #dbcbb5;
+}
+
+.accommodations__nav-accent {
+    z-index: 0;
+    position: absolute;
+    right: 12px;
+    top: 45px;
+    width: 2px;
+    height: 0;
+    background: var(--text-dark);
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accommodations__nav-list {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.accommodations__nav-list li a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    height: 50px;
+    padding-right: 8px;
+    text-align: right;
+    font-family: var(--font-noto);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-light);
+    letter-spacing: 0.28px;
+    line-height: 1.6;
+    cursor: pointer;
+    transition: font-weight 0.3s, color 0.3s;
+}
+
+.accommodations__nav-list li a:hover {
+    color: var(--text-dark);
+}
+
+.accommodations__nav-list li a.is-active {
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+/* 내비 닷 인디케이터 */
+.nav-dot {
+    z-index: 1;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #dbcbb5;
+    background: var(--warm-white);
+    flex-shrink: 0;
+}
+
+.nav-dot.is-active {
+    z-index: 1;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: 2px solid var(--text-dark);
+    background: var(--text-dark);
+}
+
+/* ---- 우측 패널 (이미지 + 정보) ---- */
+.accommodations__panel {
+    position: absolute;
+    left: 60px;
+    top: 0;
+    width: 1080px;
+    height: 611px;
+    display: flex;
+    background: var(--warm-white);
+}
+.accommodations__panel[hidden] {
+    display: none;
+}
+
+/* 객실 이미지 (좌측 540px) */
+.accommodations__image {
+    position: relative;
+    width: 540px;
+    height: 611px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.accommodations__image-bg {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.accommodations__image-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(6, 14, 25, 0.1) 0%, rgba(6, 14, 25, 0) 50%);
+}
+
+/* 객실 정보 (우측 540px) */
+.accommodations__info {
+    position: relative;
+    width: 540px;
+    height: 611px;
+    flex-shrink: 0;
+    background: var(--warm-white);
+    padding: 0;
+}
+
+.accommodations__category {
+    position: absolute;
+    left: 48px;
+    top: 52px;
+    font-family: var(--font-petrona);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 2.6px;
+    line-height: 1.73;
+}
+
+.accommodations__room-name {
+    position: absolute;
+    left: 48px;
+    top: 79px;
+    font-family: var(--font-batang);
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text-dark);
+    letter-spacing: 0.96px;
+    line-height: 1.5;
+}
+
+.accommodations__room-name-en {
+    position: absolute;
+    left: 48px;
+    top: 140px;
+    font-family: var(--font-cormorant);
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+
+.accommodations__room-desc {
+    position: absolute;
+    left: 48px;
+    top: 184px;
+    width: 400px;
+    font-family: var(--font-noto);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* 스펙 그리드 (4칼럼 × 80px) */
+.accommodations__specs {
+    position: absolute;
+    left: 48px;
+    top: 299px;
+    width: 444px;
+    height: 79px;
+    display: flex;
+    gap: 12px;
+    border-bottom: 1px solid #ece3d7;
+}
+
+.spec {
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+}
+
+.spec__label {
+    padding-bottom: 8px;
+    font-family: var(--font-noto);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 1.4px;
+    line-height: 1.6;
+}
+
+.spec__value {
+    padding-left: 2px;
+    font-family: var(--font-noto);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* 서브룸 썸네일 */
+.accommodations__subrooms {
+    position: absolute;
+    left: 48px;
+    top: 402px;
+    display: flex;
+    gap: 12px;
+}
+
+.subroom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 84px;
+    cursor: pointer;
+}
+
+.subroom__thumb {
+    width: 84px;
+    height: 60px;
+    background: #e1e2e3;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid transparent;
+    transition: border-color 0.3s, opacity 0.3s;
+}
+
+.subroom:hover .subroom__thumb {
+    border-color: #b4b7ba;
+}
+
+.subroom.is-active .subroom__thumb {
+    border-color: var(--text-dark);
+}
+
+.subroom__name {
+    font-family: var(--font-noto);
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-dark);
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* CTA 링크 (골드 라인 + 텍스트 + 화살표) */
+.accommodations__cta {
+    position: absolute;
+    left: 48px;
+    top: 510px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    height: 53px;
+    width: 120px;
+}
+
+.accommodations__cta-line {
+    display: none; /* ::after로 대체 */
+}
+
+.accommodations__cta-text {
+    font-family: var(--font-noto);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-dark);
+    letter-spacing: 1.5px;
+    line-height: 1.6;
+    position: absolute;
+    left: 0;
+    top: 16px;
+    transition: color 0.3s;
+}
+
+.accommodations__cta-text::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    margin-top: 5px;
+    transition: width 0.35s;
+}
+
+.accommodations__cta:hover .accommodations__cta-text::after {
+    width: 100%;
+}
+
+.accommodations__cta:hover .accommodations__cta-text {
+    color: var(--blue);
+}
+
+.accommodations__cta svg {
+    position: absolute;
+    left: 102px;
+    top: 17px;
+    color: var(--text-dark);
+    transition: transform 0.3s;
+}
+
+.accommodations__cta:hover svg {
+    transform: translateX(6px);
+    color: var(--blue);
+}
+
+
+/* ============================================
+   9. ALL DAY ALL TIME
+   높이: 860px, 배경 #fdfcfa
+============================================ */
+.allday {
+    width: 100%;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    height: 860px;
+    background: var(--warm-white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 타이틀 블록 */
+.allday__title {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.allday__label {
+    font-family: var(--font-petrona);
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--text-dark);
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+.allday__heading {
+    font-family: var(--font-batang);
+    font-size: 64px;
+    font-weight: 500;
+    color: var(--blue);
+    text-align: center;
+}
+
+/* 아코디언 컨테이너 */
+.allday__accordion {
+    position: absolute;
+    top: 240px;
+    left: 72px;
+    right: 72px;
+    height: 560px;
+    display: flex;
+    gap: 8px;
+}
+
+/* 비활성 슬라이스 (기본) */
+.allday__slice {
+    position: relative;
+    width: 72px;
+    height: 100%; /* 세로 고정 - 가로만 늘어남 */
+    flex-shrink: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1), flex 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.allday__slice:not(.allday__slice--active):hover {
+    width: 88px;
+}
+
+.allday__slice:not(.allday__slice--active):hover .allday__slice-overlay {
+    background: linear-gradient(
+        to top,
+        rgba(6, 14, 25, 0.6) 0%,
+        rgba(6, 14, 25, 0.4) 35%,
+        rgba(6, 14, 25, 0.2) 60%,
+        rgba(6, 14, 25, 0.05) 100%
+    );
+}
+
+.allday__slice-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+/* 비활성 오버레이 */
+.allday__slice-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(6, 14, 25, 0.73) 0%,
+        rgba(6, 14, 25, 0.6) 35%,
+        rgba(6, 14, 25, 0.33) 60%,
+        rgba(6, 14, 25, 0.13) 100%
+    );
+}
+
+/* 비활성 텍스트 (세로 회전) */
+.allday__slice-text {
+    position: absolute;
+    left: 25px;
+    top: 330px;
+    width: 22px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.allday__slice-label {
+    font-family: var(--font-petrona);
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--cream);
+    letter-spacing: 1.35px;
+    text-align: center;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.allday__slice-divider {
+    display: block;
+    width: 1px;
+    flex: 1;
+    background: var(--warm-white);
+    opacity: 0.6;
+}
+
+.allday__slice-time {
+    font-family: var(--font-cormorant);
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--warm-white);
+    letter-spacing: 0.85px;
+    text-align: center;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+/* 활성 슬라이스 */
+.allday__slice--active {
+    width: auto;
+    flex: 1;
+}
+
+.allday__slice--active .allday__slice-text {
+    display: none;
+}
+
+/* 활성 오버레이 (더 강한 그라데이션) */
+.allday__slice-overlay--active {
+    background: linear-gradient(
+        to top,
+        rgba(6, 14, 25, 0.93) 0%,
+        rgba(6, 14, 25, 0.8) 45%,
+        rgba(6, 14, 25, 0.33) 70%,
+        rgba(6, 14, 25, 0) 100%
+    );
+}
+
+/* 활성 콘텐츠 */
+@keyframes alldayContentFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.allday__active-content {
+    position: absolute;
+    left: 56px;
+    bottom: 0;
+    top: 300px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    opacity: 0;
+    animation: alldayContentFadeIn 0.4s 0.1s ease forwards;
+}
+
+.allday__active-time {
+    font-family: var(--font-cormorant);
+    font-size: 56px;
+    font-weight: 500;
+    color: var(--cream);
+    line-height: 1;
+    text-shadow: 0 0 3.5px rgba(6, 14, 25, 0.5);
+    margin-bottom: 18px;
+}
+
+.allday__active-label {
+    font-family: var(--font-batang);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.8px;
+    line-height: 1.5;
+    text-shadow: 0 0 4px rgba(6, 14, 25, 0.4);
+    margin-bottom: 10px;
+}
+
+.allday__active-desc {
+    font-family: var(--font-noto);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.6;
+    text-shadow: 0 0 3px rgba(6, 14, 25, 0.27);
+    margin-bottom: 14px;
+}
+
+.allday__active-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 36px;
+    font-family: var(--font-suit);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 1.3px;
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    transition: background 0.3s;
+}
+
+.allday__active-cta:link,
+.allday__active-cta:visited {
+    color: var(--white); /* reset.css a:link(0,1,1) 특이성 대응 → (0,2,0) */
+}
+
+.allday__active-cta:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--white);
+}
+
+
+/* ============================================
+   10. BRAND FILM (소개영상)
+   높이: 1000px
+============================================ */
+.brand-film {
+    width: 100%;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    height: 1000px;
+    position: relative;
+    overflow: hidden;
+}
+
+.brand-film__frame {
+    position: absolute;
+    left: 410px;
+    top: 120px;
+    width: 1100px;
+    height: 821px;
+}
+
+.brand-film__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 400px;
+    margin: 0 auto 64px;
+}
+
+.brand-film__title-en {
+    font-family: var(--font-batang);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: 2px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.brand-film__title-kr {
+    font-family: var(--font-noto);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 1px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* 비디오 영역 (장식 테두리 포함) */
+.brand-film__video-wrap {
+    position: relative;
+    width: 1100px;
+    height: 647px;
+}
+
+/* 장식 테두리 — 꾸밈 전용 HTML 요소 불필요, pseudo-element로 처리
+   ::before: 위·아래 수평선 (좌우 48px 여백)
+   ::after : 좌·우 수직선 (상하 48px 여백) */
+.brand-film__video-wrap::before,
+.brand-film__video-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.brand-film__video-wrap::before {
+    /* 위: top=0, 아래: bottom=0 / 좌우 48px에서 시작 1004px 폭 */
+    background:
+        linear-gradient(var(--gold), var(--gold)) 48px 0 / 1004px 1px no-repeat,
+        linear-gradient(var(--gold), var(--gold)) 48px 100% / 1004px 1px no-repeat;
+}
+
+.brand-film__video-wrap::after {
+    /* 좌: left=0, 우: right=0 / 상하 48px에서 시작 551px 높이 */
+    background:
+        linear-gradient(var(--gold), var(--gold)) 0 48px / 1px 551px no-repeat,
+        linear-gradient(var(--gold), var(--gold)) 100% 48px / 1px 551px no-repeat;
+}
+
+/* 영상 — 테두리에서 32px 내측에 위치 (상하좌우 동일 간격) */
+.brand-film__video {
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    width: 1036px;  /* 1100 − 64 */
+    overflow: hidden;
+    z-index: 2;
+}
+
+.brand-film__video img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* ============================================
+   11. LOCATION (오시는길)
+   높이: 920px
+============================================ */
+.location {
+    width: 100%;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    height: 920px;
+    position: relative;
+    overflow: hidden;
+}
+
+.location__inner {
+    position: absolute;
+    left: 240px;
+    top: 60px;
+}
+
+.location__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 1440px;
+    margin-bottom: 64px;
+}
+
+.location__title-en {
+    font-family: var(--font-batang);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: 2px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.location__title-kr {
+    font-family: var(--font-noto);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 1px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* 지도 + 정보 영역 */
+.location__content {
+    display: flex;
+    width: 1440px;
+}
+
+.location__map {
+    width: 720px;
+    height: 500px;
+    flex-shrink: 0;
+    border: 0.5px solid var(--text-dark);
+    background: var(--warm-white);
+    overflow: hidden;
+}
+
+.location__map-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.location__map-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3f3f4;
+}
+
+/* 우측 정보 */
+.location__info {
+    flex: 1;
+    padding: 56px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    height: 500px;
+}
+
+.location__hotel-name {
+    font-family: var(--font-noto);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--blue);
+    line-height: 1.5;
+}
+
+.location__info-line {
+    border: none;
+    border-top: 1px solid #dbcbb5;
+    margin: 0;
+}
+
+/* 상세 정보 (디자인: 라벨 gap:56, 값 gap:60) */
+.location__details {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    flex: 1;
+    padding: 0 10px;
+}
+
+.location__detail-row {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+}
+
+.location__detail-row dt {
+    font-family: var(--font-noto);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--gold);
+    line-height: 1.5;
+    width: 100px;
+    flex-shrink: 0;
+}
+
+.location__detail-row dd {
+    font-family: var(--font-suit);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-dark);
+    line-height: 1.5;
+    padding-top: 5px; /* dt 라벨보다 약간 아래에 위치 */
+}
+
+.btn-copy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    color: var(--text-light);
+    vertical-align: middle;
+    margin-left: 8px;
+    transition: color 0.3s;
+}
+.btn-copy:hover { color: var(--teal); }
+
+/* 외부 링크 */
+.location__links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 0 0 12px;
+    margin-top: 16px;
+}
+
+.location__link--map {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--gold);
+    font-family: var(--font-suit);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    opacity: 0.8;
+    transition: opacity 0.35s, filter 0.35s;
+}
+.location__link--map:hover {
+    opacity: 1;
+    /* font-weight 변경 제거 — 텍스트 리플로우로 크기가 변해 깜빡임 발생 */
+    filter: drop-shadow(0 0 6px rgba(184, 153, 111, 0.45));
+}
+.location__link--map svg {
+    width: 20px;
+    height: 20px;
+}
+
+
+/* ============================================
+   12. MEMBERSHIP (멤버십)
+   높이: 278px, absolute 레이아웃
+   디자인: 타이틀 x:439, 설명 x:791, CTA x:1300
+============================================ */
+.membership {
+    position: relative;
+    width: 100%;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    height: 278px;
+    overflow: hidden;
+    background: var(--white);
+}
+
+/* 배경 패턴 (전통문양, opacity:0.5) */
+.membership__pattern {
+    position: absolute;
+    top: -224px;
+    left: -30px;
+    display: flex;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.membership__pattern-img {
+    width: 650px;
+    height: 650px;
+    object-fit: cover;
+    mix-blend-mode: hard-light;
+    opacity: 0.3;
+}
+
+/* 타이틀 "Membership" + 골드 밑줄 (디자인 x:439 y:112) */
+.membership__title-wrap {
+    position: absolute;
+    left: 439px;
+    top: 97px;
+    width: fit-content;
+    z-index: 1;
+}
+
+.membership__title {
+    font-family: var(--font-batang);
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--text-dark);
+    letter-spacing: 2.64px;
+    line-height: 1.5;
+}
+
+.membership__title-line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: var(--gold);
+    margin-top: 3px;
+}
+
+/* 설명 텍스트 (디자인 x:791 y:117) */
+.membership__desc {
+    position: absolute;
+    left: 791px;
+    top: 117px;
+    z-index: 1;
+    font-family: var(--font-noto);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-body);
+    letter-spacing: 0.3px;
+    line-height: 1.6;
+}
+
+/* CTA 링크 (디자인 x:1300 y:121) */
+.membership__cta {
+    position: absolute;
+    left: 1300px;
+    top: 121px;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.membership__cta-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.membership__cta-en {
+    font-family: var(--font-cormorant);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    line-height: 1.6;
+}
+
+.membership__cta-kr {
+    font-family: var(--font-noto);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-dark);
+    letter-spacing: 1.56px;
+    line-height: 1.6;
+    transition: color 0.3s;
+}
+
+.membership__cta:hover .membership__cta-kr {
+    color: var(--blue);
+}
+
+/* 화살표 원형 버튼 (디자인: x:108 from cta, y:4, 44x44) */
+.membership__cta-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    margin-left: 2px;
+    margin-top: 4px;
+    color: var(--blue);
+    transition: background 0.3s;
+}
+@keyframes arrowWiggle {
+    0%   { transform: translateX(0); }
+    30%  { transform: translateX(4px); }
+    65%  { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
+}
+
+.membership__cta-arrow:hover {
+    background: #f2f6f8;
+}
+
+.membership__cta:hover .membership__cta-arrow {
+    border-color: var(--blue);
+    background: #f2f6f8;
+}
+
+.membership__cta:hover .membership__cta-arrow svg {
+    animation: arrowWiggle 0.9s ease-in-out;
+}
+
+
+/* ============================================
+   13. FOOTER (푸터)
+   높이: 420px, 배경 #060e19, absolute 레이아웃
+============================================ */
+.footer {
+    width: 100%;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    height: 420px;
+    background: var(--dark-navy);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 로고 + SNS (디자인 x:360 y:64 width:1200) */
+.footer__top {
+    position: absolute;
+    left: 360px;
+    top: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1200px;
+}
+
+.footer__logo img {
+    height: 39px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+}
+
+.footer__sns {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.footer__sns a {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-suit);
+    font-size: 14px;
+    font-weight: 500;
+    color: #83878c;
+    transition: color 0.3s, opacity 0.3s;
+}
+.footer__sns a:hover { color: var(--white); }
+
+/* 회사 정보 (디자인 x:360 y:151) */
+.footer__info {
+    position: absolute;
+    left: 360px;
+    top: 151px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer__info-line {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.footer__info-line span {
+    font-family: var(--font-suit);
+    font-size: 14px;
+    font-weight: 400;
+    color: #cdcfd1;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+/* 구분선 (디자인 x:360 y:233 width:1198 height:2) */
+.footer__divider {
+    position: absolute;
+    left: 360px;
+    top: 233px;
+    border: none;
+    height: 2px;
+    background: #2b323c;
+    width: 1198px;
+}
+
+/* 링크 섹션 (디자인 x:357 y:265) */
+.footer__links {
+    position: absolute;
+    left: 357px;
+    top: 265px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.footer__links-main {
+    display: flex;
+    gap: 12px;
+}
+
+.footer__links-main a {
+    font-family: var(--font-suit);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--blue);
+    padding: 7.5px 10px 2.5px 5px;
+    transition: color 0.3s;
+}
+.footer__links-main a:hover { color: var(--teal); }
+
+.footer__links-policy {
+    display: flex;
+    gap: 4px;
+    padding: 0 3px;
+}
+
+.footer__links-policy a {
+    font-family: var(--font-suit);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--white);
+    opacity: 0.5;
+    padding: 6px 10px 5px 5px;
+    line-height: 0.93;
+    transition: opacity 0.3s;
+}
+.footer__links-policy a:first-child { padding-left: 0; }
+.footer__links-policy a:hover { opacity: 0.8; }
+
+/* 저작권 (디자인 x:1297 y:287) */
+.footer__copyright {
+    position: absolute;
+    left: 1297px;
+    top: 287px;
+    font-family: var(--font-petrona);
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--text-light);
+}

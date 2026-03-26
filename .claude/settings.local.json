@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.hotelnongshim.com)",
+      "WebFetch(domain:www.lottehotel.com)",
+      "Bash(cd /c/Users/\"User A\"/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/images/시험)",
+      "Bash(cp 테두리.jfif 테두리_copy.jpg)",
+      "Bash(node -e \":*)",
+      "Bash(find 'c:\\\\Users\\\\User A\\\\Desktop\\\\개인프로젝트\\\\웹디자인\\\\호텔농심_리뉴얼\\\\호텔농심' -name h_logo_mob*)",
+      "Bash(sed -n '1,115p' \"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/style.css\")",
+      "Bash(\"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/base.css\")",
+      "Bash(sed -n '116,457p' \"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/style.css\")",
+      "Bash(\"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/header.css\")",
+      "Bash(sed -n '458,940p' \"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/style.css\")",
+      "Bash(\"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/hero.css\")",
+      "Bash(sed -n '941,2787p' \"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/style.css\")",
+      "Bash(\"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/sections.css\")",
+      "Bash(sed -n '2788,3586p' \"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/style.css\")",
+      "Bash(\"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/footer.css\")",
+      "Bash(sed -n '3587,4463p' \"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/style.css\")",
+      "Bash(\"/c/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심/css/responsive.css\")"
+    ]
+  }
+}

@@ -1,0 +1,886 @@
+/* ============================================
+   16. RESPONSIVE (반응형)
+   Breakpoints: 1440px / 1024px / 768px / 480px
+============================================ */
+
+/* ---- 햄버거 버튼 (기본: 숨김) ---- */
+.gnb-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 1100;
+    flex-shrink: 0;
+}
+
+.gnb-toggle__bar {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: rgba(255, 255, 255, 0.85);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+}
+
+.header.gnb-open .gnb-toggle__bar:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.header.gnb-open .gnb-toggle__bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.header.gnb-open .gnb-toggle__bar:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+
+/* ════════════════════════════════════════
+   1440px — 대형 화면 오버플로우 방지
+════════════════════════════════════════ */
+@media (max-width: 1440px) {
+
+    /* Topbar */
+    .topbar { padding: 0 120px; }
+
+    /* Accommodations: 360+1200=1560 → 120+1200=1320 */
+    .accommodations__content { left: 120px; }
+
+    /* Brand Film: 410+1100=1510 → center with max-width */
+    .brand-film__frame {
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 160px);
+        max-width: 1100px;
+    }
+    .brand-film__video-wrap { width: 100%; }
+    .brand-film__video { width: calc(100% - 64px); }
+
+    /* Special Offers 장식선: 고정 715px → 유동폭 */
+    .special-offers__lines .line { width: calc(50% - 88px); }
+
+    /* Membership: 비율 스케일 (1920 → 1440) */
+    .membership__title-wrap { left: 330px; }
+    .membership__desc       { left: 593px; }
+    .membership__cta        { left: 975px; }
+
+    /* Location */
+    .location__inner { left: 80px; }
+    .location__header { width: calc(100vw - 160px); }
+    .location__content { width: calc(100vw - 160px); }
+    .location__map { width: calc(50% - 12px); min-width: 480px; }
+
+    /* Footer */
+    .footer__top       { left: 80px; width: calc(100% - 160px); }
+    .footer__info      { left: 80px; }
+    .footer__divider   { left: 80px; width: calc(100% - 160px); }
+    .footer__links     { left: 80px; }
+    .footer__copyright { left: auto; right: 80px; }
+}
+
+
+/* ════════════════════════════════════════
+   1024px — 태블릿/작은 데스크탑
+════════════════════════════════════════ */
+@media (max-width: 1024px) {
+
+    /* ── Topbar: 숨김 ── */
+    .topbar { display: none; }
+
+    /* ── Header/GNB: 햄버거 모드 ── */
+    .gnb-toggle { display: flex; }
+
+    .header__gnb {
+        height: 56px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        gap: 0;
+        background: rgba(6, 14, 25, 0.92);
+        backdrop-filter: blur(10px);
+    }
+
+    /* 데스크탑 메뉴 숨김 */
+    .gnb-menu.gnb-left,
+    .gnb-menu.gnb-right { display: none; }
+
+    /* 로고: 정상 플로우 */
+    .logo-item { position: static; transform: none; z-index: auto; }
+    .logo-item .gnb-submenu { display: none; }
+
+    /* 도트·리플 숨김 */
+    .gnb-item > a::after { display: none; }
+    .gnb-ripple-canvas { display: none; }
+
+    /* ── 풀스크린 드로어 ── */
+    .header.gnb-open {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        overflow-y: auto;
+        background: rgba(6, 14, 25, 0.98);
+        backdrop-filter: blur(16px);
+        z-index: 1002;
+        transform: none;
+    }
+
+    .header.gnb-open .header__gnb {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0;
+        height: auto;
+        min-height: 100dvh;
+        justify-content: flex-start;
+        position: relative;
+        background: transparent;
+    }
+
+    /* 로고: 상단 중앙 */
+    .header.gnb-open .logo-item {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+        height: 60px;
+        display: flex;
+        align-items: center;
+    }
+    .header.gnb-open .logo { height: auto; }
+    .header.gnb-open .logo img { height: 28px; }
+
+    /* X 버튼 */
+    .header.gnb-open .gnb-toggle {
+        position: absolute;
+        top: 10px;
+        right: 16px;
+        z-index: 10;
+    }
+
+    /* ── 메뉴 리스트 ── */
+    .header.gnb-open .gnb-menu.gnb-left,
+    .header.gnb-open .gnb-menu.gnb-right {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        gap: 0;
+        align-self: stretch;
+        align-items: stretch;
+        margin-top: 60px;
+    }
+    .header.gnb-open .gnb-menu.gnb-right {
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        margin-top: 0;
+    }
+
+    .header.gnb-open .gnb-item {
+        align-self: stretch;
+        flex-direction: column;
+        height: auto;
+    }
+
+    /* 1뎁스 링크 */
+    .header.gnb-open .gnb-menu > .gnb-item > a {
+        padding: 16px 52px;
+        font-size: 15px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.8);
+        height: auto;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+    }
+    .header.gnb-open .gnb-menu > .gnb-item > a:active { color: var(--white); }
+
+    /* has-sub: 우측 chevron (padding 대칭으로 텍스트 중앙 유지) */
+    .header.gnb-open .gnb-item.has-sub > a { padding: 16px 52px; }
+    .header.gnb-open .gnb-item.has-sub > a::after {
+        display: block;
+        content: '';
+        position: absolute;
+        right: 24px;
+        top: 50%;
+        left: auto;
+        bottom: auto;
+        width: 7px;
+        height: 7px;
+        background: transparent;
+        border-radius: 0;
+        border-right: 1.5px solid rgba(255,255,255,0.35);
+        border-bottom: 1.5px solid rgba(255,255,255,0.35);
+        transform: translateY(-70%) rotate(45deg);
+        transition: transform 0.25s ease;
+    }
+    .header.gnb-open .gnb-item.is-open.has-sub > a::after {
+        transform: translateY(-30%) rotate(-135deg);
+        border-color: var(--gold);
+    }
+    .header.gnb-open .gnb-item.is-open > a { color: var(--white); }
+
+    /* ── 서브메뉴: 아코디언 ── */
+    .header.gnb-open .gnb-submenu {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        opacity: 1;
+        transform: none;
+        pointer-events: none;
+        box-shadow: none;
+        border-top: none;
+        backdrop-filter: none;
+        background: rgba(255,255,255,0.03);
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.32s ease;
+    }
+    .header.gnb-open .gnb-item.is-open .gnb-submenu {
+        max-height: 700px;
+        pointer-events: auto;
+    }
+    .header.gnb-open .gnb-submenu__inner {
+        padding: 16px 24px 20px;
+        gap: 20px 32px;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+    .header.gnb-open .mega-feat { display: none; }
+
+    /* 서브메뉴 컬럼 중앙 정렬 */
+    .header.gnb-open .gnb-col {
+        align-items: center;
+        min-width: 80px;
+    }
+
+    /* 서브메뉴 타이틀 */
+    .header.gnb-open .gnb-col .gnb-col__title {
+        font-size: 11px;
+        letter-spacing: 0.5px;
+        color: var(--gold);
+        opacity: 0.7;
+        text-align: center;
+    }
+    /* 서브메뉴 링크 */
+    .header.gnb-open .gnb-col__list {
+        align-items: center;
+    }
+    .header.gnb-open .gnb-col__list a {
+        font-size: 13px;
+        color: rgba(255,255,255,0.55);
+        text-align: center;
+    }
+
+    /* 로고 서브메뉴 숨김 */
+    .logo-item .gnb-submenu { display: none; }
+
+    /* ── Hero ── */
+    .hero { height: 720px; }
+    .hero__counter { left: 40px; top: 520px; }
+    .hero__counter-current { font-size: 60px; }
+    .hero__counter-total { font-size: 30px; }
+    .hero__text { left: 40px; top: 600px; width: calc(100% - 80px); }
+    .hero__title { font-size: 38px; }
+    .hero__subtitle { font-size: 17px; }
+    .hero__dots { right: 40px; top: 200px; }
+    .hero__arrow--left { left: 12px; }
+    .hero__arrow--right { right: 12px; }
+
+    /* ── Hotel Intro ── */
+    .hotel-intro { padding: 72px 0 64px; }
+    .hotel-intro__inner {
+        flex-direction: column;
+        height: auto;
+        padding: 0 40px;
+        gap: 40px;
+    }
+    .hotel-intro__img-wrap { flex: none; width: 100%; height: 400px; }
+    .hotel-intro__content {
+        flex: none;
+        width: 100%;
+        padding: 0;
+        border-left: none;
+        border-top: 1px solid rgba(184, 153, 111, 0.30);
+        padding-top: 32px;
+    }
+
+    /* ── Special Offers ── */
+    .special-offers { height: 900px; }
+    .special-offers__dots { top: 790px; }
+    .special-offers__lines { top: 793px; }
+    .special-offers__lines .line { width: calc(50% - 88px); }
+    .special-offers__actions { top: 790px; }
+
+    /* ── Accommodations ── */
+    .accommodations { height: auto; min-height: 900px; }
+    .accommodations__content {
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin-top: 220px;
+        padding: 0 40px;
+    }
+    .accommodations__nav {
+        position: absolute;
+        left: 40px;
+        top: 0;
+        width: auto;
+        height: auto;
+    }
+    .accommodations__nav-list { flex-direction: row; padding-top: 0; gap: 4px; }
+    .accommodations__nav-list li a {
+        flex-direction: column;
+        gap: 4px;
+        height: auto;
+        padding: 8px 16px;
+        justify-content: center;
+        font-size: 13px;
+    }
+    .accommodations__nav-line,
+    .accommodations__nav-accent { display: none; }
+    .accommodations__panel {
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        opacity: 1;
+        pointer-events: all;
+    }
+    .accommodations__panel.is-active { opacity: 1; }
+    .accommodations__image { width: 100%; height: 360px; flex-shrink: 0; }
+    .accommodations__info {
+        width: 100%; height: auto; padding: 24px 48px 40px;
+        position: relative; display: flex; flex-direction: column; gap: 6px;
+    }
+    /* 절대위치 자식 → 정적 흐름으로 리셋 (1024px) */
+    .accommodations__category { position: static; left: auto; top: auto; }
+    .accommodations__room-name { position: static; left: auto; top: auto; }
+    .accommodations__room-name-en { position: static; left: auto; top: auto; }
+    .accommodations__room-desc { position: static; left: auto; top: auto; width: 100%; }
+    .accommodations__subrooms { position: static; left: auto; top: auto; margin-top: 12px; }
+    .accommodations__cta { position: relative; left: 0; top: 0; margin-top: 20px; }
+
+    /* ── AllDay ── */
+    .allday { height: 800px; }
+    .allday__header-title { font-size: 48px; }
+    .allday__photo-frame { right: 32px; width: 400px; top: 240px; bottom: 240px; }
+    .allday__slide-content { left: 40px; bottom: 160px; }
+    .allday__slide-title { font-size: 28px; }
+    .allday__timebar { padding: 0 40px 32px; }
+
+    /* ── Brand Film ── */
+    .brand-film { height: auto; min-height: 600px; padding-bottom: 80px; overflow: visible; }
+    .brand-film__frame {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: calc(100% - 80px);
+        max-width: 860px;
+        margin: 80px auto 0;
+        transform: none;
+    }
+    .brand-film__video-wrap { width: 100%; height: auto; aspect-ratio: 1100 / 647; }
+    .brand-film__video { position: absolute; top: 32px; left: 32px; width: calc(100% - 64px); height: auto; }
+
+    /* ── Membership ── */
+    .membership { height: auto; padding: 56px 40px; }
+    .membership__title-wrap { position: relative; left: auto; top: auto; margin-bottom: 24px; }
+    .membership__desc { position: relative; left: auto; top: auto; width: 100%; max-width: 520px; margin-bottom: 32px; }
+    .membership__cta { position: relative; left: auto; top: auto; }
+
+    /* ── Location ── */
+    .location { height: auto; }
+    .location__inner { position: relative; left: 0; top: 0; padding: 80px 40px 64px; }
+    .location__header { width: 100%; margin-bottom: 48px; }
+    .location__content { width: 100%; flex-direction: column; }
+    .location__map { width: 100%; height: 380px; min-width: unset; }
+    .location__info { height: auto; }
+
+    /* ── Footer ── */
+    .footer { height: auto; padding-bottom: 48px; }
+    .footer__top { position: relative; left: 0; top: 0; width: calc(100% - 80px); margin: 0 40px; padding-top: 48px; }
+    .footer__info { position: relative; left: 0; top: 0; margin: 24px 40px 0; }
+    .footer__divider { position: relative; left: 0; top: 0; margin: 24px 40px 0; width: calc(100% - 80px); }
+    .footer__links { position: relative; left: 0; top: 0; margin: 20px 40px 0; }
+    .footer__copyright { position: relative; left: auto; right: auto; top: 0; margin: 12px 40px 0; }
+}
+
+
+/* ════════════════════════════════════════
+   768px — 태블릿 세로 / 모바일
+════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+    /* ── 모바일 헤더 바 표시 / 기존 header 숨김 ── */
+    .mob-header { display: flex; }
+    .header { display: none; }
+    .header.gnb-open { display: block; } /* 메뉴 오픈 시 풀스크린 드로어로 표시 */
+
+    /* ── Hero ── */
+    .hero { height: 100vh; padding-top: 0; }
+    /* /03 카운터: 가로 정렬, 슬라이딩 라인 제거 */
+    .hero__counter {
+        left: 24px; bottom: 120px; top: auto;
+        flex-direction: column; align-items: flex-start; gap: 2px;
+    }
+    .hero__counter-current { font-size: 44px; }
+    .hero__counter-current::after { display: none; } /* 사선 장식선 제거 */
+    .hero__counter-total { font-size: 22px; margin-left: 30px; margin-top: 0; margin-bottom: 0; }
+    .hero__text { left: 24px; top: auto; bottom: 48px; width: calc(100% - 48px); gap: 8px; }
+    .hero__title { font-size: 28px; word-break: keep-all; }
+    .hero__subtitle { font-size: 14px; word-break: keep-all; }
+    .hero__dots { display: none; }
+
+    /* ── Hotel Intro ── */
+    .hotel-intro { height: auto; padding: 64px 0 56px; }
+    .hotel-intro__inner {
+        position: relative; left: auto; top: auto;
+        flex-direction: column; height: auto; width: 100%;
+        padding: 0 24px; gap: 0;
+    }
+    .hotel-intro__img-wrap { flex: none; width: 100%; height: 240px; order: 2; margin-top: 24px; }
+    .hotel-intro__content {
+        flex: none; width: 100%; order: 1;
+        padding: 0; border-left: none; border-top: none;
+        text-align: center; /* 전체 텍스트 중앙정렬 */
+    }
+    .hotel-intro__text-body { display: flex; flex-direction: column; }
+    /* 순서: heading > since > desc / 데스크탑 마진 리셋 */
+    .hotel-intro__heading { order: 1; margin-bottom: 0; }
+    .hotel-intro__heading::after { margin-left: auto; margin-right: auto; margin-top: 10px; } /* 금선 중앙, 간격 축소 */
+    .hotel-intro__since { order: 2; margin-top: 8px; margin-bottom: 0; font-size: 10px; letter-spacing: 2px; }
+    .hotel-intro__since::after { margin-left: auto; margin-right: auto; } /* 다이아 중앙 */
+    .hotel-intro__desc { order: 3; margin-top: 12px; font-size: 14px; line-height: 1.8; word-break: keep-all; }
+    .hotel-intro__title-en { font-size: 24px; }
+    .hotel-intro__title-kr { font-size: 14px; }
+    /* CTA: 작게, 오른쪽 정렬 */
+    .hotel-intro__cta { align-self: center; gap: 6px; margin-top: 16px; font-size: 11px; text-align: center; }
+    .hotel-intro__cta-line { width: 20px; }
+    .hotel-intro__arrows { display: none; }
+    /* 모바일: scroll-reveal 비활성화 — opacity:0이 빈 공간 유발 방지 */
+    .hotel-intro__img-wrap,
+    .hotel-intro__content { opacity: 1; transform: none; transition: none; }
+
+    /* ── Special Offers ── */
+    .special-offers { height: auto; padding: 64px 0 56px; overflow: visible; }
+    .special-offers__header { position: relative; left: auto; top: auto; transform: none; width: 100%; margin-bottom: 24px; padding: 0 24px; text-align: center; }
+    .special-offers__title-en { font-size: 26px; }
+    .special-offers__title-kr { word-break: keep-all; }
+
+    /* 모바일 드롭다운: 중앙 정렬, warm-white 배경에 맞는 다크 텍스트 */
+    .offers-mob-select { display: flex; position: relative; margin: 0 auto 20px; width: fit-content; }
+    .offers-mob-select__btn {
+        background: none; border: 1px solid rgba(184,153,111,0.35);
+        color: var(--text-body); font-family: var(--font-noto); font-size: 13px;
+        letter-spacing: 1px; padding: 10px 16px; cursor: pointer;
+        display: flex; align-items: center; gap: 8px;
+        border-radius: 1px; white-space: nowrap;
+    }
+    .offers-mob-select__item {
+        padding: 10px 16px; background: none; border: none;
+        border-left: 3px solid transparent;
+        color: var(--text-dark); font-family: var(--font-noto); font-size: 13px; text-align: left;
+        cursor: pointer; letter-spacing: 1px; white-space: nowrap;
+        transition: background 0.15s, color 0.15s;
+    }
+    .offers-mob-select__item.is-active {
+        color: var(--gold); font-weight: 600;
+        border-left-color: var(--gold);
+        background: rgba(184, 153, 111, 0.06);
+    }
+    .offers-mob-select__item:hover { color: var(--text-dark); background: rgba(184,153,111,0.08); }
+    .offers-mob-select__menu {
+        position: absolute; top: 100%; left: 0;
+        background: var(--warm-white); border: 1px solid rgba(184,153,111,0.25);
+        border-top: none; flex-direction: column; z-index: 10;
+        min-width: 100%;
+    }
+    .offers-toggle { display: none; }
+
+    /* 카드: 가로 스크롤, 한 장씩 */
+    .special-offers__carousel {
+        position: relative; left: auto; top: auto;
+        width: 100%;
+        display: flex; flex-direction: row; align-items: stretch;
+        overflow-x: scroll; overflow-y: hidden;
+        padding: 0 24px 16px;
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: 24px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 16px;
+        touch-action: pan-x;
+        overscroll-behavior-x: contain;
+    }
+    .special-offers__carousel::-webkit-scrollbar { display: none; }
+    /* touch-action: pan-x만 있으면 카드 영역에서 세로 스크롤이 완전히 막힘 → pan-y 추가 */
+    .special-offers__carousel { touch-action: pan-x pan-y; }
+    .offer-card {
+        position: relative; left: auto; top: auto;
+        flex: 0 0 calc(100vw - 48px);
+        height: auto; margin: 0; scroll-snap-align: start;
+    }
+    .offer-card.is-active { margin: 0; }
+    /* 원본 2:3 비율 유지 (310×465) */
+    .offer-card__thumb { width: 100%; height: auto; aspect-ratio: 2 / 3; }
+    .offer-card.is-active .offer-card__thumb { width: 100%; height: auto; aspect-ratio: 2 / 3; }
+    .special-offers__dots { display: none; }
+    .special-offers__actions { display: none; }
+    .special-offers__lines { display: none; }
+    .offer-card__overlay { opacity: 1; }
+    .offer-card__info { opacity: 1; transform: none; align-items: center; text-align: center; }
+    /* CTA → 아이콘만, 중앙 정렬 */
+    .offer-card__cta { max-height: 32px; opacity: 1; justify-content: center; padding: 6px 0 0; }
+    .offer-card__cta-text { display: none; }
+    .offer-card__cta-line { display: none; }
+    .offer-card__cta svg { width: 20px; height: 20px; opacity: 0.9; }
+    .offer-card__name { display: none; }
+
+    /* ── Accommodations ── */
+    .acc-mob-select { display: flex; position: relative; margin: 0 auto 20px; width: fit-content; }
+    .acc-mob-select__btn {
+        background: none; border: 1px solid rgba(184,153,111,0.35);
+        color: var(--text-body); font-family: var(--font-noto); font-size: 13px;
+        letter-spacing: 1px; padding: 10px 16px; cursor: pointer;
+        display: flex; align-items: center; justify-content: space-between; gap: 8px;
+        border-radius: 1px; white-space: nowrap; min-width: 148px;
+    }
+    .acc-mob-select__item {
+        padding: 10px 16px; background: none; border: none;
+        border-left: 3px solid transparent;
+        color: var(--text-dark); font-family: var(--font-noto); font-size: 13px; text-align: left;
+        cursor: pointer; letter-spacing: 1px; white-space: nowrap;
+        transition: background 0.15s, color 0.15s;
+    }
+    .acc-mob-select__item.is-active {
+        color: var(--gold); font-weight: 600;
+        border-left-color: var(--gold);
+        background: rgba(184, 153, 111, 0.06);
+    }
+    .acc-mob-select__item:hover { background: rgba(184,153,111,0.08); }
+    .acc-mob-select__menu {
+        position: absolute; top: 100%; left: 0;
+        background: var(--warm-white); border: 1px solid rgba(184,153,111,0.25);
+        border-top: none; flex-direction: column; z-index: 10;
+        min-width: 100%;
+    }
+    .accommodations__nav { display: none; }
+
+    .accommodations { height: auto; padding: 64px 0 56px; overflow: visible; }
+    .accommodations__header { position: relative; left: auto; top: auto; text-align: center; padding: 0 24px; width: 100%; transform: none; }
+    .accommodations__divider { position: relative; left: auto; top: auto; transform: none; margin: 12px auto 24px; }
+    .accommodations__content { position: relative; left: auto; top: auto; width: 100%; flex-direction: column; margin-top: 0; padding: 0; }
+    /* 패널: 비활성 완전 숨김 (opacity 아닌 display로) */
+    .accommodations__panel { display: none; position: relative; left: auto; top: auto; width: 100%; height: auto; flex-direction: column; opacity: 1; pointer-events: all; }
+    .accommodations__panel.is-active { display: flex; opacity: 1; }
+    .accommodations__image { width: 100%; height: 260px; flex-shrink: 0; }
+    .accommodations__info {
+        width: 100%; height: auto; padding: 16px 24px 12px;
+        position: relative; display: flex; flex-direction: column; gap: 4px;
+    }
+    .accommodations__room-desc { display: none; }
+    .accommodations__specs { display: none; }
+    /* 절대위치 자식 → 정적 흐름으로 리셋 (768px) */
+    .accommodations__category { position: static; left: auto; top: auto; font-size: 11px; }
+    .accommodations__room-name { position: static; left: auto; top: auto; font-size: 18px; word-break: keep-all; }
+    .accommodations__room-name-en { position: static; left: auto; top: auto; font-size: 11px; }
+    .accommodations__subrooms {
+        position: static; left: auto; top: auto; margin-top: 8px;
+        overflow-x: auto; -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; flex-wrap: nowrap;
+        touch-action: pan-x; overscroll-behavior-x: contain;
+    }
+    .accommodations__subrooms::-webkit-scrollbar { display: none; }
+    .subroom { flex: 0 0 84px; flex-shrink: 0; }
+    .subroom__thumb { height: 60px; }
+    .subroom__name { font-size: 10px; }
+    /* 스크롤 힌트 (JS 생성, 4개 이상 패널) */
+    .subrooms-scroll-hint {
+        display: flex; align-items: center; gap: 4px;
+        font-size: 11px; letter-spacing: 0.5px;
+        color: var(--gold); margin-top: 2px;
+        transition: opacity 0.25s;
+    }
+    .accommodations__cta { position: relative; left: 0; top: 0; margin-top: 8px; align-self: flex-start; }
+    .accommodations__title-en { font-size: 26px; }
+
+    /* ── AllDay ── */
+    .allday { height: 560px; overflow: hidden; }
+    /* 헤더: 타이틀을 본문 바로 위에 배치 (타 섹션 리듬과 통일) */
+    .allday__header { position: absolute; top: 0; left: 0; right: 0; padding: 32px 24px 0; text-align: center; z-index: 5; }
+    .allday__header-label { font-size: 10px; letter-spacing: 2px; justify-content: center; }
+    .allday__header-title { font-size: 26px; }
+    .allday__stage { position: absolute; inset: 0; }
+    .allday__slide { position: relative; width: 100%; height: 100%; display: none; }
+    .allday__slide.is-active { display: block; }
+    .allday__slide-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    /* 오버레이: 상단(타이틀+본문)·하단(타임바) 양방향 그라데이션 */
+    .allday__slide-overlay {
+        position: absolute; inset: 0;
+        background:
+            linear-gradient(to bottom, rgba(6,14,25,0.72) 0%, rgba(6,14,25,0.30) 35%, transparent 55%),
+            linear-gradient(to top,    rgba(6,14,25,0.80) 0%, rgba(6,14,25,0.20) 45%, transparent 65%);
+    }
+    /* 본문 텍스트: 포토카드 하단 장식선 바로 밑 (center = 42%, 높이절반 87.5px + 장식선 20px + gap 12px = 120px) */
+    .allday__slide-content {
+        position: absolute; left: 24px; right: 24px; top: calc(42% + 120px);
+        bottom: auto; width: auto; padding: 0; text-align: center; z-index: 4;
+    }
+    .allday__slide-text { display: flex; flex-direction: column; gap: 8px; }
+    .allday__slide-time { display: none; }
+    .allday__slide-title { font-size: 16px; word-break: keep-all; }
+    .allday__slide-desc { font-size: 11px; line-height: 1.7; word-break: keep-all; }
+    .allday__slide-cta { font-size: 11px; margin-top: 4px; align-self: center; justify-content: center; }
+    .allday__slide-cta::after { display: none; } /* 호버 전용 화살표 — 모바일에서 공간 점유 제거 */
+
+    /* 포토 카드: 헤더↔타임바 사이 균형 배치 */
+    .allday__photo-frame {
+        display: block; position: absolute;
+        left: 50%; right: auto; top: 42%;
+        transform: translate(-50%, -50%);
+        width: 140px; height: 175px; z-index: 3;
+    }
+
+    /* ── 가로 타임바 (원본 방식, 모바일 소형화) ── */
+    .allday__timebar {
+        position: absolute; bottom: 0; left: 0; right: 0;
+        height: 80px; width: auto; top: auto;
+        display: flex; flex-direction: column; justify-content: flex-end;
+        padding: 0 24px 20px; gap: 10px;
+        background: none; backdrop-filter: none;
+    }
+    /* 트랙: 터치 구역 44px (시각적 선은 내부 요소가 top:50%로 중앙) */
+    .allday__tb-track {
+        position: relative; left: auto; top: auto; bottom: auto;
+        height: 44px; width: 100%; cursor: pointer; touch-action: manipulation;
+    }
+    .allday__tb-base {
+        position: absolute; top: 50%; left: 0; transform: translateY(-50%);
+        height: 1px; width: 100%; background: rgba(255,255,255,0.35);
+    }
+    .allday__tb-fill {
+        position: absolute; top: 50%; left: 0; transform: translateY(-50%);
+        height: 1.5px; width: 0; background: var(--gold); transition: width 0.4s ease;
+    }
+    .allday__tb-marker {
+        position: absolute; top: 50%; transform: translate(-50%, -50%);
+        width: 8px; height: 8px; border-radius: 50%; background: var(--gold);
+        transition: left 0.4s ease;
+    }
+    /* glow: base CSS와 동일하게 translateY만 (translateX 제거), width 40px으로 맞춰 calc(pct%-20px) 공식 정확히 마커 중앙에 정렬 */
+    .allday__tb-glow {
+        position: absolute; top: 50%; transform: translateY(-50%);
+        width: 40px; height: 10px; border-radius: 50%;
+        background: radial-gradient(ellipse at center, rgba(212,180,131,0.22) 0%, transparent 70%);
+        transition: left 0.4s ease;
+    }
+    /* 레이블: 트랙이 터치를 담당하므로 버튼 pointer-events 끔 (키보드 접근성은 유지) */
+    .allday__tb-labels { position: absolute; inset: 0; display: block; overflow: visible; pointer-events: none; }
+    .allday__tb-kw { display: none; }
+    /* 버튼: 숫자 숨김, 가로 위치로 절대배치 */
+    .allday__tb-btn {
+        position: absolute; top: 0; bottom: 0; width: 32px;
+        font-size: 0; color: transparent;
+        background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .allday__tb-btn[data-idx]     { transform: translateX(-50%); }
+    .allday__tb-btn[data-idx="0"] { left: 0%; }
+    .allday__tb-btn[data-idx="1"] { left: 16.667%; }
+    .allday__tb-btn[data-idx="2"] { left: 33.333%; }
+    .allday__tb-btn[data-idx="3"] { left: 50%; }
+    .allday__tb-btn[data-idx="4"] { left: 66.667%; }
+    .allday__tb-btn[data-idx="5"] { left: 83.333%; }
+    .allday__tb-btn[data-idx="6"] { left: 100%; }
+
+    /* ── Brand Film ── */
+    /* min-height: 600px (1024px 블록) → 모바일에서 리셋 필수 (갭 원인) */
+    .brand-film { height: auto; min-height: 0; padding: 64px 0 56px; overflow: visible; }
+    .brand-film__frame {
+        position: relative; left: auto; top: auto; height: auto;
+        width: calc(100% - 32px); margin: 0 auto; transform: none; max-width: none;
+    }
+    .brand-film__header { width: 100%; max-width: none; text-align: center; margin-bottom: 24px; }
+    .brand-film__title-en { font-size: 26px; }
+    .brand-film__title-kr { font-size: 14px; word-break: keep-all; }
+    .brand-film__title-kr::after { margin: 8px auto 0; } /* 구분선 중앙 */
+    .brand-film__video-wrap { width: 100%; height: auto; aspect-ratio: 16/9; }
+    .brand-film__video { position: relative; top: auto; left: auto; width: 100%; height: auto; }
+
+    /* ── Membership ── */
+    .membership { height: auto; padding: 64px 24px 56px; overflow: hidden; }
+    .membership__pattern { display: none; }
+    .membership__title-wrap {
+        position: relative; left: auto; top: auto; width: 100%;
+        display: flex; flex-direction: column; align-items: center; gap: 0; margin-bottom: 24px;
+    }
+    .membership__title { font-size: 24px; text-align: center; }
+    /* 구분선 (타 섹션과 동일) */
+    .membership__title::after {
+        content: '';
+        display: block;
+        width: 48px; height: 8px;
+        margin: 10px auto 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='8' viewBox='0 0 48 8'%3E%3Cline x1='0' y1='4' x2='19' y2='4' stroke='%23b8996f' stroke-width='0.8'/%3E%3Cline x1='29' y1='4' x2='48' y2='4' stroke='%23b8996f' stroke-width='0.8'/%3E%3Cpolygon points='24,1 27,4 24,7 21,4' fill='%23b8996f'/%3E%3C/svg%3E");
+        background-size: 48px 8px;
+        background-repeat: no-repeat;
+    }
+    .membership__title-line { display: none; } /* 기존 줄 숨김, ::after 사용 */
+    .membership__desc {
+        position: relative; left: auto; top: auto;
+        width: 100%; margin-top: 0; font-size: 13px; text-align: center;
+        word-break: keep-all; line-height: 1.8;
+    }
+    /* CTA: 화살표 위, 텍스트 아래, 중앙정렬 */
+    .membership__cta {
+        position: relative; left: auto; top: auto; margin-top: 28px;
+        display: flex; flex-direction: column-reverse; align-items: center; gap: 12px;
+    }
+    .membership__cta-text { text-align: center; }
+    .membership__cta-arrow { width: 32px; height: 32px; margin-left: 0; }
+    .membership__cta-arrow svg { width: 13px; height: 13px; }
+
+    /* ── Location ── */
+    .location { height: auto; padding: 64px 0 56px; overflow: visible; }
+    .location__inner { position: relative; left: auto; top: auto; width: 100%; padding: 0 24px; }
+    .location__header { position: relative; left: auto; top: auto; width: 100%; margin-bottom: 24px; text-align: center; align-items: center; }
+    .location__title-en { font-size: 26px; }
+    .location__title-kr { word-break: keep-all; }
+    .location__content { position: relative; left: auto; top: auto; width: 100%; flex-direction: column; gap: 20px; }
+    .location__map { width: 100%; min-width: auto; height: 240px; }
+    .location__info { width: 100%; height: auto; padding: 20px 0 0; }
+    .location__hotel-name { display: none; } /* 제거 */
+    .location__info-line { display: none; } /* hr 제거 */
+    .location__details { gap: 12px; margin-top: 0; }
+    .location__detail-row { gap: 8px; }
+    .location__detail-row dt { min-width: 56px; font-size: 12px; }
+    .location__detail-row dd { font-size: 12px; word-break: keep-all; }
+
+    /* ── Footer ── */
+    .footer { height: auto; padding: 40px 0 56px; overflow: visible; }
+    .footer__top {
+        position: relative; left: auto; top: auto; width: 100%; margin: 0;
+        flex-direction: column; align-items: center; gap: 16px; padding: 0 24px;
+    }
+    .footer__logo { text-align: center; width: 100%; }
+    .footer__logo img { opacity: 0.7; display: block; margin: 0 auto; }
+    .footer__sns { justify-content: center; gap: 20px; }
+    .footer__info {
+        position: relative; left: auto; top: auto;
+        padding: 0 24px; margin-top: 24px;
+        flex-direction: column; gap: 4px; align-items: center;
+    }
+    .footer__info-line { flex-wrap: wrap; gap: 0; flex-direction: column; align-items: center; }
+    .footer__info-line span { font-size: 11px; line-height: 1.9; text-align: center; }
+    .footer__divider { position: relative; left: auto; top: auto; width: calc(100% - 48px); margin: 16px 24px; }
+    .footer__links { position: relative; left: auto; top: auto; padding: 0 24px; margin: 0; flex-direction: column; gap: 12px; align-items: center; }
+    .footer__links-main { flex-wrap: wrap; gap: 6px 14px; justify-content: center; }
+    .footer__links-main a { font-size: 13px; }
+    .footer__links-policy { flex-wrap: wrap; gap: 5px 10px; margin-top: 2px; justify-content: center; }
+    .footer__links-policy a { font-size: 11px; }
+    .footer__copyright { position: relative; left: auto; top: auto; right: auto; text-align: center; padding: 0 24px; margin-top: 12px; font-size: 11px; }
+
+    /* ── FAB: 모바일 독립 구조 ── */
+    /* fab-pill = 투명 컨테이너, column-reverse로 up-btn은 아래, menu는 위 */
+    .fab-pill {
+        background: none; border: none; padding: 0; border-radius: 0;
+        flex-direction: column-reverse; align-items: flex-end; gap: 8px;
+        right: 20px; bottom: 20px;
+    }
+    /* up 버튼: 항상 원형으로 표시 */
+    .fab-up-btn {
+        display: flex; width: 48px; height: 48px; border-radius: 50%;
+        background: var(--warm-white); border: 1px solid rgba(6,14,25,0.22);
+        color: rgba(6,14,25,0.6); cursor: pointer;
+        align-items: center; justify-content: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        flex-shrink: 0;
+    }
+    .fab-up-btn:hover { color: var(--blue); }
+    /* 아이콘 토글: 기본 화살표, 오픈 시 X */
+    .fab-icon-x { display: none; }
+    .fab-pill.is-open .fab-icon-arrow { display: none; }
+    .fab-pill.is-open .fab-icon-x { display: block; }
+    /* fab-menu: 독립 pill — 기본 숨김, 오픈 시 표시 */
+    .fab-menu {
+        display: flex;
+        background: var(--warm-white); border: 1px solid rgba(6,14,25,0.22);
+        border-radius: 999px; padding: 8px 0;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        width: 48px;
+        opacity: 0; pointer-events: none;
+        transform: translateY(8px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .fab-pill.is-open .fab-menu {
+        opacity: 1; pointer-events: all; transform: translateY(0);
+    }
+
+    /* ── 예약 위젯 모바일 ── */
+    .booking-panel {
+        width: 100%; left: 0; right: 0;
+        height: 100%; max-height: 100%;
+        transform: translateX(100%);
+        overflow-y: auto;
+    }
+    .booking-widget.is-open .booking-panel { transform: translateX(0); }
+    .booking-content { overflow-y: visible; max-height: none; }
+}
+
+
+/* ════════════════════════════════════════
+   480px — 소형 모바일
+════════════════════════════════════════ */
+@media (max-width: 480px) {
+
+    /* ── Header: 햄버거 우측 정렬 ── */
+    .header__gnb { justify-content: flex-end; }
+
+    /* ── Hero ── */
+    .hero__counter { bottom: 140px; }
+    .hero__counter-current { font-size: 40px; }
+    .hero__text { bottom: 60px; }
+    .hero__title { font-size: 26px; }
+    .hero__subtitle { font-size: 14px; }
+
+    /* ── Hotel Intro ── */
+    .hotel-intro__inner { padding: 0 16px; }
+    .hotel-intro__img-wrap { height: 240px; }
+    .hotel-intro__title-en { font-size: 26px; }
+
+    /* ── Accommodations ── */
+    .accommodations__nav { padding: 0 16px; }
+    .accommodations__nav-list li a { font-size: 11px; padding: 6px 8px; }
+
+    /* ── AllDay ── */
+    .allday__header-title { font-size: 30px; }
+    .allday__slide-title { font-size: 20px; }
+    .allday__tb-btn { font-size: 0; padding: 0; } /* 768px에서 숨긴 숫자 재노출 방지 */
+    .allday__tb-kw { display: none; }
+
+    /* ── Brand Film ── */
+    .brand-film__frame { width: calc(100% - 32px); }
+    .brand-film__title-en { font-size: 26px; }
+
+    /* ── Membership ── */
+    .membership { padding: 40px 16px; }
+    .membership__title { font-size: 22px; }
+
+    /* ── Location ── */
+    .location__inner { padding: 0 16px; }
+    .location__map { height: 240px; }
+    .location__info { padding: 24px 0; }
+
+    /* ── Footer ── */
+    .footer__top { padding: 0 16px; }
+    .footer__info { padding: 0 16px; margin-top: 24px; }
+    .footer__info-line span { font-size: 12px; }
+    .footer__divider { width: calc(100% - 32px); margin: 16px 16px; }
+    .footer__links { padding: 0 16px; }
+    .footer__copyright { padding: 0 16px; font-size: 11px; }
+}
+
+
