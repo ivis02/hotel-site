@@ -22,5 +22,19 @@
       "Skill(update-config)",
       "Skill(update-config:*)"
     ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const cp=require('child_process');const dir='C:/Users/User A/Desktop/개인프로젝트/웹디자인/호텔농심_리뉴얼/호텔농심';const o={cwd:dir,stdio:'pipe'};try{cp.execSync('git add -A',o);}catch(e){}try{cp.execSync('git commit -m \\\"auto: 작업 완료 저장\\\"',o);}catch(e){}try{cp.execSync('git push',o);}catch(e){}\"",
+            "statusMessage": "GitHub에 저장 중...",
+            "async": true
+          }
+        ]
+      }
+    ]
   }
 }
