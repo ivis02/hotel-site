@@ -246,8 +246,6 @@
         justify-content: center;
         width: 100%;
     }
-    .header.gnb-open .mega-feat { display: none; }
-
     /* 서브메뉴 컬럼 중앙 정렬 */
     .header.gnb-open .gnb-col {
         align-items: center;

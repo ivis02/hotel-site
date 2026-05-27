@@ -1592,23 +1592,6 @@
     overflow: hidden;
 }
 
-.location__map-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-}
-
-.location__map-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f3f3f4;
-}
-
 /* 우측 정보 */
 .location__info {
     flex: 1;
